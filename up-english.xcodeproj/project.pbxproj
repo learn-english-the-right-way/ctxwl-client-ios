@@ -3,16 +3,36 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B0578B41265EA3F400A1B21F /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0578B3F265EA3F400A1B21F /* User.xcdatamodeld */; };
 		B09D06A3263ECB4300246D90 /* up_englishApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06A2263ECB4300246D90 /* up_englishApp.swift */; };
 		B09D06A5263ECB4300246D90 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06A4263ECB4300246D90 /* ContentView.swift */; };
 		B09D06A7263ECB4400246D90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B09D06A6263ECB4400246D90 /* Assets.xcassets */; };
 		B09D06AA263ECB4400246D90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B09D06A9263ECB4400246D90 /* Preview Assets.xcassets */; };
 		B09D06B5263ECB4400246D90 /* up_englishTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06B4263ECB4400246D90 /* up_englishTests.swift */; };
 		B09D06C0263ECB4400246D90 /* up_englishUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06BF263ECB4400246D90 /* up_englishUITests.swift */; };
+		B09D06CE263ECB8900246D90 /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06CD263ECB8900246D90 /* Registration.swift */; };
+		B09D06D0263ECB9C00246D90 /* EmailVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06CF263ECB9C00246D90 /* EmailVerification.swift */; };
+		B09D06D2263ECE2900246D90 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06D1263ECE2900246D90 /* Login.swift */; };
+		B09D06D4263FC99700246D90 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06D3263FC99700246D90 /* RegistrationModel.swift */; };
+		B09D06D6264032EC00246D90 /* RegistrationModelDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06D5264032EC00246D90 /* RegistrationModelDefault.swift */; };
+		B09D06D926429C0700246D90 /* Peppermint in Frameworks */ = {isa = PBXBuildFile; productRef = B09D06D826429C0700246D90 /* Peppermint */; };
+		B09D06DB2643630D00246D90 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06DA2643630D00246D90 /* ViewRouter.swift */; };
+		B09D06DD2643635700246D90 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06DC2643635700246D90 /* Page.swift */; };
+		B0A89A5F264A6CAD00862E26 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A89A5E264A6CAD00862E26 /* RegistrationService.swift */; };
+		B0A89A61264A713200862E26 /* RegistrationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A89A60264A713200862E26 /* RegistrationStatus.swift */; };
+		B0A89A63264A73DC00862E26 /* RegistrationServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A89A62264A73DC00862E26 /* RegistrationServiceDefault.swift */; };
+		B0C7CBFF265131C0003832EE /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CBFE265131C0003832EE /* ServerError.swift */; };
+		B0C7CC0126513253003832EE /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC0026513253003832EE /* Actions.swift */; };
+		B0C7CC052653763F003832EE /* ConfirmationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC042653763F003832EE /* ConfirmationResponse.swift */; };
+		B0C7CC0726560027003832EE /* URLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC0626560027003832EE /* URLError.swift */; };
+		B0C7CC0926568E1D003832EE /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC0826568E1D003832EE /* ApiUrl.swift */; };
+		B0C7CC0B265798E3003832EE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC0A265798E3003832EE /* UserService.swift */; };
+		B0C7CC0D2657F749003832EE /* RegistrationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC0C2657F749003832EE /* RegistrationResponse.swift */; };
+		B0C7CC0F265BA3B1003832EE /* UserServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC0E265BA3B1003832EE /* UserServiceDefault.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B0578B40265EA3F400A1B21F /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 		B09D069F263ECB4300246D90 /* up-english.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "up-english.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B09D06A2263ECB4300246D90 /* up_englishApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = up_englishApp.swift; sourceTree = "<group>"; };
 		B09D06A4263ECB4300246D90 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,6 +66,24 @@
 		B09D06BB263ECB4400246D90 /* up-englishUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "up-englishUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B09D06BF263ECB4400246D90 /* up_englishUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = up_englishUITests.swift; sourceTree = "<group>"; };
 		B09D06C1263ECB4400246D90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B09D06CD263ECB8900246D90 /* Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
+		B09D06CF263ECB9C00246D90 /* EmailVerification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerification.swift; sourceTree = "<group>"; };
+		B09D06D1263ECE2900246D90 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		B09D06D3263FC99700246D90 /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
+		B09D06D5264032EC00246D90 /* RegistrationModelDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModelDefault.swift; sourceTree = "<group>"; };
+		B09D06DA2643630D00246D90 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
+		B09D06DC2643635700246D90 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		B0A89A5E264A6CAD00862E26 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
+		B0A89A60264A713200862E26 /* RegistrationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationStatus.swift; sourceTree = "<group>"; };
+		B0A89A62264A73DC00862E26 /* RegistrationServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationServiceDefault.swift; sourceTree = "<group>"; };
+		B0C7CBFE265131C0003832EE /* ServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
+		B0C7CC0026513253003832EE /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		B0C7CC042653763F003832EE /* ConfirmationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationResponse.swift; sourceTree = "<group>"; };
+		B0C7CC0626560027003832EE /* URLError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLError.swift; sourceTree = "<group>"; };
+		B0C7CC0826568E1D003832EE /* ApiUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
+		B0C7CC0A265798E3003832EE /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		B0C7CC0C2657F749003832EE /* RegistrationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationResponse.swift; sourceTree = "<group>"; };
+		B0C7CC0E265BA3B1003832EE /* UserServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceDefault.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B09D06D926429C0700246D90 /* Peppermint in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +115,7 @@
 		B09D0696263ECB4200246D90 = {
 			isa = PBXGroup;
 			children = (
+				B0578B3F265EA3F400A1B21F /* User.xcdatamodeld */,
 				B09D06A1263ECB4300246D90 /* up-english */,
 				B09D06B3263ECB4400246D90 /* up-englishTests */,
 				B09D06BE263ECB4400246D90 /* up-englishUITests */,
@@ -95,11 +136,17 @@
 		B09D06A1263ECB4300246D90 /* up-english */ = {
 			isa = PBXGroup;
 			children = (
+				B0C7CBFC2651267D003832EE /* Services */,
+				B0C7CBFB26512632003832EE /* ViewModels */,
+				B0C7CBFA265125FE003832EE /* Views */,
 				B09D06A2263ECB4300246D90 /* up_englishApp.swift */,
-				B09D06A4263ECB4300246D90 /* ContentView.swift */,
 				B09D06A6263ECB4400246D90 /* Assets.xcassets */,
 				B09D06AB263ECB4400246D90 /* Info.plist */,
 				B09D06A8263ECB4400246D90 /* Preview Content */,
+				B09D06DA2643630D00246D90 /* ViewRouter.swift */,
+				B09D06DC2643635700246D90 /* Page.swift */,
+				B0A89A60264A713200862E26 /* RegistrationStatus.swift */,
+				B0C7CC0826568E1D003832EE /* ApiUrl.swift */,
 			);
 			path = "up-english";
 			sourceTree = "<group>";
@@ -130,6 +177,50 @@
 			path = "up-englishUITests";
 			sourceTree = "<group>";
 		};
+		B0C7CBFA265125FE003832EE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B09D06A4263ECB4300246D90 /* ContentView.swift */,
+				B09D06D3263FC99700246D90 /* RegistrationModel.swift */,
+				B09D06D1263ECE2900246D90 /* Login.swift */,
+				B09D06CD263ECB8900246D90 /* Registration.swift */,
+				B09D06CF263ECB9C00246D90 /* EmailVerification.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B0C7CBFB26512632003832EE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B0A89A5E264A6CAD00862E26 /* RegistrationService.swift */,
+				B09D06D5264032EC00246D90 /* RegistrationModelDefault.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B0C7CBFC2651267D003832EE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B0C7CBFD2651319A003832EE /* Errors */,
+				B0A89A62264A73DC00862E26 /* RegistrationServiceDefault.swift */,
+				B0C7CC042653763F003832EE /* ConfirmationResponse.swift */,
+				B0C7CC0A265798E3003832EE /* UserService.swift */,
+				B0C7CC0C2657F749003832EE /* RegistrationResponse.swift */,
+				B0C7CC0E265BA3B1003832EE /* UserServiceDefault.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B0C7CBFD2651319A003832EE /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				B0C7CBFE265131C0003832EE /* ServerError.swift */,
+				B0C7CC0026513253003832EE /* Actions.swift */,
+				B0C7CC0626560027003832EE /* URLError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +237,9 @@
 			dependencies = (
 			);
 			name = "up-english";
+			packageProductDependencies = (
+				B09D06D826429C0700246D90 /* Peppermint */,
+			);
 			productName = "up-english";
 			productReference = B09D069F263ECB4300246D90 /* up-english.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +311,9 @@
 				Base,
 			);
 			mainGroup = B09D0696263ECB4200246D90;
+			packageReferences = (
+				B09D06D726429C0700246D90 /* XCRemoteSwiftPackageReference "peppermint" */,
+			);
 			productRefGroup = B09D06A0263ECB4300246D90 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,8 +356,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0A89A63264A73DC00862E26 /* RegistrationServiceDefault.swift in Sources */,
 				B09D06A5263ECB4300246D90 /* ContentView.swift in Sources */,
+				B09D06D2263ECE2900246D90 /* Login.swift in Sources */,
+				B09D06D6264032EC00246D90 /* RegistrationModelDefault.swift in Sources */,
+				B09D06D4263FC99700246D90 /* RegistrationModel.swift in Sources */,
+				B09D06D0263ECB9C00246D90 /* EmailVerification.swift in Sources */,
+				B09D06DD2643635700246D90 /* Page.swift in Sources */,
+				B0A89A5F264A6CAD00862E26 /* RegistrationService.swift in Sources */,
+				B0C7CC0F265BA3B1003832EE /* UserServiceDefault.swift in Sources */,
+				B0C7CBFF265131C0003832EE /* ServerError.swift in Sources */,
+				B0C7CC0926568E1D003832EE /* ApiUrl.swift in Sources */,
+				B09D06CE263ECB8900246D90 /* Registration.swift in Sources */,
+				B0A89A61264A713200862E26 /* RegistrationStatus.swift in Sources */,
+				B0C7CC0B265798E3003832EE /* UserService.swift in Sources */,
+				B0C7CC0D2657F749003832EE /* RegistrationResponse.swift in Sources */,
 				B09D06A3263ECB4300246D90 /* up_englishApp.swift in Sources */,
+				B0C7CC052653763F003832EE /* ConfirmationResponse.swift in Sources */,
+				B09D06DB2643630D00246D90 /* ViewRouter.swift in Sources */,
+				B0578B41265EA3F400A1B21F /* User.xcdatamodeld in Sources */,
+				B0C7CC0726560027003832EE /* URLError.swift in Sources */,
+				B0C7CC0126513253003832EE /* Actions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +696,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B09D06D726429C0700246D90 /* XCRemoteSwiftPackageReference "peppermint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nsagora/peppermint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B09D06D826429C0700246D90 /* Peppermint */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B09D06D726429C0700246D90 /* XCRemoteSwiftPackageReference "peppermint" */;
+			productName = Peppermint;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		B0578B3F265EA3F400A1B21F /* User.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B0578B40265EA3F400A1B21F /* User.xcdatamodel */,
+			);
+			currentVersion = B0578B40265EA3F400A1B21F /* User.xcdatamodel */;
+			path = User.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B09D0697263ECB4200246D90 /* Project object */;
 }
