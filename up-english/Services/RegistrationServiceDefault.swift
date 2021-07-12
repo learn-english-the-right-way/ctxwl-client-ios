@@ -11,8 +11,18 @@ import Combine
 class RegistrationServiceDefault: RegistrationService {
     
     private var requestConfirmationCancellable: AnyCancellable?
-    
-    private var applicationKey = ""
+        
+    private var applicationKey: String {
+        get {
+            guard let applicationKey = UserDefaults.standard.string(forKey: "applicationKey") else {
+                return ""
+            }
+            return applicationKey
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "applicationKey")
+        }
+    }
     
     var registrationStatus: RegistrationStatus {
         get {
@@ -55,24 +65,30 @@ class RegistrationServiceDefault: RegistrationService {
         
         // make the request happen and store the application key
         self.requestConfirmationCancellable = publisher
-            .sink(receiveCompletion: { arg in print(arg)}, receiveValue: { confirmationResponse in
+            .sink(receiveCompletion: { arg in }, receiveValue: { confirmationResponse in
                 self.applicationKey = confirmationResponse.applicationKey
             })
         return publisher.ignoreOutput().eraseToAnyPublisher()
     }
     
     func register(email: String, confirmationCode: String) -> AnyPublisher<RegistrationResponse, Error> {
+        
+        // configure verification patch request
         let url = ApiUrl.registrationUrl(email: email)
         var request = URLRequest(url: url)
         request.httpMethod = "PATCH"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(self.applicationKey, forHTTPHeaderField: "X-Ctxwl-Key")
         guard let data = try? JSONEncoder().encode(["confirmationCode": confirmationCode]) else {
             return Fail<RegistrationResponse, Error>(error: NSError()).eraseToAnyPublisher()
         }
         request.httpBody = data
+        
+        // connect the request to a URLSession, decode the response data and keep a multicasted publisher
         let urlSession = URLSession(configuration: .default)
         return urlSession.dataTaskPublisher(for: request)
             .map({ dataAndResponse in
+                print(dataAndResponse.response)
                 return dataAndResponse.data
             })
             .decode(type: RegistrationResponse.self, decoder: JSONDecoder())

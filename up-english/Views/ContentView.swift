@@ -22,7 +22,7 @@ struct ContentView<RegistrationServiceType, UserServiceType>: View where Registr
         case .Login:
             Login()
         case .Confirmation:
-            EmailVerification()
+            EmailVerification(model: EmailVerificationModelDefault(registrationService: self.registrationService, userService: self.userService, viewRouter: self.viewRouter))
         }
     }
 }

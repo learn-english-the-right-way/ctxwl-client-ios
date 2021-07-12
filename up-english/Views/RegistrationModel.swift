@@ -19,10 +19,8 @@ protocol RegistrationModel: ObservableObject {
     var password2Valid: Bool {get}
     var password2ErrorMsg: String {get}
     var confirmationCode: String {get set}
-    var registrationButtonDisabled: Bool {get}
-    var registering: Bool {get}
+    var validationFailed: Bool {get}
     var requestingConfirmationCode: Bool {get}
-    func register() -> Void
     func requestConfirmationCode() -> Void
 
 }

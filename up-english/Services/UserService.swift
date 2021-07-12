@@ -14,5 +14,9 @@ protocol UserService: ObservableObject {
     var password: String {get set}
     
     var applicationAuthenticationKey: String {get set}
+    
+    var userSessionToken: String {get set}
+    
+    var userID: Int {get set}
 }
 

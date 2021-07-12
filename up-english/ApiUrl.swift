@@ -13,6 +13,6 @@ class ApiUrl {
         return URL(string: self.baseUrl + "/email_registration")!
     }
     static func registrationUrl(email: String) -> URL {
-        return URL(string: self.baseUrl + email)!
+        return URL(string: self.baseUrl + "/email_registration/" + email)!
     }
 }

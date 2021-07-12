@@ -24,5 +24,9 @@ class UserServiceDefault: UserService {
     
     var applicationAuthenticationKey: String = ""
     
+    var userID: Int = 0
+    
+    var userSessionToken: String = ""
+    
 }
 

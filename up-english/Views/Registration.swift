@@ -8,59 +8,58 @@
 import SwiftUI
 
 struct Registration<ModelType>: View where ModelType: RegistrationModel {
+    
     @EnvironmentObject var viewRouter: ViewRouter
-    @State var showEmailErrorMsg: Bool = false
-    @State var showPassword2ErrorMsg: Bool = false
-    @ObservedObject private var registrationModel: ModelType
+
+    @ObservedObject private var model: ModelType
     
     init(model: ModelType) {
-        self.registrationModel = model
+        self.model = model
     }
 
     var body: some View {
         VStack {
             Text("Sending verification email...")
-                .opacity(registrationModel.requestingConfirmationCode ? 1 : 0)
+                .opacity(model.requestingConfirmationCode ? 1 : 0)
             HStack {
                 Text("Email:")
-                TextField("Email address", text: $registrationModel.email) { isEditing in
-                    self.showEmailErrorMsg = isEditing
-                }
+                TextField("Email address", text: $model.email)
                     .disableAutocorrection(true)
                     .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                     .keyboardType(.emailAddress)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
+                    .disabled(model.requestingConfirmationCode)
             }
-            Text(registrationModel.emailErrorMsg)
-                .opacity(self.showEmailErrorMsg ? 0 : 1)
+            Text(model.emailErrorMsg)
             HStack {
                 Text("Password:")
-                TextField("Password", text: $registrationModel.password1)
+                TextField("Password", text: $model.password1)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .disableAutocorrection(true)
                     .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                     .padding()
+                    .disabled(model.requestingConfirmationCode)
             }
-            Text(registrationModel.password1ErrorMsg)
+            Text(model.password1ErrorMsg)
             HStack {
                 Text("Password:")
-                TextField("Confirm password", text: $registrationModel.password2) { isEditing in
-                    showPassword2ErrorMsg = !isEditing
-                }
+                TextField("Confirm password", text: $model.password2)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .disableAutocorrection(true)
                 .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                 .padding()
+                .disabled(model.requestingConfirmationCode)
 
             }
-            Text(registrationModel.password2ErrorMsg)
-                .opacity(showPassword2ErrorMsg ? 1 : 0)
+            Text(model.password2ErrorMsg)
             Button("Register") {
-                registrationModel.requestConfirmationCode()
+                model.requestConfirmationCode()
             }
-            .disabled(registrationModel.registrationButtonDisabled)
-            .disabled(registrationModel.registering)
+            .disabled(
+                model.validationFailed ||
+                model.requestingConfirmationCode
+            )
             Button("Login") {
                 viewRouter.currentPage = .Login
             }

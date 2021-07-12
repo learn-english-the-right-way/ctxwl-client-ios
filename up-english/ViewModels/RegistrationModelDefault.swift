@@ -18,9 +18,7 @@ class RegistrationModelDefault<RegistrationServiceType, UserServiceType>: Regist
     private var viewRouter: ViewRouter
     
     private var confirmationCodeRequestCancellable: AnyCancellable?
-    
-    private var registrationRequestCancellable: AnyCancellable?
-    
+        
     var confirmationCode = ""
     
     @Published var email = "" {
@@ -58,7 +56,7 @@ class RegistrationModelDefault<RegistrationServiceType, UserServiceType>: Regist
     
     @Published var password2ErrorMsg = ""
     
-    @Published var registrationButtonDisabled = true
+    @Published var validationFailed = true
     
     @Published var requestingConfirmationCode = false
     
@@ -113,37 +111,37 @@ class RegistrationModelDefault<RegistrationServiceType, UserServiceType>: Regist
     
     private func checkRegistrationButtonStatus() {
         if emailValid && password1Valid && password2Valid {
-            registrationButtonDisabled = false
+            validationFailed = false
         } else {
-            registrationButtonDisabled = true
+            validationFailed = true
         }
     }
     
     func requestConfirmationCode() -> Void {
+        
+        // do nothing if there is an ongoing confirmation code request
         guard self.requestingConfirmationCode else {
             self.requestingConfirmationCode = true
             self.userService.email = self.email
             self.userService.password = self.password1
-            self.confirmationCodeRequestCancellable = self.registrationService.requestEmailConfirmation(email: self.userService.email, password: self.userService.password)
+            self.confirmationCodeRequestCancellable =
+                self.registrationService.requestEmailConfirmation(email: self.userService.email, password: self.userService.password)
                 .receive(on: RunLoop.main)
                 .sink(receiveCompletion: {
                     completion in
                     self.requestingConfirmationCode = false
-                    self.viewRouter.currentPage = .Confirmation
+                    switch completion {
+                    case .finished:
+                        self.viewRouter.currentPage = .Confirmation
+                        UserDefaults.standard.setValue(RegistrationStatus.ConfirmationRequested.rawValue, forKey: "registrationStatus")
+                    case .failure:
+                        print("failed")
+                    }
                 },
                       receiveValue: {value in}
                 )
             return
         }
     }
-    
-    func register() -> Void {
-        self.userService.email = self.email
-        guard self.registering else {
-            self.registering = true
-            self.registrationRequestCancellable = self.registrationService.register(email: self.userService.email, confirmationCode: self.confirmationCode)
-                .sink(receiveCompletion: {status in self.registering = false}, receiveValue: {value in})
-            return
-        }
-    }
+
 }

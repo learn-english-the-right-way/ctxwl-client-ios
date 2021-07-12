@@ -7,14 +7,32 @@
 
 import SwiftUI
 
-struct EmailVerification: View {
+struct EmailVerification<ModelType>: View where ModelType: EmailVerificationModel {
+    
+    @ObservedObject private var model: ModelType
+    
+    init(model: ModelType) {
+        self.model = model
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Button("Go Back") {
+                model.reset()
+            }
+            HStack {
+                Text("Confirmation Code")
+                TextField("Confirmation code", text: $model.confirmationCode)
+            }
+            Button("Verify") {
+                model.register()
+            }
+        }
     }
 }
 
 struct EmailVerification_Previews: PreviewProvider {
     static var previews: some View {
-        EmailVerification()
+        EmailVerification(model: EmailVerificationModelDefault(registrationService: RegistrationServiceDefault(), userService: UserServiceDefault(), viewRouter: ViewRouter()))
     }
 }
