@@ -22,5 +22,4 @@ protocol RegistrationModel: ObservableObject {
     var validationFailed: Bool {get}
     var requestingConfirmationCode: Bool {get}
     func requestConfirmationCode() -> Void
-
 }

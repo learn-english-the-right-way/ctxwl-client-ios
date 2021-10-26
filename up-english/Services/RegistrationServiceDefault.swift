@@ -8,6 +8,16 @@
 import Foundation
 import Combine
 
+struct RegistrationResponse: Codable {
+    let email: String
+    let userAuthenticationApplicationKey: String
+}
+
+struct ConfirmationResponse: Codable {
+    let email: String
+    let applicationKey: String
+}
+
 class RegistrationServiceDefault: RegistrationService {
     
     private var requestConfirmationCancellable: AnyCancellable?
@@ -56,7 +66,7 @@ class RegistrationServiceDefault: RegistrationService {
         request.httpBody = data
         
         // connect the request to a URLSession, decode the response data and keep a multicasted publisher
-        let publisher = URLSession(configuration: URLSessionConfiguration.default).dataTaskPublisher(for: request)
+        let publisher = URLSession(configuration: .default).dataTaskPublisher(for: request)
             .map({ dataAndResponse in
                 return dataAndResponse.data
             })

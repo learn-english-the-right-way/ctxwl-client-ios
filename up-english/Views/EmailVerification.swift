@@ -17,6 +17,10 @@ struct EmailVerification<ModelType>: View where ModelType: EmailVerificationMode
     
     var body: some View {
         VStack {
+            ZStack {
+                Text("Please wait while we finish registering...")
+                    .opacity(model.registering ? 1 : 0)
+            }
             Button("Go Back") {
                 model.reset()
             }

@@ -18,10 +18,11 @@ struct up_englishApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView<RegistrationServiceDefault, UserServiceDefault>()
-                .environmentObject(self.viewRouter)
-                .environmentObject(self.registrationService)
-                .environmentObject(self.userService)
+//            ContentView<RegistrationServiceDefault, UserServiceDefault>()
+//                .environmentObject(self.viewRouter)
+//                .environmentObject(self.registrationService)
+//                .environmentObject(self.userService)
+            ContentViewMock()
         }
     }
 }

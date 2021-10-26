@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol UserService: ObservableObject {
     
@@ -14,9 +15,7 @@ protocol UserService: ObservableObject {
     var password: String {get set}
     
     var applicationAuthenticationKey: String {get set}
-    
-    var userSessionToken: String {get set}
-    
-    var userID: Int {get set}
+            
+    func login(email: String, password: String) -> AnyPublisher<Never, Error>
 }
 

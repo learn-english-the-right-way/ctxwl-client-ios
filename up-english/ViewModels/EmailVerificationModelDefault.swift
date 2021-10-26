@@ -22,6 +22,8 @@ class EmailVerificationModelDefault<RegistrationServiceType, UserServiceType>: E
     
     @Published var registering = false
     
+    @Published var displayConfirmationCodeErrMsg = false
+    
     init(registrationService: RegistrationServiceType, userService: UserServiceType, viewRouter: ViewRouter) {
         self.registrationService = registrationService
         self.userService = userService
@@ -36,13 +38,13 @@ class EmailVerificationModelDefault<RegistrationServiceType, UserServiceType>: E
                 .sink(
                     receiveCompletion: {
                         status in self.registering = false
+                        //TODO: redirect to homepage
+                        self.viewRouter.currentPage = .Login
                         print("registration process \(status)")
                     },
                     receiveValue: {
                         value in
                         self.userService.applicationAuthenticationKey = value.userAuthenticationApplicationKey
-                        self.userService.userSessionToken = value.userSessionToken
-                        self.userService.userID = value.userID
                     }
                 )
             return

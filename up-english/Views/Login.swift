@@ -7,10 +7,46 @@
 
 import SwiftUI
 
-struct Login: View {
+struct Login<ModelType>: View where ModelType: LoginModel {
+    
     @EnvironmentObject var viewRouter: ViewRouter
+    
+    @ObservedObject private var model: ModelType
+        
+    init(_ model: ModelType) {
+        self.model = model
+    }
+    
     var body: some View {
-        Text("Login")
+        VStack {
+            ZStack {
+                Text("Please wait while we log you in...")
+                    .opacity(model.loginUnderway ? 1 : 0)
+                Text("Login succeeded")
+                    .opacity(model.loginSuccess ? 1 : 0)
+            }
+
+            HStack {
+                Text("Email:")
+                TextField("Email address", text: $model.email)
+                    .disableAutocorrection(true)
+                    .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                    .keyboardType(.emailAddress)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+            }
+            HStack {
+                Text("Password:")
+                TextField("Password", text: $model.password)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .disableAutocorrection(true)
+                    .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                    .padding()
+            }
+        }
+        Button("Login") {
+            model.login()
+        }
         Button("Register") {
             viewRouter.currentPage = .Registration
         }
@@ -19,6 +55,6 @@ struct Login: View {
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Login()
+        Login(LoginModelDefault(userService: UserServiceDefault(), viewRouter: ViewRouter()))
     }
 }

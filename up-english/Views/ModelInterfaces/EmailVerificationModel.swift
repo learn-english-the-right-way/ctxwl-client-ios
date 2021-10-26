@@ -9,6 +9,7 @@ import Foundation
 
 protocol EmailVerificationModel: ObservableObject {
     var confirmationCode: String {get set}
+    var registering: Bool {get}
     func register() -> Void
     func reset() -> Void
 }
