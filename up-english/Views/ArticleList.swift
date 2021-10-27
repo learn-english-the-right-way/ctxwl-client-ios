@@ -17,18 +17,37 @@ struct ArticleList<ModelType>: View where ModelType: ArticleListModel {
     
     var body: some View {
         NavigationView {
-            ScrollViewRepresentable {
-                ForEach(model.content, id: \.self) { articleInfo in
-                    NavigationLink(destination: CustomWebView(urlString: articleInfo.url)) {
-                        VStack(alignment: .leading) {
-                            Text(articleInfo.title)
-                                .multilineTextAlignment(.leading)
-                            Text(articleInfo.brief)
-                                .multilineTextAlignment(.leading)
-                            Spacer()
-                        }
+//            ScrollViewRepresentable {
+//                ForEach(model.content, id: \.self) { articleInfo in
+//                    NavigationLink(destination: CustomWebView(urlString: articleInfo.url)) {
+//                        VStack(alignment: .leading) {
+//                            Text(articleInfo.title)
+//                                .multilineTextAlignment(.leading)
+//                            Text(articleInfo.brief)
+//                                .multilineTextAlignment(.leading)
+//                            Spacer()
+//                        }
+//                    }
+//                }
+//            }
+            ScrollView {
+                LazyVStack {
+                    ForEach(model.content, id: \.self) { articleInfo in
+                             NavigationLink(destination: CustomWebView(urlString: articleInfo.url)) {
+                                 VStack(alignment: .leading) {
+                                     Text(articleInfo.title)
+                                         .multilineTextAlignment(.leading)
+                                     Text(articleInfo.brief)
+                                         .multilineTextAlignment(.leading)
+                                     Spacer()
+                                 }
+                                 .onAppear {
+                                     print("rendered")
+                                 }
+                             }
                     }
                 }
+     
             }
 
         }
