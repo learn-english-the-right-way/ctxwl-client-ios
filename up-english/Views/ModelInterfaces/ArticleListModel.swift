@@ -16,6 +16,7 @@ protocol ArticleInfo: Hashable {
 protocol ArticleListModel: ObservableObject {
     associatedtype Info: ArticleInfo
     var content: [Info] {get}
+    func onItemAppear(_ index: Int) -> Void
 }
 
 

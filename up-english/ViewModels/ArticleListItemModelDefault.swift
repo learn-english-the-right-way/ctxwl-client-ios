@@ -9,14 +9,5 @@ import Foundation
 import Combine
 
 //class ArticleListItemModelDefault: ArticleListModel {
-//    
-//    @Published var title: String
-//    
-//    @Published var source: String
-//    
-//    init(_ title: String, _ source: String) {
-//        self.title = title
-//        self.source = source
-//    }
-//    
+//        
 //}
