@@ -35,6 +35,7 @@
 		B0A89A5F264A6CAD00862E26 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A89A5E264A6CAD00862E26 /* RegistrationService.swift */; };
 		B0A89A61264A713200862E26 /* RegistrationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A89A60264A713200862E26 /* RegistrationStatus.swift */; };
 		B0A89A63264A73DC00862E26 /* RegistrationServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A89A62264A73DC00862E26 /* RegistrationServiceDefault.swift */; };
+		B0AC45AB273ACD3A00979EFE /* InfiniteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC45AA273ACD3A00979EFE /* InfiniteList.swift */; };
 		B0AED68D26C17042000CE785 /* CustomContextMenuWKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AED68C26C17042000CE785 /* CustomContextMenuWKWebView.swift */; };
 		B0AED68F26C3ACB0000CE785 /* CustomWebUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AED68E26C3ACB0000CE785 /* CustomWebUIViewController.swift */; };
 		B0C7CBFF265131C0003832EE /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CBFE265131C0003832EE /* ServerError.swift */; };
@@ -99,6 +100,7 @@
 		B0A89A5E264A6CAD00862E26 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		B0A89A60264A713200862E26 /* RegistrationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationStatus.swift; sourceTree = "<group>"; };
 		B0A89A62264A73DC00862E26 /* RegistrationServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationServiceDefault.swift; sourceTree = "<group>"; };
+		B0AC45AA273ACD3A00979EFE /* InfiniteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteList.swift; sourceTree = "<group>"; };
 		B0AED68C26C17042000CE785 /* CustomContextMenuWKWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContextMenuWKWebView.swift; sourceTree = "<group>"; };
 		B0AED68E26C3ACB0000CE785 /* CustomWebUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWebUIViewController.swift; sourceTree = "<group>"; };
 		B0C7CBFE265131C0003832EE /* ServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				B0E253FB26EDD05300D6FDF4 /* ArticleList.swift */,
 				B00028DD26FB7D56005D68D2 /* ScrollViewRepresentable.swift */,
 				B00028E12725A990005D68D2 /* ContentViewMock.swift */,
+				B0AC45AA273ACD3A00979EFE /* InfiniteList.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				B0578B41265EA3F400A1B21F /* User.xcdatamodeld in Sources */,
 				B0AED68D26C17042000CE785 /* CustomContextMenuWKWebView.swift in Sources */,
 				B0C7CC0726560027003832EE /* URLError.swift in Sources */,
+				B0AC45AB273ACD3A00979EFE /* InfiniteList.swift in Sources */,
 				B0C7CC0126513253003832EE /* Actions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

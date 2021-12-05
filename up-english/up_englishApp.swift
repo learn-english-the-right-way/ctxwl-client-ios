@@ -22,7 +22,11 @@ struct up_englishApp: App {
 //                .environmentObject(self.viewRouter)
 //                .environmentObject(self.registrationService)
 //                .environmentObject(self.userService)
-            ContentViewMock()
+            if #available(iOS 15.0, *) {
+                ContentViewMock()
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
 }

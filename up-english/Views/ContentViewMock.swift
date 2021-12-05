@@ -6,10 +6,43 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentViewMock: View {
+    
+    struct ListItem: Hashable {
+      let text: String
+    }
+    class ListViewModel: ObservableObject {
+      @Published var items = [ListItem]()
+      @Published var isLoading = false
+      private var page = 1
+      private var subscriptions = Set<AnyCancellable>()
+
+      func loadMore() {
+        guard !isLoading else { return }
+
+        isLoading = true
+        (1...15).publisher
+          .map { index in ListItem(text: "Page: \(page) item: \(index)") }
+          .collect()
+          .delay(for: .seconds(2), scheduler: RunLoop.main)
+          .sink { [self] completion in
+            isLoading = false
+            page += 1
+          } receiveValue: { [self] value in
+            items += value
+          }
+          .store(in: &subscriptions)
+      }
+    }
+    
+    @ObservedObject var viewModel = ListViewModel()
+    
     var body: some View {
-        ArticleList(ArticleListModelMockup())
+        InfiniteList(data: $viewModel.items, isLoading: $viewModel.isLoading, loadMore: viewModel.loadMore) { item in
+            Text(item.text)
+        }
     }
 }
 

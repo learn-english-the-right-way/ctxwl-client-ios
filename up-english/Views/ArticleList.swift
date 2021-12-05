@@ -42,7 +42,6 @@ struct ArticleList<ModelType>: View where ModelType: ArticleListModel {
                 }
      
             }
-
         }
     }
 }
