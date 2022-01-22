@@ -11,4 +11,5 @@ enum Page {
     case Registration
     case Confirmation
     case Login
+    case ArticleList
 }
