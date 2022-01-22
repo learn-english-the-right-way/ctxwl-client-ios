@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B8AE4E92792520000489A7B /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4E82792520000489A7B /* ListItemView.swift */; };
+		9B8AE4EB2793F51100489A7B /* ArticleListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4EA2793F51100489A7B /* ArticleListService.swift */; };
+		9B8AE4ED2793F55000489A7B /* ArticleListServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4EC2793F55000489A7B /* ArticleListServiceDefault.swift */; };
+		9B8AE4EF2793F56E00489A7B /* ArticleListModelDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4EE2793F56E00489A7B /* ArticleListModelDefault.swift */; };
+		9B8AE4F12797BBA500489A7B /* ArticleListServiceMockup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4F02797BBA500489A7B /* ArticleListServiceMockup.swift */; };
 		B00028DE26FB7D56005D68D2 /* ScrollViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00028DD26FB7D56005D68D2 /* ScrollViewRepresentable.swift */; };
-		B00028E027246FB5005D68D2 /* ArticleListModelMockup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00028DF27246FB5005D68D2 /* ArticleListModelMockup.swift */; };
 		B00028E22725A990005D68D2 /* ContentViewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00028E12725A990005D68D2 /* ContentViewMock.swift */; };
 		B00D51A126C40A590069AA55 /* CustomWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00D51A026C40A590069AA55 /* CustomWebView.swift */; };
 		B04B64D726A527FD00D0B954 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04B64D626A527FD00D0B954 /* LoginModel.swift */; };
@@ -44,7 +48,6 @@
 		B0C7CC0926568E1D003832EE /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC0826568E1D003832EE /* ApiUrl.swift */; };
 		B0C7CC0B265798E3003832EE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC0A265798E3003832EE /* UserService.swift */; };
 		B0C7CC0F265BA3B1003832EE /* UserServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC0E265BA3B1003832EE /* UserServiceDefault.swift */; };
-		B0E253FC26EDD05300D6FDF4 /* ArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E253FB26EDD05300D6FDF4 /* ArticleList.swift */; };
 		B0E253FE26EDD0A100D6FDF4 /* ArticleListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E253FD26EDD0A100D6FDF4 /* ArticleListModel.swift */; };
 		B0E2540026EDDCBA00D6FDF4 /* ArticleListItemModelDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E253FF26EDDCBA00D6FDF4 /* ArticleListItemModelDefault.swift */; };
 /* End PBXBuildFile section */
@@ -67,8 +70,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B8AE4E82792520000489A7B /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
+		9B8AE4EA2793F51100489A7B /* ArticleListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListService.swift; sourceTree = "<group>"; };
+		9B8AE4EC2793F55000489A7B /* ArticleListServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListServiceDefault.swift; sourceTree = "<group>"; };
+		9B8AE4EE2793F56E00489A7B /* ArticleListModelDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListModelDefault.swift; sourceTree = "<group>"; };
+		9B8AE4F02797BBA500489A7B /* ArticleListServiceMockup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListServiceMockup.swift; sourceTree = "<group>"; };
 		B00028DD26FB7D56005D68D2 /* ScrollViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewRepresentable.swift; sourceTree = "<group>"; };
-		B00028DF27246FB5005D68D2 /* ArticleListModelMockup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListModelMockup.swift; sourceTree = "<group>"; };
 		B00028E12725A990005D68D2 /* ContentViewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewMock.swift; sourceTree = "<group>"; };
 		B00D51A026C40A590069AA55 /* CustomWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWebView.swift; sourceTree = "<group>"; };
 		B04B64D626A527FD00D0B954 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -109,7 +116,6 @@
 		B0C7CC0826568E1D003832EE /* ApiUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
 		B0C7CC0A265798E3003832EE /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		B0C7CC0E265BA3B1003832EE /* UserServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceDefault.swift; sourceTree = "<group>"; };
-		B0E253FB26EDD05300D6FDF4 /* ArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleList.swift; sourceTree = "<group>"; };
 		B0E253FD26EDD0A100D6FDF4 /* ArticleListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListModel.swift; sourceTree = "<group>"; };
 		B0E253FF26EDDCBA00D6FDF4 /* ArticleListItemModelDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListItemModelDefault.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -218,10 +224,10 @@
 				B00D51A026C40A590069AA55 /* CustomWebView.swift */,
 				B085EF0726C90A3F00DD55D7 /* ArticleReaderViewRepresentable.swift */,
 				B085EF0926CA7D9D00DD55D7 /* ArticleReaderViewController.swift */,
-				B0E253FB26EDD05300D6FDF4 /* ArticleList.swift */,
 				B00028DD26FB7D56005D68D2 /* ScrollViewRepresentable.swift */,
 				B00028E12725A990005D68D2 /* ContentViewMock.swift */,
 				B0AC45AA273ACD3A00979EFE /* InfiniteList.swift */,
+				9B8AE4E82792520000489A7B /* ListItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -234,7 +240,7 @@
 				B0943AEB268EC963006051E0 /* EmailVerificationModelDefault.swift */,
 				B04B64D826A52A8600D0B954 /* LoginModelDefault.swift */,
 				B0E253FF26EDDCBA00D6FDF4 /* ArticleListItemModelDefault.swift */,
-				B00028DF27246FB5005D68D2 /* ArticleListModelMockup.swift */,
+				9B8AE4EE2793F56E00489A7B /* ArticleListModelDefault.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -245,6 +251,8 @@
 				B0C7CBFD2651319A003832EE /* Errors */,
 				B0A89A62264A73DC00862E26 /* RegistrationServiceDefault.swift */,
 				B0C7CC0E265BA3B1003832EE /* UserServiceDefault.swift */,
+				9B8AE4EC2793F55000489A7B /* ArticleListServiceDefault.swift */,
+				9B8AE4F02797BBA500489A7B /* ArticleListServiceMockup.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -275,6 +283,7 @@
 			children = (
 				B0C7CC0A265798E3003832EE /* UserService.swift */,
 				B0A89A5E264A6CAD00862E26 /* RegistrationService.swift */,
+				9B8AE4EA2793F51100489A7B /* ArticleListService.swift */,
 			);
 			path = ServiceInterfaces;
 			sourceTree = "<group>";
@@ -423,6 +432,7 @@
 				B09D06D4263FC99700246D90 /* RegistrationModel.swift in Sources */,
 				B085EF0A26CA7D9D00DD55D7 /* ArticleReaderViewController.swift in Sources */,
 				B09D06D0263ECB9C00246D90 /* EmailVerification.swift in Sources */,
+				9B8AE4F12797BBA500489A7B /* ArticleListServiceMockup.swift in Sources */,
 				B0943AEC268EC963006051E0 /* EmailVerificationModelDefault.swift in Sources */,
 				B00D51A126C40A590069AA55 /* CustomWebView.swift in Sources */,
 				B09D06DD2643635700246D90 /* Page.swift in Sources */,
@@ -436,18 +446,20 @@
 				B09D06CE263ECB8900246D90 /* Registration.swift in Sources */,
 				B04B64D726A527FD00D0B954 /* LoginModel.swift in Sources */,
 				B0A89A61264A713200862E26 /* RegistrationStatus.swift in Sources */,
-				B00028E027246FB5005D68D2 /* ArticleListModelMockup.swift in Sources */,
 				B0943AEA268EB675006051E0 /* EmailVerificationModel.swift in Sources */,
 				B0C7CC0B265798E3003832EE /* UserService.swift in Sources */,
 				B0E253FE26EDD0A100D6FDF4 /* ArticleListModel.swift in Sources */,
 				B04B64D926A52A8600D0B954 /* LoginModelDefault.swift in Sources */,
+				9B8AE4EB2793F51100489A7B /* ArticleListService.swift in Sources */,
+				9B8AE4E92792520000489A7B /* ListItemView.swift in Sources */,
 				B09D06A3263ECB4300246D90 /* up_englishApp.swift in Sources */,
+				9B8AE4ED2793F55000489A7B /* ArticleListServiceDefault.swift in Sources */,
 				B09D06DB2643630D00246D90 /* ViewRouter.swift in Sources */,
-				B0E253FC26EDD05300D6FDF4 /* ArticleList.swift in Sources */,
 				B0578B41265EA3F400A1B21F /* User.xcdatamodeld in Sources */,
 				B0AED68D26C17042000CE785 /* CustomContextMenuWKWebView.swift in Sources */,
 				B0C7CC0726560027003832EE /* URLError.swift in Sources */,
 				B0AC45AB273ACD3A00979EFE /* InfiniteList.swift in Sources */,
+				9B8AE4EF2793F56E00489A7B /* ArticleListModelDefault.swift in Sources */,
 				B0C7CC0126513253003832EE /* Actions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -607,7 +619,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"up-english/Preview Content\"";
-				DEVELOPMENT_TEAM = Q2Q59R69BD;
+				DEVELOPMENT_TEAM = S5M9BH49T8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "up-english/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -629,7 +641,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"up-english/Preview Content\"";
-				DEVELOPMENT_TEAM = Q2Q59R69BD;
+				DEVELOPMENT_TEAM = S5M9BH49T8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "up-english/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

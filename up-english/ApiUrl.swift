@@ -18,4 +18,7 @@ class ApiUrl {
     static func loginUrl(email: String) -> URL {
         return URL(string: self.baseUrl + "/authentication/user.email:" + email + "/application_key_challenge")!
     }
+    static func loadUrl() -> URL {
+        return URL(string: self.baseUrl + "/load")!
+    }
 }
