@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-struct CustomWebView: UIViewControllerRepresentable {
+protocol CustomWeb {
+    var urlString: String { get set }
+}
+
+struct CustomWebView: CustomWeb, UIViewControllerRepresentable {
     
     var urlString: String
     

@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct InfiniteList<Data, Content>: View where Data: RandomAccessCollection, Data.Element : Hashable, Content: View {
+struct InfiniteList<Data, Content>: View where Data: RandomAccessCollection, Data.Element: ArticleInfo, Content: View {
     @Binding var data: Data
     @Binding var isLoading: Bool
     let loadMore: () -> Void
@@ -23,24 +23,27 @@ struct InfiniteList<Data, Content>: View where Data: RandomAccessCollection, Dat
 
     var body: some View {
         if #available(iOS 15.0, *) {
-            List {
-                ForEach(data, id: \.self) { item in
-                    content(item)
-                        .onAppear {
-                            if item == data.last {
-                                loadMore()
+            NavigationView {
+                List {
+                    ForEach(data, id: \.self) { item in
+                        content(item)
+                            .onAppear {
+                                if item == data.last {
+                                    loadMore()
+                                }
                             }
-                        }
+                    }
+                    if isLoading {
+                        ProgressView()
+                            .frame(idealWidth: .infinity, maxWidth: .infinity, alignment: .center)
+                    }
                 }
-                if isLoading {
-                    ProgressView()
-                        .frame(idealWidth: .infinity, maxWidth: .infinity, alignment: .center)
+                .onAppear(perform: loadMore)
+                .refreshable {
+                    
                 }
             }
-            .onAppear(perform: loadMore)
-            .refreshable {
-                
-            }
+            
         } else {
             // Fallback on earlier versions
         }
@@ -60,24 +63,24 @@ struct InfiniteList_Previews: PreviewProvider {
       func loadMore() {
         guard !isLoading else { return }
 
-        isLoading = true
-        (1...15).publisher
-          .map { index in ListItem(text: "Page: \(page) item: \(index)") }
-          .collect()
-          .delay(for: .seconds(2), scheduler: RunLoop.main)
-          .sink { [self] completion in
-            isLoading = false
-            page += 1
-          } receiveValue: { [self] value in
+          isLoading = true
+                 (1...15).publisher
+                   .map { index in ListItem(text: "Page: \(page) item: \(index)") }
+                   .collect()
+                   .delay(for: .seconds(2), scheduler: RunLoop.main)
+                   .sink { [self] completion in
+                     isLoading = false
+                     page += 1
+                   } receiveValue: { [self] value in
             items += value
           }
           .store(in: &subscriptions)
       }
     }
-    @ObservedObject static var viewModel = ListViewModel()
+    @ObservedObject static var viewModel = ArticleListModelDefault(articleService: ArticleListServiceMockup())
     static var previews: some View {
         InfiniteList(data: $viewModel.items, isLoading: $viewModel.isLoading, loadMore: viewModel.loadMore) { item in
-            Text(item.text)
+            ListItemView(title: item.title, brief: item.brief, url: item.url)
         }
     }
 }

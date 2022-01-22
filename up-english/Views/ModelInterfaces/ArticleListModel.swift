@@ -1,5 +1,5 @@
 //
-//  ArticleListItemModel.swift
+//  ArticleListModel.swift
 //  up-english
 //
 //  Created by James Tsai on 9/12/21.
@@ -14,9 +14,10 @@ protocol ArticleInfo: Hashable {
 }
 
 protocol ArticleListModel: ObservableObject {
-    associatedtype Info: ArticleInfo
-    var content: [Info] {get}
-    func onItemAppear(_ index: Int) -> Void
+    associatedtype itemType
+    var items: [itemType] { get set }
+    var isLoading: Bool { get set }
+    func loadMore() -> Void
 }
 
 
