@@ -11,12 +11,14 @@ import Combine
 struct InfiniteList<Data, Content>: View where Data: RandomAccessCollection, Data.Element: ArticleInfo, Content: View {
     @Binding var data: Data
     @Binding var isLoading: Bool
+    let refresh: () -> Void
     let loadMore: () -> Void
     let content: (Data.Element) -> Content
 
-    init(data: Binding<Data>, isLoading: Binding<Bool>, loadMore: @escaping () -> Void, @ViewBuilder content: @escaping (Data.Element) -> Content) {
+    init(data: Binding<Data>, isLoading: Binding<Bool>, refresh: @escaping () -> Void, loadMore: @escaping () -> Void, @ViewBuilder content: @escaping (Data.Element) -> Content) {
         _data = data
         _isLoading = isLoading
+        self.refresh = refresh
         self.loadMore = loadMore
         self.content = content
     }
@@ -40,7 +42,7 @@ struct InfiniteList<Data, Content>: View where Data: RandomAccessCollection, Dat
                 }
                 .onAppear(perform: loadMore)
                 .refreshable {
-                    
+                    refresh()
                 }
             }
             
@@ -79,7 +81,7 @@ struct InfiniteList_Previews: PreviewProvider {
     }
     @ObservedObject static var viewModel = ArticleListModelDefault(articleService: ArticleListServiceMockup())
     static var previews: some View {
-        InfiniteList(data: $viewModel.items, isLoading: $viewModel.isLoading, loadMore: viewModel.loadMore) { item in
+        InfiniteList(data: $viewModel.items, isLoading: $viewModel.isLoading, refresh: viewModel.refresh ,loadMore: viewModel.loadMore) { item in
             ListItemView(title: item.title, brief: item.brief, url: item.url)
         }
     }

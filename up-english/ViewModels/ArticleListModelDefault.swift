@@ -24,16 +24,27 @@ class ArticleListModelDefault<ArticleListServiceType>: ArticleListModel where Ar
         self.isLoading = false
         self.items = []
         self.articleListService = articleService
-        self.articleListCancellable = self.articleListService.refresh()
-                                           .map { item in ArticleListInfo(title: item.title, brief: item.brief, url: item.url) }
-                                           .sink(receiveCompletion: { completion in
-                                               self.isLoading = false
-                                               print("initialization complete")
-                                           }, receiveValue: { item in
-                                               self.isLoading = true
-                                               self.items.append(item)
-                                               print("initialization appending \(item.title)")
-                                           })
+        print("initialization start")
+        self.articleListCancellable = refresher()
+        print("initialization complete")
+    }
+    
+    func refresher() -> AnyCancellable {
+        return self.articleListService.refresh()
+                                       .map { item in ArticleListInfo(title: item.title, brief: item.brief, url: item.url) }
+                                       .sink(receiveCompletion: { completion in
+                                           self.isLoading = false
+                                       }, receiveValue: { item in
+                                           self.isLoading = true
+                                           self.items.append(item)
+                                       })
+    }
+    
+    func refresh() {
+        self.items = []
+        print("refresh start")
+        self.articleListCancellable = refresher()
+        print("refreshing complete")
     }
     
     func loadMore() {

@@ -40,7 +40,7 @@ struct ContentViewMock: View {
     @ObservedObject var viewModel = ArticleListModelDefault(articleService: ArticleListServiceMockup())
     
     var body: some View {
-        InfiniteList(data: $viewModel.items, isLoading: $viewModel.isLoading, loadMore: viewModel.loadMore) { item in
+        InfiniteList(data: $viewModel.items, isLoading: $viewModel.isLoading, refresh: viewModel.refresh ,loadMore: viewModel.loadMore) { item in
             ListItemView(title: item.title, brief: item.brief, url: item.url)
         }
     }

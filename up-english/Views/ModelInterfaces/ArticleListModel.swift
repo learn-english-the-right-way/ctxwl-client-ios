@@ -17,6 +17,7 @@ protocol ArticleListModel: ObservableObject {
     associatedtype itemType
     var items: [itemType] { get set }
     var isLoading: Bool { get set }
+    func refresh() -> Void
     func loadMore() -> Void
 }
 
