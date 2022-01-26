@@ -126,7 +126,7 @@ class RegistrationModelDefault<RegistrationServiceType, UserServiceType>: Regist
             self.userService.password = self.password1
             self.confirmationCodeRequestCancellable =
                 self.registrationService.requestEmailConfirmation(email: self.userService.email, password: self.userService.password)
-                .receive(on: RunLoop.main)
+                .receive(on: DispatchQueue.main)
                 .sink(receiveCompletion: {
                     completion in
                     self.requestingConfirmationCode = false

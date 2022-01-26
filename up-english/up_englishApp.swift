@@ -10,23 +10,26 @@ import SwiftUI
 @main
 struct up_englishApp: App {
     
-    @StateObject var registrationService = RegistrationServiceDefault()
+    var registrationService = RegistrationServiceDefault()
     
-    @StateObject var userService = UserServiceDefault()
+    var userService = UserServiceDefault()
 
-    @StateObject var viewRouter = ViewRouter()
+    var viewRouter = ViewRouter()
+    
+//    var articleListService = ArticleListServiceMockup()
 
     var body: some Scene {
         WindowGroup {
-//            ContentView<RegistrationServiceDefault, UserServiceDefault>()
-//                .environmentObject(self.viewRouter)
-//                .environmentObject(self.registrationService)
-//                .environmentObject(self.userService)
-            if #available(iOS 15.0, *) {
-                ContentViewMock()
-            } else {
-                // Fallback on earlier versions
-            }
+            ContentView<RegistrationServiceDefault, UserServiceDefault, ArticleListServiceMockup>()
+                .environmentObject(self.viewRouter)
+                .environmentObject(self.registrationService)
+                .environmentObject(self.userService)
+//                .environmentObject(self.articleListService)
+//            if #available(iOS 15.0, *) {
+//                ContentViewMock()
+//            } else {
+//                // Fallback on earlier versions
+//            }
         }
     }
 }

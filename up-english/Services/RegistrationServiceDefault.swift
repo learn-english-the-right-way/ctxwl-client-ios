@@ -54,7 +54,7 @@ class RegistrationServiceDefault: RegistrationService {
     
     func requestEmailConfirmation(email: String, password: String) -> AnyPublisher<Never, Error> {
         
-        // configure email registration post request
+//         configure email registration post request
         let url = ApiUrl.emailConfirmationUrl()
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -64,7 +64,7 @@ class RegistrationServiceDefault: RegistrationService {
             return Fail(error: NSError()).eraseToAnyPublisher()
         }
         request.httpBody = data
-        
+
         // connect the request to a URLSession, decode the response data and keep a multicasted publisher
         let publisher = URLSession(configuration: .default).dataTaskPublisher(for: request)
             .map({ dataAndResponse in
@@ -73,7 +73,7 @@ class RegistrationServiceDefault: RegistrationService {
             .decode(type: ConfirmationResponse.self, decoder: JSONDecoder())
             .share()
         
-        // make the request happen and store the application key
+//         make the request happen and store the application key
         self.requestConfirmationCancellable = publisher
             .sink(receiveCompletion: { arg in }, receiveValue: { confirmationResponse in
                 self.applicationKey = confirmationResponse.applicationKey

@@ -42,7 +42,7 @@ class LoginModelDefault<UserServiceType>: LoginModel where UserServiceType: User
                     case .finished:
                         self.loginSuccess = true
                         //TODO: add view router logic to main page
-                        print("login completed")
+                        self.viewRouter.currentPage = .ArticleList
                     case .failure:
                         print("request login failed")
                     }

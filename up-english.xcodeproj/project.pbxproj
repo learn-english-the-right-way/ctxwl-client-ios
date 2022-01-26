@@ -22,6 +22,7 @@
 		B085EF0A26CA7D9D00DD55D7 /* ArticleReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085EF0926CA7D9D00DD55D7 /* ArticleReaderViewController.swift */; };
 		B0943AEA268EB675006051E0 /* EmailVerificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0943AE9268EB675006051E0 /* EmailVerificationModel.swift */; };
 		B0943AEC268EC963006051E0 /* EmailVerificationModelDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0943AEB268EC963006051E0 /* EmailVerificationModelDefault.swift */; };
+		B09B8E00279C53F1004FDF31 /* ArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09B8DFF279C53F1004FDF31 /* ArticleList.swift */; };
 		B09D06A3263ECB4300246D90 /* up_englishApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06A2263ECB4300246D90 /* up_englishApp.swift */; };
 		B09D06A5263ECB4300246D90 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06A4263ECB4300246D90 /* ContentView.swift */; };
 		B09D06A7263ECB4400246D90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B09D06A6263ECB4400246D90 /* Assets.xcassets */; };
@@ -85,6 +86,7 @@
 		B085EF0926CA7D9D00DD55D7 /* ArticleReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReaderViewController.swift; sourceTree = "<group>"; };
 		B0943AE9268EB675006051E0 /* EmailVerificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationModel.swift; sourceTree = "<group>"; };
 		B0943AEB268EC963006051E0 /* EmailVerificationModelDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationModelDefault.swift; sourceTree = "<group>"; };
+		B09B8DFF279C53F1004FDF31 /* ArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleList.swift; sourceTree = "<group>"; };
 		B09D069F263ECB4300246D90 /* up-english.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "up-english.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B09D06A2263ECB4300246D90 /* up_englishApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = up_englishApp.swift; sourceTree = "<group>"; };
 		B09D06A4263ECB4300246D90 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				B00028E12725A990005D68D2 /* ContentViewMock.swift */,
 				B0AC45AA273ACD3A00979EFE /* InfiniteList.swift */,
 				9B8AE4E82792520000489A7B /* ListItemView.swift */,
+				B09B8DFF279C53F1004FDF31 /* ArticleList.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				B09D06D6264032EC00246D90 /* RegistrationModelDefault.swift in Sources */,
 				B09D06D4263FC99700246D90 /* RegistrationModel.swift in Sources */,
 				B085EF0A26CA7D9D00DD55D7 /* ArticleReaderViewController.swift in Sources */,
+				B09B8E00279C53F1004FDF31 /* ArticleList.swift in Sources */,
 				B09D06D0263ECB9C00246D90 /* EmailVerification.swift in Sources */,
 				9B8AE4F12797BBA500489A7B /* ArticleListServiceMockup.swift in Sources */,
 				B0943AEC268EC963006051E0 /* EmailVerificationModelDefault.swift in Sources */,

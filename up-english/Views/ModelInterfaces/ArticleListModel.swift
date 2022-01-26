@@ -14,7 +14,7 @@ protocol ArticleInfo: Hashable {
 }
 
 protocol ArticleListModel: ObservableObject {
-    associatedtype itemType
+    associatedtype itemType: ArticleInfo
     var items: [itemType] { get set }
     var isLoading: Bool { get set }
     func refresh() -> Void

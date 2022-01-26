@@ -15,7 +15,7 @@ struct ArticleListItemResponse: Codable {
     var url: String
 }
 
-protocol ArticleListService {
+protocol ArticleListService: ObservableObject {
     
     func refresh() -> AnyPublisher<ArticleListItemResponse, Never>
     

@@ -10,10 +10,12 @@ import Foundation
 class ViewRouter: ObservableObject {
     @Published var currentPage: Page
     init() {
-        if (RegistrationStatus(rawValue: UserDefaults.standard.integer(forKey: "registrationStatus")) == .ConfirmationRequested) {
-            self.currentPage = .Confirmation
-        } else {
-            self.currentPage = .Registration
-        }
+        self.currentPage = .Registration
+        
+//        if (RegistrationStatus(rawValue: UserDefaults.standard.integer(forKey: "registrationStatus")) == .ConfirmationRequested) {
+//            self.currentPage = .Confirmation
+//        } else {
+//            self.currentPage = .Registration
+//        }
     }
 }
