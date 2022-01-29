@@ -29,28 +29,28 @@ struct ContentView<RegistrationServiceType, UserServiceType, ArticleListServiceT
                     viewRouter: self.viewRouter
                 )
             )
-        default:
-            abort()
-//        case .Login:
-//            Login(
-//                LoginModelDefault(
-//                    userService: self.userService,
-//                    viewRouter: self.viewRouter
-//                )
-//            )
-//        case .Confirmation:
-//            EmailVerification(
-//                model: EmailVerificationModelDefault(
-//                    registrationService: self.registrationService,
-//                    userService: self.userService,
-//                    viewRouter: self.viewRouter
-//                )
-//            )
-//        case .ArticleList:
-//            // add main page initialization logic
-//            ArticleList(
-//                articleListModel: ArticleListModelDefault(articleService: ArticleListServiceMockup())
-//            )
+//        default:
+//            abort()
+        case .Login:
+            Login(
+                LoginModelDefault(
+                    userService: self.userService,
+                    viewRouter: self.viewRouter
+                )
+            )
+        case .Confirmation:
+            EmailVerification(
+                model: EmailVerificationModelDefault(
+                    registrationService: self.registrationService,
+                    userService: self.userService,
+                    viewRouter: self.viewRouter
+                )
+            )
+        case .ArticleList:
+            // add main page initialization logic
+            ArticleList(
+                articleListModel: ArticleListModelDefault(articleService: ArticleListServiceMockup())
+            )
         }
     }
 }

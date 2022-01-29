@@ -18,6 +18,10 @@ struct ConfirmationResponse: Codable {
     let applicationKey: String
 }
 
+struct VerificationRequestBody: Encodable {
+    let confirmationCode: String
+}
+
 class RegistrationServiceDefault: RegistrationService {
     
     private var requestConfirmationCancellable: AnyCancellable?
@@ -89,7 +93,7 @@ class RegistrationServiceDefault: RegistrationService {
         request.httpMethod = "PATCH"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(self.applicationKey, forHTTPHeaderField: "X-Ctxwl-Key")
-        guard let data = try? JSONEncoder().encode(["confirmationCode": confirmationCode]) else {
+        guard let data = try? JSONEncoder().encode(VerificationRequestBody(confirmationCode: confirmationCode)) else {
             return Fail<RegistrationResponse, Error>(error: NSError()).eraseToAnyPublisher()
         }
         request.httpBody = data
@@ -98,7 +102,6 @@ class RegistrationServiceDefault: RegistrationService {
         let urlSession = URLSession(configuration: .default)
         return urlSession.dataTaskPublisher(for: request)
             .map({ dataAndResponse in
-                print(dataAndResponse.response)
                 return dataAndResponse.data
             })
             .decode(type: RegistrationResponse.self, decoder: JSONDecoder())

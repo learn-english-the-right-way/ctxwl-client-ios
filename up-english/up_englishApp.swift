@@ -16,7 +16,7 @@ struct up_englishApp: App {
 
     var viewRouter = ViewRouter()
     
-//    var articleListService = ArticleListServiceMockup()
+    var articleListService = ArticleListServiceMockup()
 
     var body: some Scene {
         WindowGroup {

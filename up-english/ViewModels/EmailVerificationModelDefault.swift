@@ -10,8 +10,7 @@ import Combine
 
 class EmailVerificationModelDefault<RegistrationServiceType, UserServiceType>: EmailVerificationModel where RegistrationServiceType: RegistrationService, UserServiceType: UserService {
     
-    var confirmationCode = ""
-    
+
     private var registrationService: RegistrationServiceType
     
     private var userService: UserServiceType
@@ -19,6 +18,8 @@ class EmailVerificationModelDefault<RegistrationServiceType, UserServiceType>: E
     private var viewRouter: ViewRouter
     
     private var registrationRequestCancellable: AnyCancellable?
+    
+    @Published var confirmationCode = ""
     
     @Published var registering = false
     
