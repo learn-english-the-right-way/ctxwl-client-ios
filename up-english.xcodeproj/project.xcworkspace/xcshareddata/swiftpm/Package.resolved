@@ -1,16 +1,14 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Peppermint",
-        "repositoryURL": "https://github.com/nsagora/peppermint.git",
-        "state": {
-          "branch": null,
-          "revision": "3ef342df6e16352a04a38bd9ada76df5a6c716fa",
-          "version": "0.8.0"
-        }
+  "pins" : [
+    {
+      "identity" : "peppermint",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nsagora/peppermint.git",
+      "state" : {
+        "revision" : "3ef342df6e16352a04a38bd9ada76df5a6c716fa",
+        "version" : "0.8.0"
       }
-    ]
-  },
-  "version": 1
+    }
+  ],
+  "version" : 2
 }
