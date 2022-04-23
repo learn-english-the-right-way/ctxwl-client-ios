@@ -23,6 +23,8 @@
 		B084B8F72811C06D005B20B0 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084B8F62811C06D005B20B0 /* AuthError.swift */; };
 		B084B8F92811C1D2005B20B0 /* EmailRegistrationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084B8F82811C1D2005B20B0 /* EmailRegistrationError.swift */; };
 		B084B8FB2811C289005B20B0 /* EmailVerificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084B8FA2811C289005B20B0 /* EmailVerificationError.swift */; };
+		B084B8FD2812FC78005B20B0 /* ClientServerErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084B8FC2812FC78005B20B0 /* ClientServerErrorMapper.swift */; };
+		B084B8FF28130823005B20B0 /* UnknownError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084B8FE28130823005B20B0 /* UnknownError.swift */; };
 		B085EF0826C90A3F00DD55D7 /* ArticleReaderViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085EF0726C90A3F00DD55D7 /* ArticleReaderViewRepresentable.swift */; };
 		B085EF0A26CA7D9D00DD55D7 /* ArticleReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085EF0926CA7D9D00DD55D7 /* ArticleReaderViewController.swift */; };
 		B08962F12809C6D800B95D47 /* CTXWLURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08962F02809C6D800B95D47 /* CTXWLURLSession.swift */; };
@@ -92,6 +94,8 @@
 		B084B8F62811C06D005B20B0 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		B084B8F82811C1D2005B20B0 /* EmailRegistrationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailRegistrationError.swift; sourceTree = "<group>"; };
 		B084B8FA2811C289005B20B0 /* EmailVerificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationError.swift; sourceTree = "<group>"; };
+		B084B8FC2812FC78005B20B0 /* ClientServerErrorMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientServerErrorMapper.swift; sourceTree = "<group>"; };
+		B084B8FE28130823005B20B0 /* UnknownError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnknownError.swift; sourceTree = "<group>"; };
 		B085EF0726C90A3F00DD55D7 /* ArticleReaderViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReaderViewRepresentable.swift; sourceTree = "<group>"; };
 		B085EF0926CA7D9D00DD55D7 /* ArticleReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReaderViewController.swift; sourceTree = "<group>"; };
 		B08962F02809C6D800B95D47 /* CTXWLURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXWLURLSession.swift; sourceTree = "<group>"; };
@@ -281,6 +285,8 @@
 				B084B8F62811C06D005B20B0 /* AuthError.swift */,
 				B084B8F82811C1D2005B20B0 /* EmailRegistrationError.swift */,
 				B084B8FA2811C289005B20B0 /* EmailVerificationError.swift */,
+				B084B8FC2812FC78005B20B0 /* ClientServerErrorMapper.swift */,
+				B084B8FE28130823005B20B0 /* UnknownError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -452,6 +458,7 @@
 				B09D06D4263FC99700246D90 /* RegistrationModel.swift in Sources */,
 				B085EF0A26CA7D9D00DD55D7 /* ArticleReaderViewController.swift in Sources */,
 				B09B8E00279C53F1004FDF31 /* ArticleList.swift in Sources */,
+				B084B8FF28130823005B20B0 /* UnknownError.swift in Sources */,
 				B09D06D0263ECB9C00246D90 /* EmailVerification.swift in Sources */,
 				9B8AE4F12797BBA500489A7B /* ArticleListServiceMockup.swift in Sources */,
 				B0943AEC268EC963006051E0 /* EmailVerificationModelDefault.swift in Sources */,
@@ -483,6 +490,7 @@
 				B09D06DB2643630D00246D90 /* ViewRouter.swift in Sources */,
 				B0578B41265EA3F400A1B21F /* User.xcdatamodeld in Sources */,
 				B0AED68D26C17042000CE785 /* CustomContextMenuWKWebView.swift in Sources */,
+				B084B8FD2812FC78005B20B0 /* ClientServerErrorMapper.swift in Sources */,
 				B0AC45AB273ACD3A00979EFE /* InfiniteList.swift in Sources */,
 				9B8AE4EF2793F56E00489A7B /* ArticleListModelDefault.swift in Sources */,
 			);
