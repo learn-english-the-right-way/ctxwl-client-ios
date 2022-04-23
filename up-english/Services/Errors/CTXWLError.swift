@@ -9,7 +9,7 @@ import Foundation
 
 struct CTXWLError: Error, Codable {
     struct Cause: Codable {
-        var code: Int
+        var code: String
         var component: String
         var payload: [String: String]
     }

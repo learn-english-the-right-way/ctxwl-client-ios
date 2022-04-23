@@ -12,9 +12,9 @@ struct CTXWLDataTaskPublisher: Publisher {
     
     typealias Output = (data: Data, response: HTTPURLResponse)
     
-    typealias Failure = Error
+    typealias Failure = CTXWLClientError
     
-    var dataTaskPublisher: AnyPublisher<(data: Data, response: HTTPURLResponse), Error>
+    var dataTaskPublisher: AnyPublisher<(data: Data, response: HTTPURLResponse), CTXWLClientError>
     
     init(dataTaskPublisher: URLSession.DataTaskPublisher) {
         self.dataTaskPublisher = dataTaskPublisher
@@ -26,7 +26,7 @@ struct CTXWLDataTaskPublisher: Publisher {
                             do {
                                 throw try JSONDecoder().decode(CTXWLError.self, from: data)
                             } catch let decodeError {
-                                throw decodeError
+                                print("Decoding server error document failed!")
                             }
                         }
                     default:
@@ -34,11 +34,11 @@ struct CTXWLDataTaskPublisher: Publisher {
                     }
                 }
             }
-            .mapError(<#T##transform: (Publishers.TryMap<URLSession.DataTaskPublisher, (Data, HTTPURLResponse)>.Failure) -> Error##(Publishers.TryMap<URLSession.DataTaskPublisher, (Data, HTTPURLResponse)>.Failure) -> Error#>)
+            .mapError {clientServerErrorMapper($0)}
             .eraseToAnyPublisher()
     }
     
-    func receive<S>(subscriber: S) where S : Subscriber, Error == S.Failure, (data: Data, response: HTTPURLResponse) == S.Input {
+    func receive<S>(subscriber: S) where S : Subscriber, Self.Failure == S.Failure, (data: Data, response: HTTPURLResponse) == S.Input {
         self.dataTaskPublisher.receive(subscriber: subscriber)
     }
 }

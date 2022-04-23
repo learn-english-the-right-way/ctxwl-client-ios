@@ -17,4 +17,7 @@ struct EmailVerificationError: CTXWLClientUserFacingError {
     var serverMessage: String = ""
     var userMessage: String = ""
     let kind: ErrorKind
+    init(_ kind: ErrorKind) {
+        self.kind = kind
+    }
 }
