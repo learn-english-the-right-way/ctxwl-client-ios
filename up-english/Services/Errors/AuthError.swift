@@ -7,13 +7,12 @@
 
 import Foundation
 
-struct AuthError: CTXWLClientError {
+class AuthError: CTXWLClientError {
     enum ErrorKind {
         case callerUnauthenticated
         case invalidApplicationKey
         case unauthorizedAccess
     }
-    var serverMessage: String = ""
     let kind: ErrorKind
     init(_ kind: ErrorKind) {
         self.kind = kind

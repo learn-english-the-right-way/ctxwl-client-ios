@@ -10,35 +10,44 @@ import Combine
 
 struct CTXWLDataTaskPublisher: Publisher {
     
-    typealias Output = (data: Data, response: HTTPURLResponse)
+    typealias Output = Data
     
     typealias Failure = CTXWLClientError
     
-    var dataTaskPublisher: AnyPublisher<(data: Data, response: HTTPURLResponse), CTXWLClientError>
-    
-    init(dataTaskPublisher: URLSession.DataTaskPublisher) {
+    var dataTaskPublisher: AnyPublisher<Data, CTXWLClientError>
+        
+    init(dataTaskPublisher: URLSession.DataTaskPublisher, mappers: [ErrorMapper]) {
         self.dataTaskPublisher = dataTaskPublisher
-            .tryMap { data, response -> (Data, HTTPURLResponse) in
-                if let httpResponse = response as? HTTPURLResponse {
-                    switch httpResponse.statusCode {
-                    case 400...599:
-                        if ["application/vnd.ctxwl.error.email_registration+json", "application/vnd.ctxwl.error+json", "application/json"].contains(httpResponse.value(forHTTPHeaderField: "Content-Type")) {
-                            do {
-                                throw try JSONDecoder().decode(CTXWLError.self, from: data)
-                            } catch let decodeError {
-                                print("Decoding server error document failed!")
-                            }
-                        }
-                    default:
-                        return (data, httpResponse)
-                    }
+            .tryMap { data, response -> Data in
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    throw InvalidResponseError()
+                }
+                if !(400...599).contains(httpResponse.statusCode) {
+                    return data
+                }
+                if !["application/vnd.ctxwl.error.email_registration+json", "application/vnd.ctxwl.error+json", "application/json"].contains(httpResponse.value(forHTTPHeaderField: "Content-Type")) {
+                    throw CTXWLUnknownServerError()
+                }
+                do {
+                    throw try JSONDecoder().decode(CTXWLServerError.self, from: data)
+                } catch {
+                    throw ResponseDecodeError()
                 }
             }
-            .mapError {clientServerErrorMapper($0)}
+            .mapError { error in
+                var mappedError: CTXWLClientError?
+                for errorMapper in mappers {
+                    mappedError = errorMapper.mapToClientError(from: error)
+                }
+                guard let mappedError = mappedError else {
+                    return CTXWLClientError()
+                }
+                return mappedError
+            }
             .eraseToAnyPublisher()
     }
     
-    func receive<S>(subscriber: S) where S : Subscriber, Self.Failure == S.Failure, (data: Data, response: HTTPURLResponse) == S.Input {
+    func receive<S>(subscriber: S) where S : Subscriber, Self.Failure == S.Failure, Self.Output == S.Input {
         self.dataTaskPublisher.receive(subscriber: subscriber)
     }
 }

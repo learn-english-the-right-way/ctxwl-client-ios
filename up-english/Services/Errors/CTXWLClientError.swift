@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CTXWLClientError: Error {
-    var serverMessage: String { get }
+class CTXWLClientError: Error {
+    var serverMessage: String = ""
 }
 

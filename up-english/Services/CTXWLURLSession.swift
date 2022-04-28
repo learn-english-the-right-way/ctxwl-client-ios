@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 protocol CTXWLURLSession {
-    func dataTaskPublisher(for: URLRequest) -> AnyPublisher<(data: Data, response: HTTPURLResponse), CTXWLClientError>
+    func dataTaskPublisher(for: URLRequest) -> CTXWLDataTaskPublisher
 }

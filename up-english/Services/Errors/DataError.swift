@@ -7,6 +7,5 @@
 
 import Foundation
 
-struct DataError: CTXWLClientError {
-    var serverMessage: String = ""
+class DataError: CTXWLClientError {
 }

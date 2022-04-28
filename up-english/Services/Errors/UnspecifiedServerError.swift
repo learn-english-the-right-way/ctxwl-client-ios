@@ -7,6 +7,5 @@
 
 import Foundation
 
-struct UnknownError: CTXWLClientError {
-    var serverMessage: String = ""
+class UnspecifiedServerError: CTXWLClientError {
 }

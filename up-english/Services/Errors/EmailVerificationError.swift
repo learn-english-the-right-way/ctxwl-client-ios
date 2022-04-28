@@ -7,15 +7,13 @@
 
 import Foundation
 
-struct EmailVerificationError: CTXWLClientUserFacingError {
+class EmailVerificationError: CTXWLClientUserFacingError {
     enum ErrorKind {
         case emailMismatch
         case emailExpired
         case verificationCodeMismatch
         case verificationCodeTriedTooManyTimes
     }
-    var serverMessage: String = ""
-    var userMessage: String = ""
     let kind: ErrorKind
     init(_ kind: ErrorKind) {
         self.kind = kind

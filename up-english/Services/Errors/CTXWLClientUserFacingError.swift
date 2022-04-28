@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol CTXWLClientUserFacingError: CTXWLClientError {
-    var userMessage: String { get }
+class CTXWLClientUserFacingError: CTXWLClientError {
+    var userMessage: String = ""
 }

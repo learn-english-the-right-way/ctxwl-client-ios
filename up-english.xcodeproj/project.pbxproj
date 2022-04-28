@@ -15,6 +15,9 @@
 		B00028DE26FB7D56005D68D2 /* ScrollViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00028DD26FB7D56005D68D2 /* ScrollViewRepresentable.swift */; };
 		B00028E22725A990005D68D2 /* ContentViewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00028E12725A990005D68D2 /* ContentViewMock.swift */; };
 		B00D51A126C40A590069AA55 /* CustomWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00D51A026C40A590069AA55 /* CustomWebView.swift */; };
+		B026B8F92813EB410014666D /* ResponseDecodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026B8F82813EB410014666D /* ResponseDecodeError.swift */; };
+		B026B8FB2813EB810014666D /* InvalidResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026B8FA2813EB810014666D /* InvalidResponseError.swift */; };
+		B026B8FD2813F3420014666D /* CTXWLUnknownServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026B8FC2813F3420014666D /* CTXWLUnknownServerError.swift */; };
 		B04B64D726A527FD00D0B954 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04B64D626A527FD00D0B954 /* LoginModel.swift */; };
 		B04B64D926A52A8600D0B954 /* LoginModelDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04B64D826A52A8600D0B954 /* LoginModelDefault.swift */; };
 		B0578B41265EA3F400A1B21F /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0578B3F265EA3F400A1B21F /* User.xcdatamodeld */; };
@@ -24,12 +27,12 @@
 		B084B8F92811C1D2005B20B0 /* EmailRegistrationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084B8F82811C1D2005B20B0 /* EmailRegistrationError.swift */; };
 		B084B8FB2811C289005B20B0 /* EmailVerificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084B8FA2811C289005B20B0 /* EmailVerificationError.swift */; };
 		B084B8FD2812FC78005B20B0 /* ClientServerErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084B8FC2812FC78005B20B0 /* ClientServerErrorMapper.swift */; };
-		B084B8FF28130823005B20B0 /* UnknownError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084B8FE28130823005B20B0 /* UnknownError.swift */; };
+		B084B8FF28130823005B20B0 /* UnspecifiedServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084B8FE28130823005B20B0 /* UnspecifiedServerError.swift */; };
 		B085EF0826C90A3F00DD55D7 /* ArticleReaderViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085EF0726C90A3F00DD55D7 /* ArticleReaderViewRepresentable.swift */; };
 		B085EF0A26CA7D9D00DD55D7 /* ArticleReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B085EF0926CA7D9D00DD55D7 /* ArticleReaderViewController.swift */; };
 		B08962F12809C6D800B95D47 /* CTXWLURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08962F02809C6D800B95D47 /* CTXWLURLSession.swift */; };
 		B08962F3280ADE3500B95D47 /* CTXWLDataTaskPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08962F2280ADE3500B95D47 /* CTXWLDataTaskPublisher.swift */; };
-		B08962F5280D23F400B95D47 /* CTXWLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08962F4280D23F400B95D47 /* CTXWLError.swift */; };
+		B08962F5280D23F400B95D47 /* CTXWLServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08962F4280D23F400B95D47 /* CTXWLServerError.swift */; };
 		B08962F72813AEB100B95D47 /* DataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08962F62813AEB100B95D47 /* DataError.swift */; };
 		B0943AEA268EB675006051E0 /* EmailVerificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0943AE9268EB675006051E0 /* EmailVerificationModel.swift */; };
 		B0943AEC268EC963006051E0 /* EmailVerificationModelDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0943AEB268EC963006051E0 /* EmailVerificationModelDefault.swift */; };
@@ -59,6 +62,8 @@
 		B0C7CC0F265BA3B1003832EE /* UserServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC0E265BA3B1003832EE /* UserServiceDefault.swift */; };
 		B0E253FE26EDD0A100D6FDF4 /* ArticleListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E253FD26EDD0A100D6FDF4 /* ArticleListModel.swift */; };
 		B0E2540026EDDCBA00D6FDF4 /* ArticleListItemModelDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E253FF26EDDCBA00D6FDF4 /* ArticleListItemModelDefault.swift */; };
+		B0E5491E2815B73C00934E7B /* ErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5491D2815B73C00934E7B /* ErrorMapper.swift */; };
+		B0E549202818324C00934E7B /* ServerErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5491F2818324C00934E7B /* ServerErrorMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +92,9 @@
 		B00028DD26FB7D56005D68D2 /* ScrollViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewRepresentable.swift; sourceTree = "<group>"; };
 		B00028E12725A990005D68D2 /* ContentViewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewMock.swift; sourceTree = "<group>"; };
 		B00D51A026C40A590069AA55 /* CustomWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWebView.swift; sourceTree = "<group>"; };
+		B026B8F82813EB410014666D /* ResponseDecodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDecodeError.swift; sourceTree = "<group>"; };
+		B026B8FA2813EB810014666D /* InvalidResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidResponseError.swift; sourceTree = "<group>"; };
+		B026B8FC2813F3420014666D /* CTXWLUnknownServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXWLUnknownServerError.swift; sourceTree = "<group>"; };
 		B04B64D626A527FD00D0B954 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		B04B64D826A52A8600D0B954 /* LoginModelDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModelDefault.swift; sourceTree = "<group>"; };
 		B0578B40265EA3F400A1B21F /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
@@ -96,12 +104,12 @@
 		B084B8F82811C1D2005B20B0 /* EmailRegistrationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailRegistrationError.swift; sourceTree = "<group>"; };
 		B084B8FA2811C289005B20B0 /* EmailVerificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationError.swift; sourceTree = "<group>"; };
 		B084B8FC2812FC78005B20B0 /* ClientServerErrorMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientServerErrorMapper.swift; sourceTree = "<group>"; };
-		B084B8FE28130823005B20B0 /* UnknownError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnknownError.swift; sourceTree = "<group>"; };
+		B084B8FE28130823005B20B0 /* UnspecifiedServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnspecifiedServerError.swift; sourceTree = "<group>"; };
 		B085EF0726C90A3F00DD55D7 /* ArticleReaderViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReaderViewRepresentable.swift; sourceTree = "<group>"; };
 		B085EF0926CA7D9D00DD55D7 /* ArticleReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReaderViewController.swift; sourceTree = "<group>"; };
 		B08962F02809C6D800B95D47 /* CTXWLURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXWLURLSession.swift; sourceTree = "<group>"; };
 		B08962F2280ADE3500B95D47 /* CTXWLDataTaskPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXWLDataTaskPublisher.swift; sourceTree = "<group>"; };
-		B08962F4280D23F400B95D47 /* CTXWLError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXWLError.swift; sourceTree = "<group>"; };
+		B08962F4280D23F400B95D47 /* CTXWLServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXWLServerError.swift; sourceTree = "<group>"; };
 		B08962F62813AEB100B95D47 /* DataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataError.swift; sourceTree = "<group>"; };
 		B0943AE9268EB675006051E0 /* EmailVerificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationModel.swift; sourceTree = "<group>"; };
 		B0943AEB268EC963006051E0 /* EmailVerificationModelDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationModelDefault.swift; sourceTree = "<group>"; };
@@ -136,6 +144,8 @@
 		B0C7CC0E265BA3B1003832EE /* UserServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceDefault.swift; sourceTree = "<group>"; };
 		B0E253FD26EDD0A100D6FDF4 /* ArticleListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListModel.swift; sourceTree = "<group>"; };
 		B0E253FF26EDDCBA00D6FDF4 /* ArticleListItemModelDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListItemModelDefault.swift; sourceTree = "<group>"; };
+		B0E5491D2815B73C00934E7B /* ErrorMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMapper.swift; sourceTree = "<group>"; };
+		B0E5491F2818324C00934E7B /* ServerErrorMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +284,8 @@
 				9B8AE4F02797BBA500489A7B /* ArticleListServiceMockup.swift */,
 				B08962F02809C6D800B95D47 /* CTXWLURLSession.swift */,
 				B08962F2280ADE3500B95D47 /* CTXWLDataTaskPublisher.swift */,
+				B0E5491D2815B73C00934E7B /* ErrorMapper.swift */,
+				B0E5491F2818324C00934E7B /* ServerErrorMapper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -281,15 +293,18 @@
 		B0C7CBFD2651319A003832EE /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				B08962F4280D23F400B95D47 /* CTXWLError.swift */,
+				B08962F4280D23F400B95D47 /* CTXWLServerError.swift */,
 				B084B8F22811B343005B20B0 /* CTXWLClientError.swift */,
 				B084B8F42811BD80005B20B0 /* CTXWLClientUserFacingError.swift */,
 				B084B8F62811C06D005B20B0 /* AuthError.swift */,
 				B084B8F82811C1D2005B20B0 /* EmailRegistrationError.swift */,
 				B084B8FA2811C289005B20B0 /* EmailVerificationError.swift */,
 				B084B8FC2812FC78005B20B0 /* ClientServerErrorMapper.swift */,
-				B084B8FE28130823005B20B0 /* UnknownError.swift */,
+				B084B8FE28130823005B20B0 /* UnspecifiedServerError.swift */,
 				B08962F62813AEB100B95D47 /* DataError.swift */,
+				B026B8F82813EB410014666D /* ResponseDecodeError.swift */,
+				B026B8FA2813EB810014666D /* InvalidResponseError.swift */,
+				B026B8FC2813F3420014666D /* CTXWLUnknownServerError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -451,6 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0A89A63264A73DC00862E26 /* RegistrationServiceDefault.swift in Sources */,
+				B026B8FD2813F3420014666D /* CTXWLUnknownServerError.swift in Sources */,
 				B0E2540026EDDCBA00D6FDF4 /* ArticleListItemModelDefault.swift in Sources */,
 				B085EF0826C90A3F00DD55D7 /* ArticleReaderViewRepresentable.swift in Sources */,
 				B09D06A5263ECB4300246D90 /* ContentView.swift in Sources */,
@@ -461,14 +477,16 @@
 				B09D06D4263FC99700246D90 /* RegistrationModel.swift in Sources */,
 				B085EF0A26CA7D9D00DD55D7 /* ArticleReaderViewController.swift in Sources */,
 				B09B8E00279C53F1004FDF31 /* ArticleList.swift in Sources */,
-				B084B8FF28130823005B20B0 /* UnknownError.swift in Sources */,
+				B0E549202818324C00934E7B /* ServerErrorMapper.swift in Sources */,
+				B084B8FF28130823005B20B0 /* UnspecifiedServerError.swift in Sources */,
 				B09D06D0263ECB9C00246D90 /* EmailVerification.swift in Sources */,
 				9B8AE4F12797BBA500489A7B /* ArticleListServiceMockup.swift in Sources */,
 				B0943AEC268EC963006051E0 /* EmailVerificationModelDefault.swift in Sources */,
 				B00D51A126C40A590069AA55 /* CustomWebView.swift in Sources */,
 				B09D06DD2643635700246D90 /* Page.swift in Sources */,
 				B00028E22725A990005D68D2 /* ContentViewMock.swift in Sources */,
-				B08962F5280D23F400B95D47 /* CTXWLError.swift in Sources */,
+				B08962F5280D23F400B95D47 /* CTXWLServerError.swift in Sources */,
+				B0E5491E2815B73C00934E7B /* ErrorMapper.swift in Sources */,
 				B0A89A5F264A6CAD00862E26 /* RegistrationService.swift in Sources */,
 				B0C7CC0F265BA3B1003832EE /* UserServiceDefault.swift in Sources */,
 				B084B8FB2811C289005B20B0 /* EmailVerificationError.swift in Sources */,
@@ -483,6 +501,7 @@
 				B0943AEA268EB675006051E0 /* EmailVerificationModel.swift in Sources */,
 				B08962F12809C6D800B95D47 /* CTXWLURLSession.swift in Sources */,
 				B0C7CC0B265798E3003832EE /* UserService.swift in Sources */,
+				B026B8F92813EB410014666D /* ResponseDecodeError.swift in Sources */,
 				B084B8F32811B343005B20B0 /* CTXWLClientError.swift in Sources */,
 				B0E253FE26EDD0A100D6FDF4 /* ArticleListModel.swift in Sources */,
 				B04B64D926A52A8600D0B954 /* LoginModelDefault.swift in Sources */,
@@ -492,6 +511,7 @@
 				B084B8F52811BD80005B20B0 /* CTXWLClientUserFacingError.swift in Sources */,
 				9B8AE4ED2793F55000489A7B /* ArticleListServiceDefault.swift in Sources */,
 				B09D06DB2643630D00246D90 /* ViewRouter.swift in Sources */,
+				B026B8FB2813EB810014666D /* InvalidResponseError.swift in Sources */,
 				B0578B41265EA3F400A1B21F /* User.xcdatamodeld in Sources */,
 				B0AED68D26C17042000CE785 /* CustomContextMenuWKWebView.swift in Sources */,
 				B084B8FD2812FC78005B20B0 /* ClientServerErrorMapper.swift in Sources */,
