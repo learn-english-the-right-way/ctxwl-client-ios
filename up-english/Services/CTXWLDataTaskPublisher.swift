@@ -12,35 +12,35 @@ struct CTXWLDataTaskPublisher: Publisher {
     
     typealias Output = Data
     
-    typealias Failure = CTXWLClientError
+    typealias Failure = CLIENT_ERROR
     
-    var dataTaskPublisher: AnyPublisher<Data, CTXWLClientError>
+    var dataTaskPublisher: AnyPublisher<Data, CLIENT_ERROR>
         
     init(dataTaskPublisher: URLSession.DataTaskPublisher, mappers: [ErrorMapper]) {
         self.dataTaskPublisher = dataTaskPublisher
             .tryMap { data, response -> Data in
                 guard let httpResponse = response as? HTTPURLResponse else {
-                    throw InvalidResponseError()
+                    throw RESPONSE_NOT_HTTP()
                 }
                 if !(400...599).contains(httpResponse.statusCode) {
                     return data
                 }
                 if !["application/vnd.ctxwl.error.email_registration+json", "application/vnd.ctxwl.error+json", "application/json"].contains(httpResponse.value(forHTTPHeaderField: "Content-Type")) {
-                    throw CTXWLUnknownServerError()
+                    throw UNKNOWN_SERVER_ERROR()
                 }
                 do {
-                    throw try JSONDecoder().decode(CTXWLServerError.self, from: data)
+                    throw try JSONDecoder().decode(CTXWL_SERVER_ERROR.self, from: data)
                 } catch {
-                    throw ResponseDecodeError()
+                    throw CANNOT_DECODE_RESPONSE()
                 }
             }
             .mapError { error in
-                var mappedError: CTXWLClientError?
+                var mappedError: CLIENT_ERROR?
                 for errorMapper in mappers {
                     mappedError = errorMapper.mapToClientError(from: error)
                 }
                 guard let mappedError = mappedError else {
-                    return CTXWLClientError()
+                    return CLIENT_ERROR()
                 }
                 return mappedError
             }

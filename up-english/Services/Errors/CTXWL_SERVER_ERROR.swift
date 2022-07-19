@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CTXWLServerError: Error, Codable {
+struct CTXWL_SERVER_ERROR: Error, Codable {
     struct Cause: Codable {
         var code: String
         var component: String

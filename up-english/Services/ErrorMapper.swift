@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ErrorMapper {
-    func mapToClientError(from error: Error) -> CTXWLClientError?
+    func mapToClientError(from error: Error) -> CLIENT_ERROR?
 }

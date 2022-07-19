@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let server = "ctxwl"
+
 @main
 struct up_englishApp: App {
     

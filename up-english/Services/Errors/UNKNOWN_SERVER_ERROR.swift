@@ -7,6 +7,6 @@
 
 import Foundation
 
-class CTXWLUnknownServerError: Error {
+class UNKNOWN_SERVER_ERROR: Error {
 
 }

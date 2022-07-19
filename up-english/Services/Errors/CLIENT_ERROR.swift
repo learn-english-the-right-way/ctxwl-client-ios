@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CTXWLClientError: Error {
-    var serverMessage: String = ""
+class CLIENT_ERROR: Error {
+
 }
 

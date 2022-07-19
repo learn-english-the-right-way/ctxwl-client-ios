@@ -25,6 +25,12 @@ struct VerificationRequestBody: Encodable {
 class RegistrationServiceDefault: RegistrationService {
     
     private var requestConfirmationCancellable: AnyCancellable?
+    
+    private var ctxwlUrlSession: CTXWLURLSession
+    
+    init(ctxwlUrlSession: CTXWLURLSession) {
+        self.ctxwlUrlSession = ctxwlUrlSession
+    }
         
     private var applicationKey: String {
         get {
@@ -70,10 +76,7 @@ class RegistrationServiceDefault: RegistrationService {
         request.httpBody = data
 
         // connect the request to a URLSession, decode the response data and keep a multicasted publisher
-        let publisher = URLSession(configuration: .default).dataTaskPublisher(for: request)
-            .map({ dataAndResponse in
-                return dataAndResponse.data
-            })
+        let publisher = self.ctxwlUrlSession.dataTaskPublisher(for: request)
             .decode(type: ConfirmationResponse.self, decoder: JSONDecoder())
             .share()
         
@@ -99,11 +102,7 @@ class RegistrationServiceDefault: RegistrationService {
         request.httpBody = data
         
         // connect the request to a URLSession, decode the response data and keep a multicasted publisher
-        let urlSession = URLSession(configuration: .default)
-        return urlSession.dataTaskPublisher(for: request)
-            .map({ dataAndResponse in
-                return dataAndResponse.data
-            })
+        return self.ctxwlUrlSession.dataTaskPublisher(for: request)
             .decode(type: RegistrationResponse.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }

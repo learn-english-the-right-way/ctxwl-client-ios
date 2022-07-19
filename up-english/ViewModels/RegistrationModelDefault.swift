@@ -66,7 +66,6 @@ class RegistrationModelDefault<RegistrationServiceType, UserServiceType>: Regist
         self.registrationService = registrationService
         self.userService = userService
         self.viewRouter = viewRouter
-        self.email = userService.email
     }
     
     private func checkEmail() -> Void {
@@ -115,6 +114,10 @@ class RegistrationModelDefault<RegistrationServiceType, UserServiceType>: Regist
         } else {
             validationFailed = true
         }
+    }
+    
+    private func saveCredential() {
+        try self.userService.saveCredentials(email: self.email, password: self.password1)
     }
     
     func requestConfirmationCode() -> Void {

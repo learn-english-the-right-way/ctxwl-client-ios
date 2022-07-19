@@ -8,23 +8,19 @@
 import Foundation
 import Combine
 
-// Response Interface regarding each element from backend
-//struct ArticleListItemResponse: Codable {
-//    var title: String
-//    var brief: String
-//    var url: String
-//}
-
 class ArticleListServiceDefault: ArticleListService {
+    
+    private var ctxwlUrlSession: CTXWLURLSession
+    
+    init(ctxwlUrlSession: CTXWLURLSession) {
+        self.ctxwlUrlSession = ctxwlUrlSession
+    }
 
     func refresh() -> AnyPublisher<ArticleListItemResponse, Never> {
         let url = ApiUrl.loadUrl()
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        return URLSession(configuration: .default).dataTaskPublisher(for: request)
-            .map { dataAndResponse in
-                dataAndResponse.data
-            }
+        return self.ctxwlUrlSession.dataTaskPublisher(for: request)
             .decode(type: ArticleListItemResponse.self, decoder: JSONDecoder())
             .assertNoFailure()
             .eraseToAnyPublisher()
@@ -34,10 +30,7 @@ class ArticleListServiceDefault: ArticleListService {
         let url = ApiUrl.loadUrl()
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        return URLSession(configuration: .default).dataTaskPublisher(for: request)
-            .map { dataAndResponse in
-                dataAndResponse.data
-            }
+        return self.ctxwlUrlSession.dataTaskPublisher(for: request)
             .decode(type: ArticleListItemResponse.self, decoder: JSONDecoder())
             .assertNoFailure()
             .eraseToAnyPublisher()

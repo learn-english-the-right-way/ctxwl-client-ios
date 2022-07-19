@@ -7,5 +7,5 @@
 
 import Foundation
 
-class UnspecifiedServerError: CTXWLClientError {
+class UNSPECIFIED_SERVER_ERROR: SERVER_MAPPED_CLIENT_ERROR {
 }

@@ -9,6 +9,8 @@ import Foundation
 import Combine
 
 protocol RegistrationModel: ObservableObject {
+    var showModel: Bool {get}
+    var errorMessage: String {get}
     var email: String {get set}
     var emailValid: Bool {get}
     var emailErrorMsg: String {get}
