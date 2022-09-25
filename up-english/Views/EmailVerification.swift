@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct EmailVerification<ModelType>: View where ModelType: EmailVerificationModel {
+@available(iOS 16.0, *)
+struct EmailVerification: View {
     
-    @ObservedObject private var model: ModelType
+    @ObservedObject private var model: EmailVerificationModel
     
-    init(model: ModelType) {
+    init(model: EmailVerificationModel) {
         self.model = model
     }
     

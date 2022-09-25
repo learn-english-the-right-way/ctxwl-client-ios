@@ -28,8 +28,11 @@ class RegistrationServiceDefault: RegistrationService {
     
     private var ctxwlUrlSession: CTXWLURLSession
     
-    init(ctxwlUrlSession: CTXWLURLSession) {
+    private var userService: UserService
+    
+    init(ctxwlUrlSession: CTXWLURLSession, userService: any UserService) {
         self.ctxwlUrlSession = ctxwlUrlSession
+        self.userService = userService
     }
         
     private var applicationKey: String {
@@ -62,33 +65,51 @@ class RegistrationServiceDefault: RegistrationService {
         return registrationStatus
     }
     
-    func requestEmailConfirmation(email: String, password: String) -> AnyPublisher<Never, Error> {
+    func requestEmailConfirmation() -> AnyPublisher<String, CLIENT_ERROR> {
         
-//         configure email registration post request
+        // make sure we have valid email and password
+        guard let credential = self.userService.credential else {
+            return Fail(error: CREDENTIALS_EMPTY()).eraseToAnyPublisher()
+        }
+        
+        // configure email registration post request
         let url = ApiUrl.emailConfirmationUrl()
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        guard let data = try? JSONEncoder().encode(["email": email, "password": password]) else {
+        guard let data = try? JSONEncoder().encode(["email": credential.username, "password": credential.password]) else {
             print("failed to encode request data")
-            return Fail(error: NSError()).eraseToAnyPublisher()
+            return Fail(error: ENCODING_FAILED()).eraseToAnyPublisher()
         }
         request.httpBody = data
 
         // connect the request to a URLSession, decode the response data and keep a multicasted publisher
         let publisher = self.ctxwlUrlSession.dataTaskPublisher(for: request)
             .decode(type: ConfirmationResponse.self, decoder: JSONDecoder())
+            .map { response in response.applicationKey }
+            .mapError({ (error) -> CLIENT_ERROR in
+                if let error = error as? CLIENT_ERROR {
+                    return error
+                } else {
+                    return CANNOT_DECODE_RESPONSE()
+                }
+            })
             .share()
         
 //         make the request happen and store the application key
         self.requestConfirmationCancellable = publisher
             .sink(receiveCompletion: { arg in }, receiveValue: { confirmationResponse in
-                self.applicationKey = confirmationResponse.applicationKey
+                self.applicationKey = confirmationResponse
             })
-        return publisher.ignoreOutput().eraseToAnyPublisher()
+        return publisher.eraseToAnyPublisher()
     }
     
-    func register(email: String, confirmationCode: String) -> AnyPublisher<RegistrationResponse, Error> {
+    func register(confirmationCode: String) -> AnyPublisher<String, CLIENT_ERROR> {
+        
+        // make sure we have up to date email
+        guard let email = self.userService.credential?.username else {
+            return Fail(error: CREDENTIALS_EMPTY()).eraseToAnyPublisher()
+        }
         
         // configure verification patch request
         let url = ApiUrl.registrationUrl(email: email)
@@ -97,14 +118,29 @@ class RegistrationServiceDefault: RegistrationService {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(self.applicationKey, forHTTPHeaderField: "X-Ctxwl-Key")
         guard let data = try? JSONEncoder().encode(VerificationRequestBody(confirmationCode: confirmationCode)) else {
-            return Fail<RegistrationResponse, Error>(error: NSError()).eraseToAnyPublisher()
+            return Fail<String, CLIENT_ERROR>(error: ENCODING_FAILED()).eraseToAnyPublisher()
         }
         request.httpBody = data
         
-        // connect the request to a URLSession, decode the response data and keep a multicasted publisher
-        return self.ctxwlUrlSession.dataTaskPublisher(for: request)
+        // decode the response data, map out the authentication application key and share the publisher
+        let publisher = self.ctxwlUrlSession.dataTaskPublisher(for: request)
             .decode(type: RegistrationResponse.self, decoder: JSONDecoder())
+            .map { response in response.userAuthenticationApplicationKey}
+            .mapError({ (error) -> CLIENT_ERROR in
+                if let error = error as? CLIENT_ERROR {
+                    return error
+                } else {
+                    return CANNOT_DECODE_RESPONSE()
+                }
+            })
+            .share()
             .eraseToAnyPublisher()
+        
+        // subscribe to the publisher and save the application key to user service
+        let cancellable = publisher.sink(receiveCompletion: {_ in}, receiveValue: {value in self.userService.applicationKey = value})
+        
+        // return the publisher
+        return publisher
     }
 }
 

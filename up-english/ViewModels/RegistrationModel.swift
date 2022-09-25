@@ -9,13 +9,16 @@ import Foundation
 import Peppermint
 import Combine
 
-class RegistrationModelDefault<RegistrationServiceType, UserServiceType>: RegistrationModel where RegistrationServiceType: RegistrationService, UserServiceType: UserService {
+@available(iOS 16.0, *)
+class RegistrationModel: ObservableObject {
     
-    private var registrationService: RegistrationServiceType
+    private var requestAggregator: RequestAggregator
     
-    private var userService: UserServiceType
+    private var registrationService: any RegistrationService
     
-    private var viewRouter: ViewRouter
+    private var userService: any UserService
+    
+    private var router: Router
     
     private var confirmationCodeRequestCancellable: AnyCancellable?
         
@@ -62,10 +65,18 @@ class RegistrationModelDefault<RegistrationServiceType, UserServiceType>: Regist
     
     @Published var registering = false
     
-    init(registrationService: RegistrationServiceType, userService: UserServiceType, viewRouter: ViewRouter) {
+    @Published var showModal: Bool = false
+    
+    @Published var message: String = ""
+    
+    @Published var effect: UIEffect
+    
+    init(requestAggregator: RequestAggregator, registrationService: any RegistrationService, userService: any UserService, router: Router) {
         self.registrationService = registrationService
         self.userService = userService
-        self.viewRouter = viewRouter
+        self.requestAggregator = requestAggregator
+        self.router = router
+        self.effect = UIEffect()
     }
     
     private func checkEmail() -> Void {
@@ -117,34 +128,31 @@ class RegistrationModelDefault<RegistrationServiceType, UserServiceType>: Regist
     }
     
     private func saveCredential() {
-        try self.userService.saveCredentials(email: self.email, password: self.password1)
+        do {
+            try self.userService.saveCredential(username: self.email, password: self.password1)
+        } catch {
+            // TODO: add presentation logic to tell the user save to persistence failed
+        }
     }
     
     func requestConfirmationCode() -> Void {
         
+        // make sure credentials in service is up to date
+        self.saveCredential()
+        
         // do nothing if there is an ongoing confirmation code request
-        guard self.requestingConfirmationCode else {
-            self.requestingConfirmationCode = true
-            self.userService.email = self.email
-            self.userService.password = self.password1
-            self.confirmationCodeRequestCancellable =
-                self.registrationService.requestEmailConfirmation(email: self.userService.email, password: self.userService.password)
-                .receive(on: DispatchQueue.main)
-                .sink(receiveCompletion: {
-                    completion in
-                    self.requestingConfirmationCode = false
-                    switch completion {
-                    case .finished:
-                        self.viewRouter.currentPage = .Confirmation
-                        UserDefaults.standard.setValue(RegistrationStatus.ConfirmationRequested.rawValue, forKey: "registrationStatus")
-                    case .failure:
-                        print("failed")
-                    }
-                },
-                      receiveValue: {value in}
-                )
+        guard self.requestingConfirmationCode == false else {
+            var effect = UIEffect()
+            effect.action = .notice
+            effect.message = "There is a request to get verification code going on"
+            self.effect = effect
             return
         }
+        self.requestingConfirmationCode = true
+        self.confirmationCodeRequestCancellable = self.requestAggregator.getRegistrationEmailVerification()
+        // TODO: figure out what this does
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {_ in}, receiveValue: {effect in self.effect = effect})
     }
 
 }

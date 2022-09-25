@@ -34,24 +34,45 @@ class UserServiceDefault: UserService {
     private var ctxwlURLSession: CTXWLURLSession
     
     private var loginCancellable: AnyCancellable?
-            
-    var applicationAuthenticationKey: String {
+    
+    private var errorsSubject: PassthroughSubject<CLIENT_ERROR, Never>
+    
+    private var _applicationKey: String?
+    
+    private var _credential: Credential?
+    
+    var asyncErrorsPublisher: AnyPublisher<CLIENT_ERROR, Never> {
         get {
-            guard let key = UserDefaults.standard.string(forKey: "applicationAuthenticationKey") else {
-                return ""
-            }
-            return key
+            return self.errorsSubject.eraseToAnyPublisher()
         }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "applicationAuthenticationKey")
+    }
+    
+    var credential: Credential? {
+        get {
+            if self._credential != nil {
+                return self._credential
+            } else {
+                return try? self.readCredentialsFromKeychain()
+            }
+        }
+    }
+    
+    var applicationKey: String? {
+        get {
+            if self._applicationKey != nil {
+                return self._applicationKey
+            } else {
+                return try? self.readApplicationKeyFromKeychain()
+            }
         }
     }
         
     init(ctxwlUrlSession: CTXWLURLSession) {
         self.ctxwlURLSession = ctxwlUrlSession
+        self.errorsSubject = PassthroughSubject()
     }
     
-    func readCredentials() throws -> Credential {
+    private func readCredentialsFromKeychain() throws -> Credential {
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrServer as String: server,
                                     kSecAttrLabel as String: "password",
@@ -72,7 +93,7 @@ class UserServiceDefault: UserService {
         return Credential(username: account, password: password)
     }
     
-    func saveCredentials(email: String, password: String) throws {
+    private func saveCredentialsToKeychain(email: String, password: String) throws -> Void {
         let credential = Credential(username: email, password: password)
         let account = credential.username
         let password = credential.password.data(using: String.Encoding.utf8)!
@@ -83,12 +104,12 @@ class UserServiceDefault: UserService {
                                     kSecValueData as String: password]
         let status = SecItemAdd(query as CFDictionary, nil)
         guard status == errSecSuccess else {
-            throw KEYCHAIN_ERROR()
+            throw KEYCHAIN_CANNOT_SAVE_CREDENTIAL()
         }
     }
     
-    func readApplicationKey() throws -> String {
-        guard let account = try? self.readCredentials().username else {
+    private func readApplicationKeyFromKeychain() throws -> String {
+        guard let account = try? self.readCredentialsFromKeychain().username else {
             throw KEYCHAIN_CREDENTIALS_NOT_FOUND()
         }
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
@@ -111,8 +132,8 @@ class UserServiceDefault: UserService {
         return applicationKey
     }
     
-    func saveApplicationKey(key: String) throws {
-        guard let account = try? self.readCredentials().username else {
+    private func saveApplicationKeyToKeychain(key: String) throws -> Void {
+        guard let account = try? self.readCredentialsFromKeychain().username else {
             throw KEYCHAIN_CREDENTIALS_NOT_FOUND()
         }
         let applicationKey = key.data(using: String.Encoding.utf8)!
@@ -125,6 +146,16 @@ class UserServiceDefault: UserService {
         guard status == errSecSuccess else {
             throw KEYCHAIN_ERROR()
         }
+    }
+    
+    func saveCredential(username: String, password: String) throws -> Void {
+        self._credential = Credential(username: username, password: password)
+        try self.saveCredentialsToKeychain(email: username, password: password)
+    }
+    
+    func saveAuthenticationApplicationKey(key: String) throws -> Void {
+        self._applicationKey = key
+        try self.saveApplicationKeyToKeychain(key: key)
     }
     
     func sessionProtectedDataTaskPublisher(request: URLRequest) -> AnyPublisher<Data, CLIENT_ERROR> {
@@ -150,13 +181,16 @@ class UserServiceDefault: UserService {
     func login() -> AnyPublisher<String, CLIENT_ERROR> {
         
         // configure login post request
-        let url = ApiUrl.loginUrl(email: self.email)
+        guard let credentials = self.credential else {
+            return Fail(error: CREDENTIALS_EMPTY()).eraseToAnyPublisher()
+        }
+        let url = ApiUrl.loginUrl(email: credentials.username)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         //TODO: revisit how these info are retrieved
         let loginRequestContent = LoginRequest(
-            password: self.password,
+            password: credentials.password,
             os: UIDevice().systemName + " " + UIDevice().systemVersion,
             app: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "",
             hardware: UIDevice().model,
@@ -170,7 +204,9 @@ class UserServiceDefault: UserService {
         
         // conect the request to a URLSession
         let publisher = self.ctxwlURLSession.dataTaskPublisher(for: request)
+            .first()
             .decode(type: LoginResponse.self, decoder: JSONDecoder())
+            .map({ loginResponse in loginResponse.applicationKey })
             .mapError({ (error) -> CLIENT_ERROR in
                 if let error = error as? CLIENT_ERROR {
                     return error
@@ -178,17 +214,15 @@ class UserServiceDefault: UserService {
                     return CANNOT_DECODE_RESPONSE()
                 }
             })
-            .map({ loginResponse in loginResponse.applicationKey })
-//            .share()
+            .share()
         
         // make the request happen, store the application key
-        self.loginCancellable = publisher
-            .sink(receiveCompletion: {
-                arg in
-            }, receiveValue: {
-                key in
-                self.applicationAuthenticationKey = key
+        self.loginCancellable = publisher.sink(
+            receiveCompletion: {print("user service login method completion with \($0)")},
+            receiveValue: {
+                self._applicationKey = $0
             })
+        
         return publisher.eraseToAnyPublisher()
     }
     

@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-struct Registration<ModelType>: View where ModelType: RegistrationModel {
+@available(iOS 16.0, *)
+struct Registration: View {
     
     @EnvironmentObject var viewRouter: ViewRouter
 
-    @ObservedObject private var model: ModelType
+    @ObservedObject private var model: RegistrationModel
     
-    init(model: ModelType) {
+    init(model: RegistrationModel) {
         self.model = model
     }
 

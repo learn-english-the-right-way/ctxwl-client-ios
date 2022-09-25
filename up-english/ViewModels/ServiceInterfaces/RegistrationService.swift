@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 protocol RegistrationService: ObservableObject {
-    func requestEmailConfirmation(email: String, password: String) -> AnyPublisher<Never, Error>
-    func register(email: String, confirmationCode: String) -> AnyPublisher<RegistrationResponse, Error>
+    func requestEmailConfirmation() -> AnyPublisher<String, CLIENT_ERROR>
+    func register(confirmationCode: String) -> AnyPublisher<String, CLIENT_ERROR>
     func currentRegistrationStatus() -> RegistrationStatus
     func resetRegistrationStatus() -> Void
 }

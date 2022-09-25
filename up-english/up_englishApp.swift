@@ -9,29 +9,50 @@ import SwiftUI
 
 let server = "ctxwl"
 
+@available(iOS 16.0, *)
 @main
 struct up_englishApp: App {
     
-    var registrationService = RegistrationServiceDefault()
+    @ObservedObject var router: Router
     
-    var userService = UserServiceDefault()
-
-    var viewRouter = ViewRouter()
+    var ctxwlUserSession: CTXWLURLSession
     
-    var articleListService = ArticleListServiceMockup()
+    var registrationService: any RegistrationService
+    
+    var userService: any UserService
+    
+    var viewFactory: ViewFactory
+    
+    init() {
+        var ctxwlUserSession = CTXWLURLSessionDefault(configuration: URLSessionConfiguration.default, mappers: [ServerErrorMapper()])
+        var registrationService = RegistrationServiceDefault(ctxwlUrlSession: ctxwlUserSession)
+        var userService = UserServiceDefault(ctxwlUrlSession: ctxwlUserSession)
+        var router = Router()
+        var viewFactory = ViewFactory(router: router, userService: userService)
+        
+        self.ctxwlUserSession = ctxwlUserSession
+        self.registrationService = registrationService
+        self.userService = userService
+        self.router = router
+        self.viewFactory = viewFactory
+        
+        if self.userService.applicationKey != nil {
+            // TODO: add routing logic to homepage
+        } else {
+            let loginPage = PageInfo(page: .Login)
+            self.router.clearStackAndGoTo(page: loginPage)
+        }
+    }
 
     var body: some Scene {
-        WindowGroup {
-            ContentView<RegistrationServiceDefault, UserServiceDefault, ArticleListServiceMockup>()
-                .environmentObject(self.viewRouter)
-                .environmentObject(self.registrationService)
-                .environmentObject(self.userService)
-//                .environmentObject(self.articleListService)
-//            if #available(iOS 15.0, *) {
-//                ContentViewMock()
-//            } else {
-//                // Fallback on earlier versions
-//            }
+        WindowGroup("CTXWL", id: "CTXWL") {
+            NavigationStack(path: self.$router.path) {
+                // TODO: change content view to homepage
+                ContentView()
+                    .navigationDestination(for: PageInfo.self) { pageInfo in
+                        self.viewFactory.createViewFor(destination: pageInfo)
+                    }
+            }
         }
     }
 }

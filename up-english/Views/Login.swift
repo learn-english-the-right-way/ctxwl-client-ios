@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-struct Login<ModelType>: View where ModelType: LoginModel {
+@available(iOS 16.0, *)
+struct Login: View {
     
     @EnvironmentObject var viewRouter: ViewRouter
     
-    @ObservedObject private var model: ModelType
+    @ObservedObject private var model: LoginModel
         
-    init(_ model: ModelType) {
+    init(_ model: LoginModel) {
         self.model = model
     }
     

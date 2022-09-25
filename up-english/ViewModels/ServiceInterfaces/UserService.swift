@@ -13,20 +13,14 @@ struct Credential {
     var password: String
 }
 
-protocol UserService: ObservableObject {
-            
-    var applicationAuthenticationKey: String {get set}
+protocol UserService {
     
-    func readApplicationKey() throws -> String
-    
-    func saveApplicationKey(key: String) throws -> Void
-    
-    func readCredentials() throws -> Credential
-    
-    func saveCredentials(email: String, password: String) throws -> Void
-    
+    var credential: Credential? {get}
+    var applicationKey: String? {get}
+    var asyncErrorsPublisher: AnyPublisher<CLIENT_ERROR, Never> {get}
+    func saveCredential(username: String, password: String) throws -> Void
+    func saveAuthenticationApplicationKey(key: String) throws -> Void
     func sessionProtectedDataTaskPublisher(request: URLRequest) -> AnyPublisher<Data, CLIENT_ERROR>
-            
     func login() -> AnyPublisher<String, CLIENT_ERROR>
 }
 

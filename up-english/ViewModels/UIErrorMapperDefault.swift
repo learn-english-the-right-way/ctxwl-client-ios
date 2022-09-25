@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 class UIErrorMapperDefault: UIErrorMapper {
-    func mapError(_ serviceError: CLIENT_ERROR) -> Just<UIException> {
-        let exception = UIException()
+    func mapError(_ serviceError: CLIENT_ERROR) -> UIEffect {
+        var exception = UIEffect()
         if serviceError is SESSION_AUTHENTICATION_INVALID_CREDENTIAL {
             exception.message = "wrong username or password"
             exception.action = .notice
@@ -33,6 +33,6 @@ class UIErrorMapperDefault: UIErrorMapper {
             exception.message = "unknown error"
             exception.action = .notice
         }
-        return Just(exception)
+        return exception
     }
 }

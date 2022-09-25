@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 protocol UIErrorMapper {
-    func mapError(_ serviceError: CLIENT_ERROR) -> Just<UIException>
+    func mapError(_ serviceError: CLIENT_ERROR) -> UIEffect
 }
