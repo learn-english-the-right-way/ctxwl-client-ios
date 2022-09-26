@@ -10,14 +10,16 @@ import Combine
 
 @available(iOS 16.0, *)
 class LoginModel: ObservableObject {
-    
-    private var userService: any UserService
-    
-    private var router: Router
-    
+            
     private var loginRequestCancellable: AnyCancellable?
     
+    private var loginServiceErrorsCancellable: AnyCancellable?
+    
     private var requestAggregator: RequestAggregator
+    
+    private var uiErrorMapper: UIErrorMapper
+    
+    private var userService: UserService
     
     @Published var loginUnderway: Bool = false
     
@@ -29,11 +31,15 @@ class LoginModel: ObservableObject {
     
     @Published var effect: UIEffect
     
-    init(userService: any UserService, router: Router, requestAggregator: RequestAggregator) {
-        self.userService = userService
-        self.router = router
+    init(requestAggregator: RequestAggregator, errorMapper: UIErrorMapper, userService: UserService) {
         self.requestAggregator = requestAggregator
+        self.uiErrorMapper = errorMapper
+        self.userService = userService
         self.effect = UIEffect()
+        
+        self.loginServiceErrorsCancellable = self.userService.errorsPublisher.sink(receiveValue: {clientError in
+            self.effect = self.uiErrorMapper.mapError(clientError)
+        })
     }
     
     func login() -> Void {
@@ -45,7 +51,7 @@ class LoginModel: ObservableObject {
             self.effect = effect
             return
         }
-        //TODO: since emitted is never, change the type of sink
+        
         self.loginRequestCancellable = self.requestAggregator.login()
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: {completion in self.loginUnderway = false},

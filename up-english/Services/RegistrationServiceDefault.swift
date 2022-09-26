@@ -30,9 +30,12 @@ class RegistrationServiceDefault: RegistrationService {
     
     private var userService: UserService
     
+    private var errorsSubject: PassthroughSubject<CLIENT_ERROR, Never>
+    
     init(ctxwlUrlSession: CTXWLURLSession, userService: any UserService) {
         self.ctxwlUrlSession = ctxwlUrlSession
         self.userService = userService
+        self.errorsSubject = PassthroughSubject()
     }
         
     private var applicationKey: String {
@@ -44,6 +47,12 @@ class RegistrationServiceDefault: RegistrationService {
         }
         set {
             UserDefaults.standard.setValue(newValue, forKey: "applicationKey")
+        }
+    }
+    
+    var errorsPublisher: AnyPublisher<CLIENT_ERROR, Never> {
+        get {
+            return self.errorsSubject.eraseToAnyPublisher()
         }
     }
     
@@ -137,7 +146,17 @@ class RegistrationServiceDefault: RegistrationService {
             .eraseToAnyPublisher()
         
         // subscribe to the publisher and save the application key to user service
-        let cancellable = publisher.sink(receiveCompletion: {_ in}, receiveValue: {value in self.userService.applicationKey = value})
+        let cancellable = publisher.sink(
+            receiveCompletion: {_ in},
+            receiveValue: {value in
+                do {
+                    try self.userService.saveAuthenticationApplicationKey(key: value)
+                } catch {
+                    self.errorsSubject.send(KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY())
+                }
+                
+            }
+        )
         
         // return the publisher
         return publisher

@@ -41,7 +41,7 @@ class UserServiceDefault: UserService {
     
     private var _credential: Credential?
     
-    var asyncErrorsPublisher: AnyPublisher<CLIENT_ERROR, Never> {
+    var errorsPublisher: AnyPublisher<CLIENT_ERROR, Never> {
         get {
             return self.errorsSubject.eraseToAnyPublisher()
         }
@@ -144,7 +144,7 @@ class UserServiceDefault: UserService {
                                     kSecValueData as String: applicationKey]
         let status = SecItemAdd(query as CFDictionary, nil)
         guard status == errSecSuccess else {
-            throw KEYCHAIN_ERROR()
+            throw KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY()
         }
     }
     
@@ -220,7 +220,11 @@ class UserServiceDefault: UserService {
         self.loginCancellable = publisher.sink(
             receiveCompletion: {print("user service login method completion with \($0)")},
             receiveValue: {
-                self._applicationKey = $0
+                do {
+                    try self.saveAuthenticationApplicationKey(key: $0)
+                } catch {
+                    self.errorsSubject.send(KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY())
+                }
             })
         
         return publisher.eraseToAnyPublisher()

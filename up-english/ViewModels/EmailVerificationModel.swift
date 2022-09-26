@@ -17,7 +17,11 @@ class EmailVerificationModel: ObservableObject {
     
     private var registrationRequestCancellable: AnyCancellable?
     
+    private var registrationServiceErrorsCancellable: AnyCancellable?
+    
     private var requestAggregator: RequestAggregator
+    
+    private var uiErrorMapper: UIErrorMapper
     
     @Published var confirmationCode = ""
     
@@ -27,11 +31,16 @@ class EmailVerificationModel: ObservableObject {
     
     @Published var effect: UIEffect
     
-    init(registrationService: any RegistrationService, router: Router, requestAggregator: RequestAggregator) {
+    init(registrationService: any RegistrationService, router: Router, requestAggregator: RequestAggregator, errorMapper: UIErrorMapper) {
         self.registrationService = registrationService
         self.router = router
         self.requestAggregator = requestAggregator
+        self.uiErrorMapper = errorMapper
         self.effect = UIEffect()
+        
+        self.registrationServiceErrorsCancellable = self.registrationService.errorsPublisher.sink(receiveValue: {clientError in
+            self.effect = self.uiErrorMapper.mapError(clientError)
+        })
     }
     
     func register() {

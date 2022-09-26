@@ -18,9 +18,11 @@ class RegistrationModel: ObservableObject {
     
     private var userService: any UserService
     
-    private var router: Router
-    
+    private var uiErrorMapper: UIErrorMapper
+        
     private var confirmationCodeRequestCancellable: AnyCancellable?
+    
+    private var registrationServiceErrorsCancellable: AnyCancellable?
         
     var confirmationCode = ""
     
@@ -71,12 +73,16 @@ class RegistrationModel: ObservableObject {
     
     @Published var effect: UIEffect
     
-    init(requestAggregator: RequestAggregator, registrationService: any RegistrationService, userService: any UserService, router: Router) {
+    init(requestAggregator: RequestAggregator, registrationService: any RegistrationService, userService: any UserService, errorMapper: UIErrorMapper) {
         self.registrationService = registrationService
         self.userService = userService
         self.requestAggregator = requestAggregator
-        self.router = router
+        self.uiErrorMapper = errorMapper
         self.effect = UIEffect()
+        
+        self.registrationServiceErrorsCancellable = self.registrationService.errorsPublisher.sink(receiveValue: {clientError in
+            self.effect = self.uiErrorMapper.mapError(clientError)
+        })
     }
     
     private func checkEmail() -> Void {
@@ -131,7 +137,9 @@ class RegistrationModel: ObservableObject {
         do {
             try self.userService.saveCredential(username: self.email, password: self.password1)
         } catch {
-            // TODO: add presentation logic to tell the user save to persistence failed
+            var effect = UIEffect()
+            effect.action = .notice
+            effect.message = "saving credential to persistence failed"
         }
     }
     
