@@ -18,7 +18,7 @@ enum Destination {
     case Homepage
 }
 
-struct UIEffect {
+struct GeneralUIEffect {
     var action: Action?
     var redirectionInfo: Destination?
     var message: String?

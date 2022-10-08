@@ -9,9 +9,7 @@ import SwiftUI
 
 @available(iOS 16.0, *)
 struct Login: View {
-    
-    @EnvironmentObject var viewRouter: ViewRouter
-    
+        
     @ObservedObject private var model: LoginModel
         
     init(_ model: LoginModel) {
@@ -49,7 +47,6 @@ struct Login: View {
             model.login()
         }
         Button("Register") {
-            viewRouter.currentPage = .Registration
         }
     }
 }

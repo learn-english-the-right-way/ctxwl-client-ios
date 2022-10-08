@@ -9,28 +9,22 @@ import Foundation
 import SwiftUI
 
 @available(iOS 16.0, *)
-class ViewFactory {
+struct ViewFactory {
     
-    var router: Router
-    
-    var userService: any UserService
-    
-    var registrationService: any RegistrationService
-    
-    init(router: Router, userService: any UserService) {
-        self.router = router
-        self.userService = userService
-    }
+    var dependencies: ViewConstructionDependencies
     
     @ViewBuilder
     func createViewFor(destination: PageInfo) -> some View {
         switch destination.page {
         case .Registration:
-            Registration(model: RegistrationModel(registrationService: self.registrationService, userService: self.userService, router: self.router))
+            let model = RegistrationModel(requestAggregator: self.dependencies.requestAggregator, registrationService: self.dependencies.serviceInitializer.registrationService, userService: self.dependencies.serviceInitializer.userService, errorMapper: self.dependencies.uiErrorMapper)
+            Registration(model: model)
         case .EmailVerification:
-            EmailVerification(model: EmailVerificationModel(registrationService: self.registrationService, userService: self.userService, router: self.router))
+            let model = EmailVerificationModel(registrationService: self.dependencies.serviceInitializer.registrationService, router: self.dependencies.router, requestAggregator: self.dependencies.requestAggregator, errorMapper: self.dependencies.uiErrorMapper)
+            EmailVerification(model: model)
         case .Login:
-            Login(LoginModel(userService: self.userService, router: router))
+            let model = LoginModel(requestAggregator: self.dependencies.requestAggregator, errorMapper: self.dependencies.uiErrorMapper, userService: self.dependencies.serviceInitializer.userService)
+            Login(model)
         case .Home:
             // TODO: add homepage initiation code
             Text("placeholder view here")

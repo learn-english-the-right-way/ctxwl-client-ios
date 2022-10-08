@@ -11,22 +11,22 @@ import Combine
 @available(iOS 16.0, *)
 class RequestAggregator {
     
-    private var userService: any UserService
+    private var userService: UserService
     
-    private var registrationService: any RegistrationService
+    private var registrationService: RegistrationService
     
     private var uiErrorMapper: UIErrorMapper
     
     private var router: Router
     
-    init(userService: any UserService, registrationService: any RegistrationService, uiErrorMapper: UIErrorMapper, router: Router) {
+    init(userService: UserService, registrationService: RegistrationService, uiErrorMapper: UIErrorMapper, router: Router) {
         self.userService = userService
         self.registrationService = registrationService
         self.uiErrorMapper = uiErrorMapper
         self.router = router
     }
     
-    func login() -> AnyPublisher<UIEffect, Never> {
+    func login() -> AnyPublisher<GeneralUIEffect, Never> {
         
         let loginPublisher = self.userService.login().share()
         
@@ -36,8 +36,8 @@ class RequestAggregator {
         })
         
         return loginPublisher
-            .flatMap{ value -> Empty<UIEffect, Never> in
-                Empty<UIEffect, Never>(completeImmediately: true)
+            .flatMap{ value -> Empty<GeneralUIEffect, Never> in
+                Empty<GeneralUIEffect, Never>(completeImmediately: true)
             }
             .catch { error in
                 let mappedError = self.uiErrorMapper.mapError(error)
@@ -46,7 +46,7 @@ class RequestAggregator {
             .eraseToAnyPublisher()
     }
     
-    func getRegistrationEmailVerification() -> AnyPublisher<UIEffect, Never> {
+    func getRegistrationEmailVerification() -> AnyPublisher<GeneralUIEffect, Never> {
         
         let publisher = self.registrationService.requestEmailConfirmation().share()
         
@@ -56,8 +56,8 @@ class RequestAggregator {
         })
         
         return publisher
-            .flatMap{ value -> Empty<UIEffect, Never> in
-                Empty<UIEffect, Never>(completeImmediately: true)
+            .flatMap{ value -> Empty<GeneralUIEffect, Never> in
+                Empty<GeneralUIEffect, Never>(completeImmediately: true)
             }
             .catch { error in
                 let mappedError = self.uiErrorMapper.mapError(error)
@@ -66,7 +66,7 @@ class RequestAggregator {
             .eraseToAnyPublisher()
     }
     
-    func register(code: String) -> AnyPublisher<UIEffect, Never> {
+    func register(code: String) -> AnyPublisher<GeneralUIEffect, Never> {
         
         let publisher = self.registrationService.register(confirmationCode: code).share()
         
@@ -76,8 +76,8 @@ class RequestAggregator {
         })
         
         return publisher
-            .flatMap{ value -> Empty<UIEffect, Never> in
-                Empty<UIEffect, Never>(completeImmediately: true)
+            .flatMap{ value -> Empty<GeneralUIEffect, Never> in
+                Empty<GeneralUIEffect, Never>(completeImmediately: true)
             }
             .catch { error in
                 let mappedError = self.uiErrorMapper.mapError(error)

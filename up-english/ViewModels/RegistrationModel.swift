@@ -71,14 +71,14 @@ class RegistrationModel: ObservableObject {
     
     @Published var message: String = ""
     
-    @Published var effect: UIEffect
+    @Published var effect: GeneralUIEffect
     
     init(requestAggregator: RequestAggregator, registrationService: any RegistrationService, userService: any UserService, errorMapper: UIErrorMapper) {
         self.registrationService = registrationService
         self.userService = userService
         self.requestAggregator = requestAggregator
         self.uiErrorMapper = errorMapper
-        self.effect = UIEffect()
+        self.effect = GeneralUIEffect()
         
         self.registrationServiceErrorsCancellable = self.registrationService.errorsPublisher.sink(receiveValue: {clientError in
             self.effect = self.uiErrorMapper.mapError(clientError)
@@ -137,7 +137,7 @@ class RegistrationModel: ObservableObject {
         do {
             try self.userService.saveCredential(username: self.email, password: self.password1)
         } catch {
-            var effect = UIEffect()
+            var effect = GeneralUIEffect()
             effect.action = .notice
             effect.message = "saving credential to persistence failed"
         }
@@ -150,7 +150,7 @@ class RegistrationModel: ObservableObject {
         
         // do nothing if there is an ongoing confirmation code request
         guard self.requestingConfirmationCode == false else {
-            var effect = UIEffect()
+            var effect = GeneralUIEffect()
             effect.action = .notice
             effect.message = "There is a request to get verification code going on"
             self.effect = effect

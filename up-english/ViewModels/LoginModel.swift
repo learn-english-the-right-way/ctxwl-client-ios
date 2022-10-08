@@ -29,13 +29,13 @@ class LoginModel: ObservableObject {
     
     @Published var password: String = ""
     
-    @Published var effect: UIEffect
+    @Published var effect: GeneralUIEffect
     
     init(requestAggregator: RequestAggregator, errorMapper: UIErrorMapper, userService: UserService) {
         self.requestAggregator = requestAggregator
         self.uiErrorMapper = errorMapper
         self.userService = userService
-        self.effect = UIEffect()
+        self.effect = GeneralUIEffect()
         
         self.loginServiceErrorsCancellable = self.userService.errorsPublisher.sink(receiveValue: {clientError in
             self.effect = self.uiErrorMapper.mapError(clientError)
@@ -45,7 +45,7 @@ class LoginModel: ObservableObject {
     func login() -> Void {
         // do nothing if there is an ongoing
         guard !self.loginUnderway else {
-            var effect = UIEffect()
+            var effect = GeneralUIEffect()
             effect.action = .notice
             effect.message = "There is a login request under way"
             self.effect = effect

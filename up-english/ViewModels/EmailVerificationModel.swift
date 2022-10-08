@@ -29,14 +29,14 @@ class EmailVerificationModel: ObservableObject {
     
     @Published var displayConfirmationCodeErrMsg = false
     
-    @Published var effect: UIEffect
+    @Published var effect: GeneralUIEffect
     
     init(registrationService: any RegistrationService, router: Router, requestAggregator: RequestAggregator, errorMapper: UIErrorMapper) {
         self.registrationService = registrationService
         self.router = router
         self.requestAggregator = requestAggregator
         self.uiErrorMapper = errorMapper
-        self.effect = UIEffect()
+        self.effect = GeneralUIEffect()
         
         self.registrationServiceErrorsCancellable = self.registrationService.errorsPublisher.sink(receiveValue: {clientError in
             self.effect = self.uiErrorMapper.mapError(clientError)
@@ -45,7 +45,7 @@ class EmailVerificationModel: ObservableObject {
     
     func register() {
         guard !self.registering else {
-            var effect = UIEffect()
+            var effect = GeneralUIEffect()
             effect.action = .notice
             effect.message = "There is already a registration attempt under way"
             self.effect = effect

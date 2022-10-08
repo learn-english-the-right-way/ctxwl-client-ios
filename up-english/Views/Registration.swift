@@ -10,8 +10,6 @@ import SwiftUI
 @available(iOS 16.0, *)
 struct Registration: View {
     
-    @EnvironmentObject var viewRouter: ViewRouter
-
     @ObservedObject private var model: RegistrationModel
     
     init(model: RegistrationModel) {
@@ -62,7 +60,6 @@ struct Registration: View {
                 model.requestingConfirmationCode
             )
             Button("Login") {
-                viewRouter.currentPage = .Login
             }
         }
     }

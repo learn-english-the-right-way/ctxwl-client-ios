@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol RegistrationService: ObservableObject {
+protocol RegistrationService {
     var errorsPublisher: AnyPublisher<CLIENT_ERROR, Never> {get}
     func requestEmailConfirmation() -> AnyPublisher<String, CLIENT_ERROR>
     func register(confirmationCode: String) -> AnyPublisher<String, CLIENT_ERROR>

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5EA3B97128F11B5C006B2A0F /* ViewConstructionDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA3B97028F11B5C006B2A0F /* ViewConstructionDependencies.swift */; };
+		5EF9CC1928EC7A5B00C40D86 /* GeneralUIEffectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9CC1828EC7A5B00C40D86 /* GeneralUIEffectManager.swift */; };
+		5EF9CC5128EDD01E00C40D86 /* ServiceInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */; };
 		9B8AE4E92792520000489A7B /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4E82792520000489A7B /* ListItemView.swift */; };
 		9B8AE4EB2793F51100489A7B /* ArticleListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4EA2793F51100489A7B /* ArticleListService.swift */; };
 		9B8AE4ED2793F55000489A7B /* ArticleListServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4EC2793F55000489A7B /* ArticleListServiceDefault.swift */; };
@@ -65,7 +68,7 @@
 		B09D06D2263ECE2900246D90 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06D1263ECE2900246D90 /* Login.swift */; };
 		B09D06D6264032EC00246D90 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06D5264032EC00246D90 /* RegistrationModel.swift */; };
 		B09D06D926429C0700246D90 /* Peppermint in Frameworks */ = {isa = PBXBuildFile; productRef = B09D06D826429C0700246D90 /* Peppermint */; };
-		B0A5847E286F109F00F37358 /* UIEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A5847D286F109F00F37358 /* UIEffect.swift */; };
+		B0A5847E286F109F00F37358 /* GeneralUIEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A5847D286F109F00F37358 /* GeneralUIEffect.swift */; };
 		B0A58482286FDE2200F37358 /* RequestAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A58481286FDE2200F37358 /* RequestAggregator.swift */; };
 		B0A89A5F264A6CAD00862E26 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A89A5E264A6CAD00862E26 /* RegistrationService.swift */; };
 		B0A89A61264A713200862E26 /* RegistrationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A89A60264A713200862E26 /* RegistrationStatus.swift */; };
@@ -103,6 +106,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5EA3B97028F11B5C006B2A0F /* ViewConstructionDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstructionDependencies.swift; sourceTree = "<group>"; };
+		5EF9CC1828EC7A5B00C40D86 /* GeneralUIEffectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralUIEffectManager.swift; sourceTree = "<group>"; };
+		5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInitializer.swift; sourceTree = "<group>"; };
 		9B8AE4E82792520000489A7B /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
 		9B8AE4EA2793F51100489A7B /* ArticleListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListService.swift; sourceTree = "<group>"; };
 		9B8AE4EC2793F55000489A7B /* ArticleListServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListServiceDefault.swift; sourceTree = "<group>"; };
@@ -166,7 +172,7 @@
 		B09D06CF263ECB9C00246D90 /* EmailVerification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerification.swift; sourceTree = "<group>"; };
 		B09D06D1263ECE2900246D90 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		B09D06D5264032EC00246D90 /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
-		B0A5847D286F109F00F37358 /* UIEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEffect.swift; sourceTree = "<group>"; };
+		B0A5847D286F109F00F37358 /* GeneralUIEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralUIEffect.swift; sourceTree = "<group>"; };
 		B0A58481286FDE2200F37358 /* RequestAggregator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAggregator.swift; sourceTree = "<group>"; };
 		B0A89A5E264A6CAD00862E26 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		B0A89A60264A713200862E26 /* RegistrationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationStatus.swift; sourceTree = "<group>"; };
@@ -279,7 +285,7 @@
 		B0A5847C286F107700F37358 /* UIEffects */ = {
 			isa = PBXGroup;
 			children = (
-				B0A5847D286F109F00F37358 /* UIEffect.swift */,
+				B0A5847D286F109F00F37358 /* GeneralUIEffect.swift */,
 			);
 			path = UIEffects;
 			sourceTree = "<group>";
@@ -321,6 +327,9 @@
 				B0A58481286FDE2200F37358 /* RequestAggregator.swift */,
 				B0CF54FE286FE9EE00C4FD92 /* UIErrorMapper.swift */,
 				B0CF55002870542C00C4FD92 /* UIErrorMapperDefault.swift */,
+				5EF9CC1828EC7A5B00C40D86 /* GeneralUIEffectManager.swift */,
+				5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */,
+				5EA3B97028F11B5C006B2A0F /* ViewConstructionDependencies.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -524,6 +533,7 @@
 			files = (
 				B0A89A63264A73DC00862E26 /* RegistrationServiceDefault.swift in Sources */,
 				B026B8FD2813F3420014666D /* UNKNOWN_SERVER_ERROR.swift in Sources */,
+				5EF9CC5128EDD01E00C40D86 /* ServiceInitializer.swift in Sources */,
 				B0E2540026EDDCBA00D6FDF4 /* ArticleListItemModelDefault.swift in Sources */,
 				B085EF0826C90A3F00DD55D7 /* ArticleReaderViewRepresentable.swift in Sources */,
 				B09D06A5263ECB4300246D90 /* ContentView.swift in Sources */,
@@ -535,7 +545,7 @@
 				B05AEDD328A791C9005BC3BB /* PageInfo.swift in Sources */,
 				B026F2442882BDD700385DC2 /* KEYCHAIN_ERROR.swift in Sources */,
 				B08962F3280ADE3500B95D47 /* CTXWLDataTaskPublisher.swift in Sources */,
-				B0A5847E286F109F00F37358 /* UIEffect.swift in Sources */,
+				B0A5847E286F109F00F37358 /* GeneralUIEffect.swift in Sources */,
 				B085EF0A26CA7D9D00DD55D7 /* ArticleReaderViewController.swift in Sources */,
 				B09B8E00279C53F1004FDF31 /* ArticleList.swift in Sources */,
 				B026F2462882E57B00385DC2 /* KEYCHAIN_CREDENTIALS_NOT_FOUND.swift in Sources */,
@@ -557,6 +567,7 @@
 				B0E5491E2815B73C00934E7B /* ErrorMapper.swift in Sources */,
 				B0A89A5F264A6CAD00862E26 /* RegistrationService.swift in Sources */,
 				B0C7CC0F265BA3B1003832EE /* UserServiceDefault.swift in Sources */,
+				5EA3B97128F11B5C006B2A0F /* ViewConstructionDependencies.swift in Sources */,
 				B00028DE26FB7D56005D68D2 /* ScrollViewRepresentable.swift in Sources */,
 				B0AED68F26C3ACB0000CE785 /* CustomWebUIViewController.swift in Sources */,
 				B0C7CC0926568E1D003832EE /* ApiUrl.swift in Sources */,
@@ -564,6 +575,7 @@
 				B0CF55012870542C00C4FD92 /* UIErrorMapperDefault.swift in Sources */,
 				B09D06CE263ECB8900246D90 /* Registration.swift in Sources */,
 				B02B2FFC286213460075CE4F /* API_ERROR.swift in Sources */,
+				5EF9CC1928EC7A5B00C40D86 /* GeneralUIEffectManager.swift in Sources */,
 				B008A1A12830BDA7000EEF09 /* CTXWLURLSessionDefault.swift in Sources */,
 				B0A89A61264A713200862E26 /* RegistrationStatus.swift in Sources */,
 				B08962F12809C6D800B95D47 /* CTXWLURLSession.swift in Sources */,

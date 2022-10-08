@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 class UIErrorMapperDefault: UIErrorMapper {
-    func mapError(_ clientError: CLIENT_ERROR) -> UIEffect {
-        var exception = UIEffect()
+    func mapError(_ clientError: CLIENT_ERROR) -> GeneralUIEffect {
+        var exception = GeneralUIEffect()
         if clientError is SESSION_AUTHENTICATION_INVALID_CREDENTIAL {
             exception.message = "wrong username or password"
             exception.action = .notice
