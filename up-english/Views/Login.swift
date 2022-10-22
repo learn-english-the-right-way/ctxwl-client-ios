@@ -47,12 +47,13 @@ struct Login: View {
             model.login()
         }
         Button("Register") {
+            model.switchToRegistrationPage()
         }
     }
 }
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Login(LoginModelDefault(userService: UserServiceDefault(), viewRouter: ViewRouter()))
+        EmptyView()
     }
 }

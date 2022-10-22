@@ -38,6 +38,6 @@ struct EmailVerification: View {
 
 struct EmailVerification_Previews: PreviewProvider {
     static var previews: some View {
-        EmailVerification(model: EmailVerificationModelDefault(registrationService: RegistrationServiceDefault(), userService: UserServiceDefault(), viewRouter: ViewRouter()))
+        EmptyView()
     }
 }

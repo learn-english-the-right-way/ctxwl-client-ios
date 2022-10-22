@@ -10,6 +10,8 @@ import Combine
 
 @available(iOS 16.0, *)
 class LoginModel: ObservableObject {
+    
+    private var router: Router
             
     private var loginRequestCancellable: AnyCancellable?
     
@@ -33,6 +35,7 @@ class LoginModel: ObservableObject {
     
     init(requestAggregator: RequestAggregator, errorMapper: UIErrorMapper, userService: UserService) {
         self.requestAggregator = requestAggregator
+        self.router = requestAggregator.router
         self.uiErrorMapper = errorMapper
         self.userService = userService
         self.effect = GeneralUIEffect()
@@ -40,6 +43,11 @@ class LoginModel: ObservableObject {
         self.loginServiceErrorsCancellable = self.userService.errorsPublisher.sink(receiveValue: {clientError in
             self.effect = self.uiErrorMapper.mapError(clientError)
         })
+    }
+    
+    func switchToRegistrationPage() {
+        var pageInfo = PageInfo(page: .Registration)
+        pageInfo.registrationPageContent = RegistrationPageContent(email: self.email, password: self.password)
     }
     
     func login() -> Void {

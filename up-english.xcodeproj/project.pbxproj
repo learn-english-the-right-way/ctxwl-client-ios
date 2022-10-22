@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5EA3B97128F11B5C006B2A0F /* ViewConstructionDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA3B97028F11B5C006B2A0F /* ViewConstructionDependencies.swift */; };
+		5ED313052902DF6700461467 /* NoticeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED313042902DF6700461467 /* NoticeModifier.swift */; };
 		5EF9CC1928EC7A5B00C40D86 /* GeneralUIEffectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9CC1828EC7A5B00C40D86 /* GeneralUIEffectManager.swift */; };
 		5EF9CC5128EDD01E00C40D86 /* ServiceInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */; };
 		9B8AE4E92792520000489A7B /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4E82792520000489A7B /* ListItemView.swift */; };
@@ -107,6 +108,7 @@
 
 /* Begin PBXFileReference section */
 		5EA3B97028F11B5C006B2A0F /* ViewConstructionDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstructionDependencies.swift; sourceTree = "<group>"; };
+		5ED313042902DF6700461467 /* NoticeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeModifier.swift; sourceTree = "<group>"; };
 		5EF9CC1828EC7A5B00C40D86 /* GeneralUIEffectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralUIEffectManager.swift; sourceTree = "<group>"; };
 		5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInitializer.swift; sourceTree = "<group>"; };
 		9B8AE4E82792520000489A7B /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				B06F3F9628A78919007CF774 /* Router.swift */,
 				B05AEDD228A791C9005BC3BB /* PageInfo.swift */,
 				B05AEDD428A7A89D005BC3BB /* ViewFactory.swift */,
+				5ED313042902DF6700461467 /* NoticeModifier.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				B02B300228649C9C0075CE4F /* EMAIL_REGISTRATION_INVALID_REQUEST.swift in Sources */,
 				B0AED68D26C17042000CE785 /* CustomContextMenuWKWebView.swift in Sources */,
 				B0AC45AB273ACD3A00979EFE /* InfiniteList.swift in Sources */,
+				5ED313052902DF6700461467 /* NoticeModifier.swift in Sources */,
 				9B8AE4EF2793F56E00489A7B /* ArticleListModelDefault.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

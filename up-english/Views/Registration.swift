@@ -60,6 +60,7 @@ struct Registration: View {
                 model.requestingConfirmationCode
             )
             Button("Login") {
+                model.switchToLoginPage()
             }
         }
     }
@@ -67,6 +68,6 @@ struct Registration: View {
 
 struct Registration_Previews: PreviewProvider {
     static var previews: some View {
-        Registration(model: RegistrationModelDefault(registrationService: RegistrationServiceDefault(), userService: UserServiceDefault(), viewRouter: ViewRouter()))
+        EmptyView()
     }
 }

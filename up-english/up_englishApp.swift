@@ -17,11 +17,14 @@ struct up_englishApp: App {
     
     @StateObject var router = Router()
     
+    @StateObject var generalUIEffectManager = GeneralUIEffectManager()
+    
     var body: some Scene {
         WindowGroup("CTXWL", id: "CTXWL") {
             ContentView()
                 .environmentObject(self.initializer)
                 .environmentObject(self.router)
+                .environmentObject(self.generalUIEffectManager)
         }
     }
 }

@@ -1,23 +1,23 @@
+////
+////  ArticleListService.swift
+////  up-english
+////
+////  Created by Chen Zhao on 1/15/22.
+////
 //
-//  ArticleListService.swift
-//  up-english
+//import Foundation
+//import Combine
 //
-//  Created by Chen Zhao on 1/15/22.
+//// Response Interface regarding each element from backend
+//struct ArticleListItemResponse: Codable {
+//    var title: String
+//    var brief: String
+//    var url: String
+//}
 //
-
-import Foundation
-import Combine
-
-// Response Interface regarding each element from backend
-struct ArticleListItemResponse: Codable {
-    var title: String
-    var brief: String
-    var url: String
-}
-
-protocol ArticleListService: {
-    
-    func refresh() -> AnyPublisher<ArticleListItemResponse, Never>
-    
-    func loadMore() -> AnyPublisher<ArticleListItemResponse, Never>
-}
+//protocol ArticleListService: {
+//    
+//    func refresh() -> AnyPublisher<ArticleListItemResponse, Never>
+//    
+//    func loadMore() -> AnyPublisher<ArticleListItemResponse, Never>
+//}

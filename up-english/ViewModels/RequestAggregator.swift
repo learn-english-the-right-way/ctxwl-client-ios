@@ -11,13 +11,13 @@ import Combine
 @available(iOS 16.0, *)
 class RequestAggregator {
     
-    private var userService: UserService
+    var userService: UserService
     
-    private var registrationService: RegistrationService
+    var registrationService: RegistrationService
     
-    private var uiErrorMapper: UIErrorMapper
+    var uiErrorMapper: UIErrorMapper
     
-    private var router: Router
+    var router: Router
     
     init(userService: UserService, registrationService: RegistrationService, uiErrorMapper: UIErrorMapper, router: Router) {
         self.userService = userService

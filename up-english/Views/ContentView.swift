@@ -14,15 +14,22 @@ struct ContentView: View {
     
     @EnvironmentObject var router: Router
     
+    @EnvironmentObject var generalUIEffetManager: GeneralUIEffectManager
+    
     var body: some View {
         NavigationStack(path: self.$router.path) {
             // TODO: change empty view to home view
             EmptyView()
                 .navigationDestination(for: PageInfo.self) { pageInfo in
-                    var dependencies = ViewConstructionDependencies(router: self.router, serviceInitializer: self.initializer)
+                    let dependencies = ViewConstructionDependencies(
+                        router: self.router,
+                        serviceInitializer: self.initializer,
+                        generalUIEffectManager: self.generalUIEffetManager
+                    )
                     ViewFactory(dependencies: dependencies).createViewFor(destination: pageInfo)
                 }
         }
+        .noticeBanner(self.generalUIEffetManager)
     }
 }
 

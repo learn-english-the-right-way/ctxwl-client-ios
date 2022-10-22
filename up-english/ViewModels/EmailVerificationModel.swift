@@ -11,7 +11,7 @@ import Combine
 @available(iOS 16.0, *)
 class EmailVerificationModel: ObservableObject {
     
-    private var registrationService: any RegistrationService
+    private var registrationService: RegistrationService
         
     private var router: Router
     

@@ -12,11 +12,13 @@ import Combine
 @available(iOS 16.0, *)
 class RegistrationModel: ObservableObject {
     
+    private var router: Router
+    
     private var requestAggregator: RequestAggregator
     
-    private var registrationService: any RegistrationService
+    private var registrationService: RegistrationService
     
-    private var userService: any UserService
+    private var userService: UserService
     
     private var uiErrorMapper: UIErrorMapper
         
@@ -77,6 +79,7 @@ class RegistrationModel: ObservableObject {
         self.registrationService = registrationService
         self.userService = userService
         self.requestAggregator = requestAggregator
+        self.router = requestAggregator.router
         self.uiErrorMapper = errorMapper
         self.effect = GeneralUIEffect()
         
@@ -141,6 +144,12 @@ class RegistrationModel: ObservableObject {
             effect.action = .notice
             effect.message = "saving credential to persistence failed"
         }
+    }
+    
+    func switchToLoginPage() {
+        var pageInfo = PageInfo(page: .Login)
+        pageInfo.loginPageContent = LoginPageContent(email: self.email, password: self.password1)
+        self.router.clearStackAndGoTo(page: pageInfo)
     }
     
     func requestConfirmationCode() -> Void {
