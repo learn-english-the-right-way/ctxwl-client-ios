@@ -21,6 +21,8 @@ class RegistrationModel: ObservableObject {
     private var userService: UserService
     
     private var uiErrorMapper: UIErrorMapper
+    
+    private var generalUIEffectManager: GeneralUIEffectManager
         
     private var confirmationCodeRequestCancellable: AnyCancellable?
     
@@ -75,16 +77,17 @@ class RegistrationModel: ObservableObject {
     
     @Published var effect: GeneralUIEffect
     
-    init(requestAggregator: RequestAggregator, registrationService: any RegistrationService, userService: any UserService, errorMapper: UIErrorMapper) {
+    init(requestAggregator: RequestAggregator, registrationService: any RegistrationService, userService: any UserService, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager) {
         self.registrationService = registrationService
         self.userService = userService
         self.requestAggregator = requestAggregator
         self.router = requestAggregator.router
         self.uiErrorMapper = errorMapper
         self.effect = GeneralUIEffect()
+        self.generalUIEffectManager = generalUIEffectManager
         
         self.registrationServiceErrorsCancellable = self.registrationService.errorsPublisher.sink(receiveValue: {clientError in
-            self.effect = self.uiErrorMapper.mapError(clientError)
+            self.generalUIEffectManager.newEffect(self.uiErrorMapper.mapError(clientError))
         })
     }
     
@@ -169,7 +172,7 @@ class RegistrationModel: ObservableObject {
         self.confirmationCodeRequestCancellable = self.requestAggregator.getRegistrationEmailVerification()
         // TODO: figure out what this does
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {_ in}, receiveValue: {effect in self.effect = effect})
+            .sink(receiveCompletion: {_ in}, receiveValue: {effect in self.generalUIEffectManager.newEffect(effect)})
     }
 
 }

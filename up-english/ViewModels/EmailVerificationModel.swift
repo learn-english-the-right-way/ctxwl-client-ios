@@ -23,6 +23,8 @@ class EmailVerificationModel: ObservableObject {
     
     private var uiErrorMapper: UIErrorMapper
     
+    private var generalUIEffectManager: GeneralUIEffectManager
+    
     @Published var confirmationCode = ""
     
     @Published var registering = false
@@ -31,15 +33,16 @@ class EmailVerificationModel: ObservableObject {
     
     @Published var effect: GeneralUIEffect
     
-    init(registrationService: any RegistrationService, router: Router, requestAggregator: RequestAggregator, errorMapper: UIErrorMapper) {
+    init(registrationService: any RegistrationService, router: Router, requestAggregator: RequestAggregator, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager) {
         self.registrationService = registrationService
         self.router = router
         self.requestAggregator = requestAggregator
         self.uiErrorMapper = errorMapper
         self.effect = GeneralUIEffect()
+        self.generalUIEffectManager = generalUIEffectManager
         
         self.registrationServiceErrorsCancellable = self.registrationService.errorsPublisher.sink(receiveValue: {clientError in
-            self.effect = self.uiErrorMapper.mapError(clientError)
+            self.generalUIEffectManager.newEffect(self.uiErrorMapper.mapError(clientError))
         })
     }
     
@@ -57,7 +60,7 @@ class EmailVerificationModel: ObservableObject {
             .receive(on: RunLoop.main)
             .sink(
                 receiveCompletion: {status in self.registering = false},
-                receiveValue: {effect in self.effect = effect}
+                receiveValue: {effect in self.generalUIEffectManager.newEffect(effect)}
             )
     }
     

@@ -23,6 +23,8 @@ class LoginModel: ObservableObject {
     
     private var userService: UserService
     
+    private var generalUIEffectManager: GeneralUIEffectManager
+    
     @Published var loginUnderway: Bool = false
     
     @Published var loginSuccess: Bool = false
@@ -33,15 +35,16 @@ class LoginModel: ObservableObject {
     
     @Published var effect: GeneralUIEffect
     
-    init(requestAggregator: RequestAggregator, errorMapper: UIErrorMapper, userService: UserService) {
+    init(requestAggregator: RequestAggregator, errorMapper: UIErrorMapper, userService: UserService, generalUIEffectManager: GeneralUIEffectManager) {
         self.requestAggregator = requestAggregator
         self.router = requestAggregator.router
         self.uiErrorMapper = errorMapper
         self.userService = userService
         self.effect = GeneralUIEffect()
+        self.generalUIEffectManager = generalUIEffectManager
         
         self.loginServiceErrorsCancellable = self.userService.errorsPublisher.sink(receiveValue: {clientError in
-            self.effect = self.uiErrorMapper.mapError(clientError)
+            self.generalUIEffectManager.newEffect(self.uiErrorMapper.mapError(clientError))
         })
     }
     
@@ -63,7 +66,7 @@ class LoginModel: ObservableObject {
         self.loginRequestCancellable = self.requestAggregator.login()
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: {completion in self.loginUnderway = false},
-                  receiveValue: {effect in self.effect = effect}
+                  receiveValue: {effect in self.generalUIEffectManager.newEffect(effect)}
             )
     }
 }

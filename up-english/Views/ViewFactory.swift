@@ -17,13 +17,30 @@ struct ViewFactory {
     func createViewFor(destination: PageInfo) -> some View {
         switch destination.page {
         case .Registration:
-            let model = RegistrationModel(requestAggregator: self.dependencies.requestAggregator, registrationService: self.dependencies.serviceInitializer.registrationService, userService: self.dependencies.serviceInitializer.userService, errorMapper: self.dependencies.uiErrorMapper)
+            let model = RegistrationModel(
+                requestAggregator: self.dependencies.requestAggregator,
+                registrationService: self.dependencies.serviceInitializer.registrationService,
+                userService: self.dependencies.serviceInitializer.userService,
+                errorMapper: self.dependencies.uiErrorMapper,
+                generalUIEffectManager: dependencies.generalUIEffectManager
+            )
             Registration(model: model)
         case .EmailVerification:
-            let model = EmailVerificationModel(registrationService: self.dependencies.serviceInitializer.registrationService, router: self.dependencies.router, requestAggregator: self.dependencies.requestAggregator, errorMapper: self.dependencies.uiErrorMapper)
+            let model = EmailVerificationModel(
+                registrationService: self.dependencies.serviceInitializer.registrationService,
+                router: self.dependencies.router,
+                requestAggregator: self.dependencies.requestAggregator,
+                errorMapper: self.dependencies.uiErrorMapper,
+                generalUIEffectManager: dependencies.generalUIEffectManager
+            )
             EmailVerification(model: model)
         case .Login:
-            let model = LoginModel(requestAggregator: self.dependencies.requestAggregator, errorMapper: self.dependencies.uiErrorMapper, userService: self.dependencies.serviceInitializer.userService)
+            let model = LoginModel(
+                requestAggregator: self.dependencies.requestAggregator,
+                errorMapper: self.dependencies.uiErrorMapper,
+                userService: self.dependencies.serviceInitializer.userService,
+                generalUIEffectManager: dependencies.generalUIEffectManager
+            )
             Login(model)
         case .Home:
             // TODO: add homepage initiation code
