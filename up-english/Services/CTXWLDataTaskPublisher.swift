@@ -16,24 +16,8 @@ struct CTXWLDataTaskPublisher: Publisher {
     
     var dataTaskPublisher: AnyPublisher<Data, CLIENT_ERROR>
         
-    init(dataTaskPublisher: URLSession.DataTaskPublisher, mappers: [ErrorMapper]) {
-        self.dataTaskPublisher = dataTaskPublisher
-            .tryMap { data, response -> Data in
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    throw RESPONSE_NOT_HTTP()
-                }
-                if !(400...599).contains(httpResponse.statusCode) {
-                    return data
-                }
-                if !["application/vnd.ctxwl.error.email_registration+json", "application/vnd.ctxwl.error+json", "application/json"].contains(httpResponse.value(forHTTPHeaderField: "Content-Type")) {
-                    throw UNKNOWN_SERVER_ERROR()
-                }
-                do {
-                    throw try JSONDecoder().decode(CTXWL_SERVER_ERROR.self, from: data)
-                } catch {
-                    throw CANNOT_DECODE_RESPONSE()
-                }
-            }
+    init(dataTaskPublisher: URLSession.DataTaskPublisher, mappers: [ErrorMapper], publisherModifier: (URLSession.DataTaskPublisher) -> AnyPublisher<Data, Error>) {
+        self.dataTaskPublisher = publisherModifier(dataTaskPublisher)
             .mapError { error in
                 var mappedError: CLIENT_ERROR?
                 for errorMapper in mappers {

@@ -17,7 +17,7 @@ class ServiceInitializer: ObservableObject {
     var registrationService: RegistrationService
         
     init() {
-        var ctxwlUserSession = CTXWLURLSessionDefault(configuration: URLSessionConfiguration.default, mappers: [ServerErrorMapper()])
+        var ctxwlUserSession = CTXWLURLSessionDefault()
         var userService = UserServiceDefault(ctxwlUrlSession: ctxwlUserSession)
         var registrationService = RegistrationServiceDefault(ctxwlUrlSession: ctxwlUserSession, userService: userService)
         
