@@ -32,7 +32,7 @@ class RegistrationServiceDefault: RegistrationService {
     
     private var errorsSubject: PassthroughSubject<CLIENT_ERROR, Never>
     
-    init(ctxwlUrlSession: CTXWLURLSession, userService: any UserService) {
+    init(ctxwlUrlSession: CTXWLURLSession, userService: UserService) {
         self.ctxwlUrlSession = ctxwlUrlSession
         self.userService = userService
         self.errorsSubject = PassthroughSubject()
@@ -74,11 +74,11 @@ class RegistrationServiceDefault: RegistrationService {
         return registrationStatus
     }
     
-    func requestEmailConfirmation() -> AnyPublisher<String, CLIENT_ERROR> {
+    func requestEmailConfirmation() -> AnyPublisher<Result<Void, CLIENT_ERROR>, Never> {
         
         // make sure we have valid email and password
         guard let credential = self.userService.credential else {
-            return Fail(error: CREDENTIALS_EMPTY()).eraseToAnyPublisher()
+            return Just(Result.failure(CREDENTIALS_EMPTY())).eraseToAnyPublisher()
         }
         
         // configure email registration post request
@@ -88,7 +88,7 @@ class RegistrationServiceDefault: RegistrationService {
         request.httpMethod = "POST"
         guard let data = try? JSONEncoder().encode(["email": credential.username, "password": credential.password]) else {
             print("failed to encode request data")
-            return Fail(error: ENCODING_FAILED()).eraseToAnyPublisher()
+            return Just(Result.failure(ENCODING_FAILED())).eraseToAnyPublisher()
         }
         request.httpBody = data
 
@@ -106,18 +106,24 @@ class RegistrationServiceDefault: RegistrationService {
             .share()
         
 //         make the request happen and store the application key
-        self.requestConfirmationCancellable = publisher
-            .sink(receiveCompletion: { arg in }, receiveValue: { confirmationResponse in
-                self.applicationKey = confirmationResponse
+        _ = publisher
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { confirmationResponse in
+                    self.applicationKey = confirmationResponse
             })
-        return publisher.eraseToAnyPublisher()
+        
+        return publisher
+            .map { key in Result<Void, CLIENT_ERROR>.success(())}
+            .catch { error in Just(Result.failure(error))}
+            .eraseToAnyPublisher()
     }
     
-    func register(confirmationCode: String) -> AnyPublisher<String, CLIENT_ERROR> {
+    func register(confirmationCode: String) -> AnyPublisher<Result<Void, CLIENT_ERROR>, Never> {
         
         // make sure we have up to date email
         guard let email = self.userService.credential?.username else {
-            return Fail(error: CREDENTIALS_EMPTY()).eraseToAnyPublisher()
+            return Just(Result<Void, CLIENT_ERROR>.failure(CREDENTIALS_EMPTY())).eraseToAnyPublisher()
         }
         
         // configure verification patch request
@@ -127,7 +133,7 @@ class RegistrationServiceDefault: RegistrationService {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(self.applicationKey, forHTTPHeaderField: "X-Ctxwl-Key")
         guard let data = try? JSONEncoder().encode(VerificationRequestBody(confirmationCode: confirmationCode)) else {
-            return Fail<String, CLIENT_ERROR>(error: ENCODING_FAILED()).eraseToAnyPublisher()
+            return Just(Result<Void, CLIENT_ERROR>.failure(ENCODING_FAILED())).eraseToAnyPublisher()
         }
         request.httpBody = data
         
@@ -146,7 +152,7 @@ class RegistrationServiceDefault: RegistrationService {
             .eraseToAnyPublisher()
         
         // subscribe to the publisher and save the application key to user service
-        let cancellable = publisher.sink(
+        _ = publisher.sink(
             receiveCompletion: {_ in},
             receiveValue: {value in
                 do {
@@ -160,6 +166,9 @@ class RegistrationServiceDefault: RegistrationService {
         
         // return the publisher
         return publisher
+            .map { _ in Result.success(())}
+            .catch { clientError in Just(Result.failure(clientError))}
+            .eraseToAnyPublisher()
     }
 }
 

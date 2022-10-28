@@ -163,7 +163,7 @@ class UserServiceDefault: UserService {
             .catch { (error) -> AnyPublisher<Data, CLIENT_ERROR> in
                 let errorType = type(of: error)
                 if errorType == API_UNAUTHENTICATED.self {
-                    return self.login()
+                    return self.requestLogin()
                         .flatMap { (applicationKey) -> CTXWLDataTaskPublisher in
                             var newRequest = request
                             newRequest.setValue(applicationKey, forHTTPHeaderField: "X-Ctxwl-Key")
@@ -178,7 +178,7 @@ class UserServiceDefault: UserService {
             .eraseToAnyPublisher()
     }
     
-    func login() -> AnyPublisher<String, CLIENT_ERROR> {
+    private func requestLogin() -> AnyPublisher<String, CLIENT_ERROR> {
         
         // configure login post request
         guard let credentials = self.credential else {
@@ -203,7 +203,7 @@ class UserServiceDefault: UserService {
         request.httpBody = data
         
         // conect the request to a URLSession
-        let publisher = self.ctxwlURLSession.dataTaskPublisher(for: request)
+        return self.ctxwlURLSession.dataTaskPublisher(for: request)
             .first()
             .decode(type: LoginResponse.self, decoder: JSONDecoder())
             .map({ loginResponse in loginResponse.applicationKey })
@@ -215,9 +215,12 @@ class UserServiceDefault: UserService {
                 }
             })
             .share()
-        
-        // make the request happen, store the application key
-        self.loginCancellable = publisher.sink(
+            .eraseToAnyPublisher()
+    }
+    
+    func login() -> AnyPublisher<Result<Void, CLIENT_ERROR>, Never> {
+        let publisher = self.requestLogin()
+        _ = publisher.sink(
             receiveCompletion: {print("user service login method completion with \($0)")},
             receiveValue: {
                 do {
@@ -226,8 +229,10 @@ class UserServiceDefault: UserService {
                     self.errorsSubject.send(KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY())
                 }
             })
-        
-        return publisher.eraseToAnyPublisher()
+        return publisher
+            .map { _ in Result<Void, CLIENT_ERROR>.success(())}
+            .catch { clientError in Just(Result<Void, CLIENT_ERROR>.failure(clientError))}
+            .eraseToAnyPublisher()
     }
     
 }

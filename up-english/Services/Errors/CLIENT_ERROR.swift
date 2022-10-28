@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CLIENT_ERROR: Error {
+class CLIENT_ERROR: Error, Equatable {
 
 }
 

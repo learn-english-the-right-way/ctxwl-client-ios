@@ -69,3 +69,12 @@ class EmailVerificationModel: ObservableObject {
         // TODO: add go back logic
     }
 }
+
+protocol EmailVerificationModelHandler {
+    func register(code: String) -> Void
+}
+
+class EmailVerificationModelHandlerDefault: EmailVerificationModelHandler {
+    private registrationService: RegistrationService
+    private 
+}

@@ -12,21 +12,7 @@ import Combine
 @available(iOS 16.0, *)
 class RegistrationModel: ObservableObject {
     
-    private var router: Router
-    
-    private var requestAggregator: RequestAggregator
-    
-    private var registrationService: RegistrationService
-    
-    private var userService: UserService
-    
-    private var uiErrorMapper: UIErrorMapper
-    
-    private var generalUIEffectManager: GeneralUIEffectManager
-        
-    private var confirmationCodeRequestCancellable: AnyCancellable?
-    
-    private var registrationServiceErrorsCancellable: AnyCancellable?
+    private var handler: RegistrationModelHandler?
         
     var confirmationCode = ""
     
@@ -74,23 +60,7 @@ class RegistrationModel: ObservableObject {
     @Published var showModal: Bool = false
     
     @Published var message: String = ""
-    
-    @Published var effect: GeneralUIEffect
-    
-    init(requestAggregator: RequestAggregator, registrationService: any RegistrationService, userService: any UserService, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager) {
-        self.registrationService = registrationService
-        self.userService = userService
-        self.requestAggregator = requestAggregator
-        self.router = requestAggregator.router
-        self.uiErrorMapper = errorMapper
-        self.effect = GeneralUIEffect()
-        self.generalUIEffectManager = generalUIEffectManager
         
-        self.registrationServiceErrorsCancellable = self.registrationService.errorsPublisher.sink(receiveValue: {clientError in
-            self.generalUIEffectManager.newEffect(self.uiErrorMapper.mapError(clientError))
-        })
-    }
-    
     private func checkEmail() -> Void {
         let predicate = EmailPredicate()
         if email.isEmpty {
@@ -140,8 +110,12 @@ class RegistrationModel: ObservableObject {
     }
     
     private func saveCredential() {
+        guard let handler = self.handler else {
+            print("registration model handler missing, cannot save credential")
+            return
+        }
         do {
-            try self.userService.saveCredential(username: self.email, password: self.password1)
+            try handler.saveCredential(username: self.email, password: self.password1)
         } catch {
             var effect = GeneralUIEffect()
             effect.action = .notice
@@ -150,9 +124,11 @@ class RegistrationModel: ObservableObject {
     }
     
     func switchToLoginPage() {
-        var pageInfo = PageInfo(page: .Login)
-        pageInfo.loginPageContent = LoginPageContent(email: self.email, password: self.password1)
-        self.router.clearStackAndGoTo(page: pageInfo)
+        guard let handler = self.handler else {
+            print("registration model handler missing, cannot switch to login page")
+            return
+        }
+        handler.switchToLoginPage(username: self.email, password: self.password1)
     }
     
     func requestConfirmationCode() -> Void {
@@ -160,19 +136,77 @@ class RegistrationModel: ObservableObject {
         // make sure credentials in service is up to date
         self.saveCredential()
         
-        // do nothing if there is an ongoing confirmation code request
+        guard let handler = self.handler else {
+            print("registration model handler missing, cannot request confirmation code")
+            return
+        }
+        
+        handler.getRegistrationEmailVerification()
+    }
+    
+    func setHandler(handler: RegistrationModelHandler) {
+        self.handler = handler
+    }
+
+}
+
+protocol RegistrationModelHandler {
+    func saveCredential(username: String, password: String) throws -> Void
+    func switchToLoginPage(username: String, password: String) -> Void
+    func getRegistrationEmailVerification() -> Void
+}
+
+@available(iOS 16.0, *)
+class RegistrationModelHandlerDefault: RegistrationModelHandler {
+    private var userService: UserService
+    private var registrationService: RegistrationService
+    private var router: Router
+    private var errorMapper: UIErrorMapper
+    private var generalUIEffectManager: GeneralUIEffectManager
+    
+    private var requestingConfirmationCode = false
+    private var confirmationCodeRequestCancellable: AnyCancellable?
+    
+    init(userService: UserService, registrationService: RegistrationService, router: Router, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager) {
+        self.userService = userService
+        self.registrationService = registrationService
+        self.router = router
+        self.errorMapper = errorMapper
+        self.generalUIEffectManager = generalUIEffectManager
+    }
+    
+    func saveCredential(username: String, password: String) throws {
+        try self.userService.saveCredential(username: username, password: password)
+    }
+    
+    func switchToLoginPage(username: String, password: String) {
+        var pageInfo = PageInfo(page: .Login)
+        pageInfo.loginPageContent = LoginPageContent(email: username, password: password)
+        self.router.clearStackAndGoTo(page: pageInfo)
+    }
+    
+    func getRegistrationEmailVerification() -> Void {
         guard self.requestingConfirmationCode == false else {
             var effect = GeneralUIEffect()
             effect.action = .notice
             effect.message = "There is a request to get verification code going on"
-            self.effect = effect
+            self.generalUIEffectManager.newEffect(effect)
             return
         }
         self.requestingConfirmationCode = true
-        self.confirmationCodeRequestCancellable = self.requestAggregator.getRegistrationEmailVerification()
-        // TODO: figure out what this does
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {_ in}, receiveValue: {effect in self.generalUIEffectManager.newEffect(effect)})
+        
+        self.confirmationCodeRequestCancellable = self.registrationService.requestEmailConfirmation()
+            .sink { result in
+                switch result {
+                case .success():
+                    let emailVerificationPage = PageInfo(page: .EmailVerification)
+                    self.router.append(page: emailVerificationPage)
+                case .failure(let error):
+                    let effect = self.errorMapper.mapError(error)
+                    self.generalUIEffectManager.newEffect(effect)
+                }
+            }
     }
-
+    
+    
 }

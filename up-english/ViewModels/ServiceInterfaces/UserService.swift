@@ -21,6 +21,6 @@ protocol UserService {
     func saveCredential(username: String, password: String) throws -> Void
     func saveAuthenticationApplicationKey(key: String) throws -> Void
     func sessionProtectedDataTaskPublisher(request: URLRequest) -> AnyPublisher<Data, CLIENT_ERROR>
-    func login() -> AnyPublisher<String, CLIENT_ERROR>
+    func login() -> AnyPublisher<Result<Void, CLIENT_ERROR>, Never>
 }
 

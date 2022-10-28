@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 protocol RegistrationService {
-    var errorsPublisher: AnyPublisher<CLIENT_ERROR, Never> {get}
-    func requestEmailConfirmation() -> AnyPublisher<String, CLIENT_ERROR>
-    func register(confirmationCode: String) -> AnyPublisher<String, CLIENT_ERROR>
+//    var errorsPublisher: AnyPublisher<CLIENT_ERROR, Never> {get}
+    func requestEmailConfirmation() -> AnyPublisher<Result<Void, CLIENT_ERROR>, Never>
+    func register(confirmationCode: String) -> AnyPublisher<Result<Void, CLIENT_ERROR>, Never>
     func currentRegistrationStatus() -> RegistrationStatus
     func resetRegistrationStatus() -> Void
 }
