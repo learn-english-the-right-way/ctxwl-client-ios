@@ -52,15 +52,7 @@ class RegistrationModel: ObservableObject {
     @Published var password2ErrorMsg = ""
     
     @Published var validationFailed = true
-    
-    @Published var requestingConfirmationCode = false
-    
-    @Published var registering = false
-    
-    @Published var showModal: Bool = false
-    
-    @Published var message: String = ""
-        
+                        
     private func checkEmail() -> Void {
         let predicate = EmailPredicate()
         if email.isEmpty {
@@ -165,7 +157,7 @@ class RegistrationModelHandlerDefault: RegistrationModelHandler {
     private var generalUIEffectManager: GeneralUIEffectManager
     
     private var requestingConfirmationCode = false
-    private var confirmationCodeRequestCancellable: AnyCancellable?
+    var confirmationCodeRequestCancellable: AnyCancellable?
     
     init(userService: UserService, registrationService: RegistrationService, router: Router, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager) {
         self.userService = userService

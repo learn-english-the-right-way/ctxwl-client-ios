@@ -11,62 +11,78 @@ import Combine
 @available(iOS 16.0, *)
 class LoginModel: ObservableObject {
     
-    private var router: Router
-            
-    private var loginRequestCancellable: AnyCancellable?
-    
-    private var loginServiceErrorsCancellable: AnyCancellable?
-    
-    private var requestAggregator: RequestAggregator
-    
-    private var uiErrorMapper: UIErrorMapper
-    
-    private var userService: UserService
-    
-    private var generalUIEffectManager: GeneralUIEffectManager
-    
-    @Published var loginUnderway: Bool = false
-    
-    @Published var loginSuccess: Bool = false
+    private var handler: LoginModelHandler?
     
     @Published var email: String = ""
     
     @Published var password: String = ""
-    
-    @Published var effect: GeneralUIEffect
-    
-    init(requestAggregator: RequestAggregator, errorMapper: UIErrorMapper, userService: UserService, generalUIEffectManager: GeneralUIEffectManager) {
-        self.requestAggregator = requestAggregator
-        self.router = requestAggregator.router
-        self.uiErrorMapper = errorMapper
-        self.userService = userService
-        self.effect = GeneralUIEffect()
-        self.generalUIEffectManager = generalUIEffectManager
         
-        self.loginServiceErrorsCancellable = self.userService.errorsPublisher.sink(receiveValue: {clientError in
-            self.generalUIEffectManager.newEffect(self.uiErrorMapper.mapError(clientError))
-        })
-    }
-    
     func switchToRegistrationPage() {
         var pageInfo = PageInfo(page: .Registration)
         pageInfo.registrationPageContent = RegistrationPageContent(email: self.email, password: self.password)
     }
     
     func login() -> Void {
-        // do nothing if there is an ongoing
-        guard !self.loginUnderway else {
+        guard let handler = self.handler else {
+            return
+        }
+        handler.requestLogin(username: self.email, password: self.password)
+    }
+    
+    func setHandler(_ handler: LoginModelHandler) {
+        self.handler = handler
+    }
+}
+
+protocol LoginModelHandler {
+    func requestLogin(username: String, password: String) -> Void
+}
+
+@available(iOS 16.0, *)
+class LogminModelHandlerDefault: LoginModelHandler {
+    private var userService: UserService
+    private var router: Router
+    private var errorMapper: UIErrorMapper
+    private var generalUIEffectManager: GeneralUIEffectManager
+    
+    private var requestingLogin = false
+    
+    var loginRequestCancellable: AnyCancellable?
+    
+    init(userService: UserService, router: Router, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager, requestingLogin: Bool = false, loginRequestCancellable: AnyCancellable? = nil) {
+        self.userService = userService
+        self.router = router
+        self.errorMapper = errorMapper
+        self.generalUIEffectManager = generalUIEffectManager
+        self.requestingLogin = requestingLogin
+        self.loginRequestCancellable = loginRequestCancellable
+    }
+    
+    func requestLogin(username: String, password: String) -> Void {
+        do {
+            try self.userService.saveCredential(username: username, password: password)
+        } catch {
+            var effect = GeneralUIEffect()
+            effect.action = .alert
+            effect.message = "saving credentials failed"
+            self.generalUIEffectManager.newEffect(effect)
+        }
+        guard self.requestingLogin != true else {
             var effect = GeneralUIEffect()
             effect.action = .notice
             effect.message = "There is a login request under way"
-            self.effect = effect
+            self.generalUIEffectManager.newEffect(effect)
             return
         }
-        
-        self.loginRequestCancellable = self.requestAggregator.login()
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: {completion in self.loginUnderway = false},
-                  receiveValue: {effect in self.generalUIEffectManager.newEffect(effect)}
-            )
+        self.loginRequestCancellable = self.userService.login()
+            .sink { result in
+                switch result {
+                case .success():
+                    //TODO: add logic to navigate to homepage
+                    print("add logic to navigate to homepage")
+                case .failure(let clientError):
+                    self.generalUIEffectManager.newEffect(self.errorMapper.mapError(clientError))
+                }
+            }
     }
 }

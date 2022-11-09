@@ -11,62 +11,25 @@ import Combine
 @available(iOS 16.0, *)
 class EmailVerificationModel: ObservableObject {
     
-    private var registrationService: RegistrationService
-        
-    private var router: Router
-    
-    private var registrationRequestCancellable: AnyCancellable?
-    
-    private var registrationServiceErrorsCancellable: AnyCancellable?
-    
-    private var requestAggregator: RequestAggregator
-    
-    private var uiErrorMapper: UIErrorMapper
-    
-    private var generalUIEffectManager: GeneralUIEffectManager
+    private var handler: EmailVerificationModelHandler?
     
     @Published var confirmationCode = ""
-    
-    @Published var registering = false
-    
+        
     @Published var displayConfirmationCodeErrMsg = false
     
-    @Published var effect: GeneralUIEffect
-    
-    init(registrationService: any RegistrationService, router: Router, requestAggregator: RequestAggregator, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager) {
-        self.registrationService = registrationService
-        self.router = router
-        self.requestAggregator = requestAggregator
-        self.uiErrorMapper = errorMapper
-        self.effect = GeneralUIEffect()
-        self.generalUIEffectManager = generalUIEffectManager
-        
-        self.registrationServiceErrorsCancellable = self.registrationService.errorsPublisher.sink(receiveValue: {clientError in
-            self.generalUIEffectManager.newEffect(self.uiErrorMapper.mapError(clientError))
-        })
-    }
-    
     func register() {
-        guard !self.registering else {
-            var effect = GeneralUIEffect()
-            effect.action = .notice
-            effect.message = "There is already a registration attempt under way"
-            self.effect = effect
+        guard let handler = self.handler else {
             return
         }
-        self.registering = true
-        self.registrationRequestCancellable = self.requestAggregator.register(code: self.confirmationCode)
-        // TODO: figure out what this does
-            .receive(on: RunLoop.main)
-            .sink(
-                receiveCompletion: {status in self.registering = false},
-                receiveValue: {effect in self.generalUIEffectManager.newEffect(effect)}
-            )
+        handler.register(code: self.confirmationCode)
     }
     
     func reset() {
-        self.registrationService.resetRegistrationStatus()
         // TODO: add go back logic
+    }
+    
+    func setHandler(_ handler: EmailVerificationModelHandler) {
+        self.handler = handler
     }
 }
 
@@ -74,7 +37,44 @@ protocol EmailVerificationModelHandler {
     func register(code: String) -> Void
 }
 
+@available(iOS 16.0, *)
 class EmailVerificationModelHandlerDefault: EmailVerificationModelHandler {
-    private registrationService: RegistrationService
-    private 
+    private var registrationService: RegistrationService
+    private var router: Router
+    private var errorMapper: UIErrorMapper
+    private var generalUIEffectManager: GeneralUIEffectManager
+    private var emailVerificationModel: EmailVerificationModel
+    
+    private var requestingRegistration = false
+    var registrationRequestCancellable: AnyCancellable?
+    
+    init(registrationService: RegistrationService, router: Router, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager, emailVerificationModel: EmailVerificationModel) {
+        self.registrationService = registrationService
+        self.router = router
+        self.errorMapper = errorMapper
+        self.generalUIEffectManager = generalUIEffectManager
+        self.emailVerificationModel = emailVerificationModel
+    }
+    
+    func register(code: String) -> Void {
+        guard self.requestingRegistration == false else {
+            var effect = GeneralUIEffect()
+            effect.action = .notice
+            effect.message = "There is already a registration attempt under way"
+            self.generalUIEffectManager.newEffect(effect)
+            return
+        }
+        self.requestingRegistration = true
+        self.registrationRequestCancellable = self.registrationService.register(confirmationCode: code)
+            .sink { result in
+                switch result {
+                case .success():
+                    //TODO: add logic to route to homepage
+                    print("need to add logic to navigate to login page")
+                case .failure(let clientError):
+                    let effect = self.errorMapper.mapError(clientError)
+                    self.generalUIEffectManager.newEffect(effect)
+                }
+            }
+    }
 }
