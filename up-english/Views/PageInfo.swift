@@ -35,7 +35,7 @@ struct HomePageContent: Codable, Hashable {
 struct PageInfo: Codable, Hashable {
     var page: Page
     var registrationPageContent: RegistrationPageContent?
-    var emailRegistrationPageContent: EmailVerificationPageContent?
+    var emailVerificationPageContent: EmailVerificationPageContent?
     var loginPageContent: LoginPageContent?
     var homePageContent: HomePageContent?
 }

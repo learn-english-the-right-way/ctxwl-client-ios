@@ -22,6 +22,10 @@ class LoginModel: ObservableObject {
     func switchToRegistrationPage() {
         var pageInfo = PageInfo(page: .Registration)
         pageInfo.registrationPageContent = RegistrationPageContent(email: self.email, password: self.password)
+        guard let handler = self.handler else {
+            return
+        }
+        handler.switchToRegistration(pageInfo)
     }
     
     func login() -> Void {
@@ -67,6 +71,7 @@ protocol LoginModelHandler: AnyObject {
     var model: LoginModel? {get set}
     var loginRequestCancellable: AnyCancellable? {get}
     func requestLogin(username: String, password: String) -> Void
+    func switchToRegistration(_ registrationPageInfo: PageInfo) -> Void
 }
 
 @available(iOS 16.0, *)
@@ -117,5 +122,9 @@ class LoginModelHandlerDefault: LoginModelHandler {
                     self.generalUIEffectManager.newEffect(self.errorMapper.mapError(clientError))
                 }
             }
+    }
+    
+    func switchToRegistration(_ registrationPageInfo: PageInfo) {
+        self.router.replaceLastPageWith(registrationPageInfo)
     }
 }

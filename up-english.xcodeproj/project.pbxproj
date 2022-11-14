@@ -43,7 +43,6 @@
 		B0578B41265EA3F400A1B21F /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0578B3F265EA3F400A1B21F /* User.xcdatamodeld */; };
 		B05AEDD328A791C9005BC3BB /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AEDD228A791C9005BC3BB /* PageInfo.swift */; };
 		B06F3F9728A78919007CF774 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06F3F9628A78919007CF774 /* Router.swift */; };
-		B07DA1C22921D048009FDAE2 /* ViewModelBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07DA1C12921D048009FDAE2 /* ViewModelBase.swift */; };
 		B07EA2CF2871A7BD008CA3C9 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B07EA2CD2871A7BD008CA3C9 /* Model.xcdatamodeld */; };
 		B084B8F32811B343005B20B0 /* CLIENT_ERROR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084B8F22811B343005B20B0 /* CLIENT_ERROR.swift */; };
 		B084B8FF28130823005B20B0 /* UNSPECIFIED_SERVER_ERROR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084B8FE28130823005B20B0 /* UNSPECIFIED_SERVER_ERROR.swift */; };
@@ -140,7 +139,6 @@
 		B0578B40265EA3F400A1B21F /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 		B05AEDD228A791C9005BC3BB /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
 		B06F3F9628A78919007CF774 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		B07DA1C12921D048009FDAE2 /* ViewModelBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewModelBase.swift; path = ../../../../.Trash/ViewModelBase.swift; sourceTree = "<group>"; };
 		B07EA2CE2871A7BD008CA3C9 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		B084B8F22811B343005B20B0 /* CLIENT_ERROR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLIENT_ERROR.swift; sourceTree = "<group>"; };
 		B084B8FE28130823005B20B0 /* UNSPECIFIED_SERVER_ERROR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNSPECIFIED_SERVER_ERROR.swift; sourceTree = "<group>"; };
@@ -323,7 +321,6 @@
 				B0CF55002870542C00C4FD92 /* UIErrorMapper.swift */,
 				5EF9CC1828EC7A5B00C40D86 /* GeneralUIEffectManager.swift */,
 				5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */,
-				B07DA1C12921D048009FDAE2 /* ViewModelBase.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -578,7 +575,6 @@
 				B084B8F32811B343005B20B0 /* CLIENT_ERROR.swift in Sources */,
 				B026F2482883B2BD00385DC2 /* KEYCHAIN_APPLICATION_KEY_NOT_FOUND.swift in Sources */,
 				B04B64D926A52A8600D0B954 /* LoginModel.swift in Sources */,
-				B07DA1C22921D048009FDAE2 /* ViewModelBase.swift in Sources */,
 				B06F3F9728A78919007CF774 /* Router.swift in Sources */,
 				B02B300C28649DEA0075CE4F /* SESSION_AUTHENTICATION_UNSUPPORTED_AUTHENTICATION_METHOD.swift in Sources */,
 				9B8AE4EB2793F51100489A7B /* ArticleListService.swift in Sources */,
