@@ -13,11 +13,20 @@ let server = "ctxwl"
 @main
 struct up_englishApp: App {
     
-    @StateObject var initializer = ServiceInitializer()
+    var initializer: ServiceInitializer
     
-    @StateObject var router = Router()
+    var router: Router
     
-    @StateObject var generalUIEffectManager = GeneralUIEffectManager()
+    var generalUIEffectManager: GeneralUIEffectManager
+        
+    var uiErrorMapper: UIErrorMapper
+    
+    init() {
+        self.uiErrorMapper = UIErrorMapper()
+        self.initializer = ServiceInitializer()
+        self.generalUIEffectManager = GeneralUIEffectManager()
+        self.router = Router(services: self.initializer, generalUIEffectManager: self.generalUIEffectManager, uiErrorMapper: self.uiErrorMapper)
+    }
     
     var body: some Scene {
         WindowGroup("CTXWL", id: "CTXWL") {
@@ -25,6 +34,7 @@ struct up_englishApp: App {
                 .environmentObject(self.initializer)
                 .environmentObject(self.router)
                 .environmentObject(self.generalUIEffectManager)
+                .environmentObject(self.uiErrorMapper)
         }
     }
 }

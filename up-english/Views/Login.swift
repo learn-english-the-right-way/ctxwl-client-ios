@@ -10,19 +10,13 @@ import SwiftUI
 @available(iOS 16.0, *)
 struct Login: View {
         
-    @ObservedObject private var model: LoginModel
-        
-    init(_ model: LoginModel) {
-        self.model = model
-    }
+    @ObservedObject var model: LoginModel
     
     var body: some View {
         VStack {
             ZStack {
                 Text("Please wait while we log you in...")
                     .opacity(model.loginUnderway ? 1 : 0)
-                Text("Login succeeded")
-                    .opacity(model.loginSuccess ? 1 : 0)
             }
 
             HStack {

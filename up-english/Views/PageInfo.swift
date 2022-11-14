@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Page: Codable, Hashable {
+enum Page: Codable, Hashable, Equatable {
     case Registration
     case EmailVerification
     case Login

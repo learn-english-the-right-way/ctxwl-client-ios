@@ -9,24 +9,24 @@ import SwiftUI
 
 @available(iOS 16.0, *)
 struct ContentView: View {
-    
-    @EnvironmentObject var initializer: ServiceInitializer
-    
+        
     @EnvironmentObject var router: Router
     
     @EnvironmentObject var generalUIEffetManager: GeneralUIEffectManager
-    
+        
     var body: some View {
         NavigationStack(path: self.$router.path) {
             // TODO: change empty view to home view
             EmptyView()
-                .navigationDestination(for: PageInfo.self) { pageInfo in
-                    let dependencies = ViewConstructionDependencies(
-                        router: self.router,
-                        serviceInitializer: self.initializer,
-                        generalUIEffectManager: self.generalUIEffetManager
-                    )
-                    ViewFactory(dependencies: dependencies).createViewFor(destination: pageInfo)
+                .navigationDestination(for: LoginModel.self) { model in
+                    Login(model: model)
+                        .navigationBarBackButtonHidden(true)
+                }
+                .navigationDestination(for: RegistrationModel.self) { model in
+                    Registration(model: model)
+                }
+                .navigationDestination(for: EmailVerificationModel.self) {model in
+                    EmailVerification(model: model)
                 }
         }
         .noticeBanner(self.generalUIEffetManager)

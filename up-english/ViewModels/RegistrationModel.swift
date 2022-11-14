@@ -11,7 +11,7 @@ import Combine
 
 @available(iOS 16.0, *)
 class RegistrationModel: ObservableObject {
-    
+
     private var handler: RegistrationModelHandler?
         
     var confirmationCode = ""
@@ -52,6 +52,8 @@ class RegistrationModel: ObservableObject {
     @Published var password2ErrorMsg = ""
     
     @Published var validationFailed = true
+    
+    @Published var requestingConfirmationCode = false
                         
     private func checkEmail() -> Void {
         let predicate = EmailPredicate()
@@ -139,10 +141,47 @@ class RegistrationModel: ObservableObject {
     func setHandler(handler: RegistrationModelHandler) {
         self.handler = handler
     }
+    
+    func cleanUp() {
+        self.handler?.confirmationCodeRequestCancellable?.cancel()
+        self.handler?.model = nil
+        self.handler = nil
+    }
 
 }
 
-protocol RegistrationModelHandler {
+@available(iOS 16.0, *)
+extension RegistrationModel: Hashable {
+    static func == (lhs: RegistrationModel, rhs: RegistrationModel) -> Bool {
+        if let lhsHandler = lhs.handler, let rhsHandler = rhs.handler {
+            return lhs.email == rhs.email && lhs.password1 == rhs.password1 && lhs.password2 == rhs.password2 && ObjectIdentifier(lhsHandler) == ObjectIdentifier(rhsHandler)
+        } else {
+            return false
+        }
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(confirmationCode)
+        hasher.combine(email)
+        hasher.combine(emailValid)
+        hasher.combine(emailErrorMsg)
+        hasher.combine(password1)
+        hasher.combine(password1ErrorMsg)
+        hasher.combine(password1Valid)
+        hasher.combine(password2)
+        hasher.combine(password2Valid)
+        hasher.combine(password2ErrorMsg)
+        hasher.combine(validationFailed)
+        hasher.combine(requestingConfirmationCode)
+        if let handler {
+            hasher.combine(ObjectIdentifier(handler))
+        }
+    }
+}
+
+@available(iOS 16.0, *)
+protocol RegistrationModelHandler: AnyObject {
+    var model: RegistrationModel? {get set}
+    var confirmationCodeRequestCancellable: AnyCancellable? {get}
     func saveCredential(username: String, password: String) throws -> Void
     func switchToLoginPage(username: String, password: String) -> Void
     func getRegistrationEmailVerification() -> Void
@@ -150,6 +189,7 @@ protocol RegistrationModelHandler {
 
 @available(iOS 16.0, *)
 class RegistrationModelHandlerDefault: RegistrationModelHandler {
+    var model: RegistrationModel?
     private var userService: UserService
     private var registrationService: RegistrationService
     private var router: Router
@@ -159,7 +199,8 @@ class RegistrationModelHandlerDefault: RegistrationModelHandler {
     private var requestingConfirmationCode = false
     var confirmationCodeRequestCancellable: AnyCancellable?
     
-    init(userService: UserService, registrationService: RegistrationService, router: Router, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager) {
+    init(model: RegistrationModel, userService: UserService, registrationService: RegistrationService, router: Router, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager) {
+        self.model = model
         self.userService = userService
         self.registrationService = registrationService
         self.router = router
@@ -186,9 +227,12 @@ class RegistrationModelHandlerDefault: RegistrationModelHandler {
             return
         }
         self.requestingConfirmationCode = true
+        self.model?.requestingConfirmationCode = true
         
         self.confirmationCodeRequestCancellable = self.registrationService.requestEmailConfirmation()
             .sink { result in
+                self.requestingConfirmationCode = false
+                self.model?.requestingConfirmationCode = false
                 switch result {
                 case .success():
                     let emailVerificationPage = PageInfo(page: .EmailVerification)
@@ -199,6 +243,4 @@ class RegistrationModelHandlerDefault: RegistrationModelHandler {
                 }
             }
     }
-    
-    
 }

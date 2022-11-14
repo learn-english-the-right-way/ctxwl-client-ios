@@ -10,11 +10,7 @@ import SwiftUI
 @available(iOS 16.0, *)
 struct Registration: View {
     
-    @ObservedObject private var model: RegistrationModel
-    
-    init(model: RegistrationModel) {
-        self.model = model
-    }
+    @ObservedObject var model: RegistrationModel
 
     var body: some View {
         VStack {

@@ -10,11 +10,7 @@ import SwiftUI
 @available(iOS 16.0, *)
 struct EmailVerification: View {
     
-    @ObservedObject private var model: EmailVerificationModel
-    
-    init(model: EmailVerificationModel) {
-        self.model = model
-    }
+    @ObservedObject var model: EmailVerificationModel
     
     var body: some View {
         VStack {

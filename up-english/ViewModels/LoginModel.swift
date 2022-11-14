@@ -16,6 +16,8 @@ class LoginModel: ObservableObject {
     @Published var email: String = ""
     
     @Published var password: String = ""
+    
+    @Published var loginUnderway = false
         
     func switchToRegistrationPage() {
         var pageInfo = PageInfo(page: .Registration)
@@ -32,14 +34,44 @@ class LoginModel: ObservableObject {
     func setHandler(_ handler: LoginModelHandler) {
         self.handler = handler
     }
+    
+    func cleanUp() {
+        self.handler?.model = nil
+        self.handler?.loginRequestCancellable?.cancel()
+        self.handler = nil
+    }
 }
 
-protocol LoginModelHandler {
+@available(iOS 16.0, *)
+extension LoginModel: Hashable {
+    static func == (lhs: LoginModel, rhs: LoginModel) -> Bool {
+        if let lhsHandler = lhs.handler, let rhsHandler = rhs.handler {
+            return lhs.email == rhs.email && lhs.password == rhs.password && lhs.loginUnderway == rhs.loginUnderway && ObjectIdentifier(lhsHandler) == ObjectIdentifier(rhsHandler)
+        } else {
+            return false
+        }
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(email)
+        hasher.combine(password)
+        hasher.combine(loginUnderway)
+        if let handler {
+            hasher.combine(ObjectIdentifier(handler))
+        }
+    }
+}
+
+@available(iOS 16.0, *)
+protocol LoginModelHandler: AnyObject {
+    var model: LoginModel? {get set}
+    var loginRequestCancellable: AnyCancellable? {get}
     func requestLogin(username: String, password: String) -> Void
 }
 
 @available(iOS 16.0, *)
-class LogminModelHandlerDefault: LoginModelHandler {
+class LoginModelHandlerDefault: LoginModelHandler {
+    var model: LoginModel?
     private var userService: UserService
     private var router: Router
     private var errorMapper: UIErrorMapper
@@ -49,7 +81,8 @@ class LogminModelHandlerDefault: LoginModelHandler {
     
     var loginRequestCancellable: AnyCancellable?
     
-    init(userService: UserService, router: Router, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager, requestingLogin: Bool = false, loginRequestCancellable: AnyCancellable? = nil) {
+    init(model: LoginModel, userService: UserService, router: Router, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager, requestingLogin: Bool = false, loginRequestCancellable: AnyCancellable? = nil) {
+        self.model = model
         self.userService = userService
         self.router = router
         self.errorMapper = errorMapper
