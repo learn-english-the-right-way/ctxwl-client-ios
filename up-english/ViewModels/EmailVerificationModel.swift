@@ -92,7 +92,9 @@ class EmailVerificationModelHandlerDefault: EmailVerificationModelHandler {
             var effect = GeneralUIEffect()
             effect.action = .notice
             effect.message = "There is already a registration attempt under way"
-            self.generalUIEffectManager.newEffect(effect)
+            DispatchQueue.main.async {
+                self.generalUIEffectManager.newEffect(effect)
+            }
             return
         }
         self.requestingRegistration = true
@@ -107,7 +109,9 @@ class EmailVerificationModelHandlerDefault: EmailVerificationModelHandler {
                     print("need to add logic to navigate to login page")
                 case .failure(let clientError):
                     let effect = self.errorMapper.mapError(clientError)
-                    self.generalUIEffectManager.newEffect(effect)
+                    DispatchQueue.main.async {
+                        self.generalUIEffectManager.newEffect(effect)
+                    }
                 }
             }
     }

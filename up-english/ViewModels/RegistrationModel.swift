@@ -223,7 +223,9 @@ class RegistrationModelHandlerDefault: RegistrationModelHandler {
             var effect = GeneralUIEffect()
             effect.action = .notice
             effect.message = "There is a request to get verification code going on"
-            self.generalUIEffectManager.newEffect(effect)
+            DispatchQueue.main.async {
+                self.generalUIEffectManager.newEffect(effect)
+            }
             return
         }
         self.requestingConfirmationCode = true
@@ -239,7 +241,9 @@ class RegistrationModelHandlerDefault: RegistrationModelHandler {
                     self.router.append(page: emailVerificationPage)
                 case .failure(let error):
                     let effect = self.errorMapper.mapError(error)
-                    self.generalUIEffectManager.newEffect(effect)
+                    DispatchQueue.main.async {
+                        self.generalUIEffectManager.newEffect(effect)
+                    }
                 }
             }
     }
