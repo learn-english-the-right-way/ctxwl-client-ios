@@ -13,11 +13,29 @@ class LoginModel: ObservableObject {
     
     private var handler: LoginModelHandler?
     
-    @Published var email: String = ""
+    @Published var email: String = "" {
+        didSet {
+            checkLoginButtonStatus()
+        }
+    }
     
-    @Published var password: String = ""
+    @Published var password: String = "" {
+        didSet {
+            checkLoginButtonStatus()
+        }
+    }
     
     @Published var loginUnderway = false
+    
+    @Published var loginButtonDisabled = true
+    
+    private func checkLoginButtonStatus() {
+        if email != "" && password != "" {
+            loginButtonDisabled = false
+        } else {
+            loginButtonDisabled = true
+        }
+    }
         
     func switchToRegistrationPage() {
         var pageInfo = PageInfo(page: .Registration)

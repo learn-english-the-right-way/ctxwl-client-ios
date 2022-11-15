@@ -40,7 +40,8 @@ struct Login: View {
         Button("Login") {
             model.login()
         }
-        Button("Register") {
+        .disabled(model.loginButtonDisabled)
+        Button("Register Instead") {
             model.switchToRegistrationPage()
         }
     }

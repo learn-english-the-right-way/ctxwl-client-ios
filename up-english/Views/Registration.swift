@@ -55,7 +55,7 @@ struct Registration: View {
                 model.validationFailed ||
                 model.requestingConfirmationCode
             )
-            Button("Login") {
+            Button("Login Instead") {
                 model.switchToLoginPage()
             }
         }
