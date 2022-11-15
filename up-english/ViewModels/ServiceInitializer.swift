@@ -17,13 +17,9 @@ class ServiceInitializer: ObservableObject {
     var registrationService: RegistrationService
         
     init() {
-        var ctxwlUserSession = CTXWLURLSessionDefault()
-        var userService = UserServiceDefault(ctxwlUrlSession: ctxwlUserSession)
-        var registrationService = RegistrationServiceDefault(ctxwlUrlSession: ctxwlUserSession, userService: userService)
-        
-        self.ctxwlUserSession = ctxwlUserSession
-        self.registrationService = registrationService
-        self.userService = userService
+        self.ctxwlUserSession = CTXWLURLSessionDefault()
+        self.userService = UserServiceDefault(ctxwlUrlSession: ctxwlUserSession)
+        self.registrationService = RegistrationServiceDefault(ctxwlUrlSession: ctxwlUserSession, userService: userService)
     }
     
 }

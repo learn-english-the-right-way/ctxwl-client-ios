@@ -20,10 +20,11 @@ struct ContentView: View {
             EmptyView()
                 .navigationDestination(for: LoginModel.self) { model in
                     Login(model: model)
-                        .navigationBarBackButtonHidden(true)
+                        .navigationBarBackButtonHidden()
                 }
                 .navigationDestination(for: RegistrationModel.self) { model in
                     Registration(model: model)
+                        .navigationBarBackButtonHidden()
                 }
                 .navigationDestination(for: EmailVerificationModel.self) {model in
                     EmailVerification(model: model)
