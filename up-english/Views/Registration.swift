@@ -62,8 +62,9 @@ struct Registration: View {
     }
 }
 
+@available(iOS 16.0, *)
 struct Registration_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView()
+        Registration(model: RegistrationModel())
     }
 }

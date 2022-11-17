@@ -28,6 +28,7 @@ struct Login: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
             }
+            Text(model.emailErrorMsg)
             HStack {
                 Text("Password:")
                 TextField("Password", text: $model.password)
@@ -47,8 +48,9 @@ struct Login: View {
     }
 }
 
+@available(iOS 16.0, *)
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView()
+        Login(model: LoginModel())
     }
 }

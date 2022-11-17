@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Peppermint
 
 @available(iOS 16.0, *)
 class LoginModel: ObservableObject {
@@ -15,6 +16,7 @@ class LoginModel: ObservableObject {
     
     @Published var email: String = "" {
         didSet {
+            checkEmail()
             checkLoginButtonStatus()
         }
     }
@@ -29,11 +31,29 @@ class LoginModel: ObservableObject {
     
     @Published var loginButtonDisabled = true
     
+    @Published var emailValid = false
+    
+    @Published var emailErrorMsg = ""
+    
     private func checkLoginButtonStatus() {
-        if email != "" && password != "" {
+        if emailValid && password != "" {
             loginButtonDisabled = false
         } else {
             loginButtonDisabled = true
+        }
+    }
+    
+    private func checkEmail() -> Void {
+        let predicate = EmailPredicate()
+        if email.isEmpty {
+            emailValid = false
+            emailErrorMsg = ""
+        } else if !predicate.evaluate(with: email) {
+            emailValid = false
+            emailErrorMsg = "This is not a valid email address"
+        } else {
+            emailValid = true
+            emailErrorMsg = ""
         }
     }
         
