@@ -29,6 +29,9 @@ class UIErrorMapper: ObservableObject {
         } else if clientError is API_ERROR {
             exception.message = "something wrong"
             exception.action = .notice
+        } else if clientError is CONNECTION_FAILED {
+            exception.message = "connection failed"
+            exception.action = .notice
         } else {
             exception.message = "unknown error"
             exception.action = .notice

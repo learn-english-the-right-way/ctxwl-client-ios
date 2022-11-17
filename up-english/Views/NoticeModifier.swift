@@ -29,6 +29,9 @@ struct NoticeModifier: ViewModifier {
                     .cornerRadius(8)
                     Spacer()
                 }
+                .onTapGesture {
+                    model.showNotice = false
+                }
             }
         }
     }

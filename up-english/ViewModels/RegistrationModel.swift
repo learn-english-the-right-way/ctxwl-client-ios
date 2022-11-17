@@ -234,7 +234,9 @@ class RegistrationModelHandlerDefault: RegistrationModelHandler {
         self.confirmationCodeRequestCancellable = self.registrationService.requestEmailConfirmation()
             .sink { result in
                 self.requestingConfirmationCode = false
-                self.model?.requestingConfirmationCode = false
+                DispatchQueue.main.async {
+                    self.model?.requestingConfirmationCode = false
+                }
                 switch result {
                 case .success():
                     let emailVerificationPage = PageInfo(page: .EmailVerification)

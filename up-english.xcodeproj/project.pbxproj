@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5ED313052902DF6700461467 /* NoticeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED313042902DF6700461467 /* NoticeModifier.swift */; };
+		5EF847F22923E7FD00E53FFE /* CONNECTION_FAILED.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF847F12923E7FD00E53FFE /* CONNECTION_FAILED.swift */; };
 		5EF9CC1928EC7A5B00C40D86 /* GeneralUIEffectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9CC1828EC7A5B00C40D86 /* GeneralUIEffectManager.swift */; };
 		5EF9CC5128EDD01E00C40D86 /* ServiceInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */; };
 		9B8AE4E92792520000489A7B /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4E82792520000489A7B /* ListItemView.swift */; };
@@ -104,6 +105,7 @@
 
 /* Begin PBXFileReference section */
 		5ED313042902DF6700461467 /* NoticeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeModifier.swift; sourceTree = "<group>"; };
+		5EF847F12923E7FD00E53FFE /* CONNECTION_FAILED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CONNECTION_FAILED.swift; sourceTree = "<group>"; };
 		5EF9CC1828EC7A5B00C40D86 /* GeneralUIEffectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralUIEffectManager.swift; sourceTree = "<group>"; };
 		5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInitializer.swift; sourceTree = "<group>"; };
 		9B8AE4E82792520000489A7B /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 				B007246428D6C4DF0018252C /* KEYCHAIN_APPLICATION_KEY_ERROR.swift */,
 				B007246628D6C5080018252C /* KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY.swift */,
 				B007246828E04AEA0018252C /* CREDENTIALS_EMPTY.swift */,
+				5EF847F12923E7FD00E53FFE /* CONNECTION_FAILED.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				B026F2482883B2BD00385DC2 /* KEYCHAIN_APPLICATION_KEY_NOT_FOUND.swift in Sources */,
 				B04B64D926A52A8600D0B954 /* LoginModel.swift in Sources */,
 				B06F3F9728A78919007CF774 /* Router.swift in Sources */,
+				5EF847F22923E7FD00E53FFE /* CONNECTION_FAILED.swift in Sources */,
 				B02B300C28649DEA0075CE4F /* SESSION_AUTHENTICATION_UNSUPPORTED_AUTHENTICATION_METHOD.swift in Sources */,
 				9B8AE4EB2793F51100489A7B /* ArticleListService.swift in Sources */,
 				B02B301028649E3B0075CE4F /* API_DATA_ERROR.swift in Sources */,
