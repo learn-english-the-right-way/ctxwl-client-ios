@@ -18,9 +18,6 @@ struct EmailVerification: View {
                 Text("Please wait while we finish registering...")
                     .opacity(model.registering ? 1 : 0)
             }
-            Button("Go Back") {
-                model.reset()
-            }
             HStack {
                 Text("Confirmation Code")
                 TextField("Confirmation code", text: $model.confirmationCode)
@@ -28,12 +25,14 @@ struct EmailVerification: View {
             Button("Verify") {
                 model.register()
             }
+            .disabled(model.verifyButtonDisabled)
         }
     }
 }
 
+@available(iOS 16.0, *)
 struct EmailVerification_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView()
+        EmailVerification(model: EmailVerificationModel())
     }
 }

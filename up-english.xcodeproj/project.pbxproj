@@ -52,6 +52,8 @@
 		B08962F12809C6D800B95D47 /* CTXWLURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08962F02809C6D800B95D47 /* CTXWLURLSession.swift */; };
 		B08962F3280ADE3500B95D47 /* CTXWLDataTaskPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08962F2280ADE3500B95D47 /* CTXWLDataTaskPublisher.swift */; };
 		B08962F5280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08962F4280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift */; };
+		B08AB6DE2929C17000968BA5 /* ArticleOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AB6DD2929C17000968BA5 /* ArticleOpener.swift */; };
+		B08AB6E02929C21300968BA5 /* ArticleOpenerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AB6DF2929C21300968BA5 /* ArticleOpenerModel.swift */; };
 		B08D9A3528B3DF33006B15FE /* UNKNOWN_ERROR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D9A3428B3DF33006B15FE /* UNKNOWN_ERROR.swift */; };
 		B08D9A3728BF9111006B15FE /* KEYCHAIN_CANNOT_SAVE_CREDENTIAL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D9A3628BF9111006B15FE /* KEYCHAIN_CANNOT_SAVE_CREDENTIAL.swift */; };
 		B08D9A3928BF914A006B15FE /* KEYCHAIN_CREDENTIAL_ERROR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D9A3828BF914A006B15FE /* KEYCHAIN_CREDENTIAL_ERROR.swift */; };
@@ -149,6 +151,8 @@
 		B08962F02809C6D800B95D47 /* CTXWLURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXWLURLSession.swift; sourceTree = "<group>"; };
 		B08962F2280ADE3500B95D47 /* CTXWLDataTaskPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXWLDataTaskPublisher.swift; sourceTree = "<group>"; };
 		B08962F4280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXWL_SERVER_ERROR.swift; sourceTree = "<group>"; };
+		B08AB6DD2929C17000968BA5 /* ArticleOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleOpener.swift; sourceTree = "<group>"; };
+		B08AB6DF2929C21300968BA5 /* ArticleOpenerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleOpenerModel.swift; sourceTree = "<group>"; };
 		B08D9A3428B3DF33006B15FE /* UNKNOWN_ERROR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNKNOWN_ERROR.swift; sourceTree = "<group>"; };
 		B08D9A3628BF9111006B15FE /* KEYCHAIN_CANNOT_SAVE_CREDENTIAL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEYCHAIN_CANNOT_SAVE_CREDENTIAL.swift; sourceTree = "<group>"; };
 		B08D9A3828BF914A006B15FE /* KEYCHAIN_CREDENTIAL_ERROR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEYCHAIN_CREDENTIAL_ERROR.swift; sourceTree = "<group>"; };
@@ -306,6 +310,7 @@
 				B06F3F9628A78919007CF774 /* Router.swift */,
 				B05AEDD228A791C9005BC3BB /* PageInfo.swift */,
 				5ED313042902DF6700461467 /* NoticeModifier.swift */,
+				B08AB6DD2929C17000968BA5 /* ArticleOpener.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				B0CF55002870542C00C4FD92 /* UIErrorMapper.swift */,
 				5EF9CC1828EC7A5B00C40D86 /* GeneralUIEffectManager.swift */,
 				5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */,
+				B08AB6DF2929C21300968BA5 /* ArticleOpenerModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -556,6 +562,7 @@
 				B00D51A126C40A590069AA55 /* CustomWebView.swift in Sources */,
 				B00028E22725A990005D68D2 /* ContentViewMock.swift in Sources */,
 				B007246528D6C4DF0018252C /* KEYCHAIN_APPLICATION_KEY_ERROR.swift in Sources */,
+				B08AB6E02929C21300968BA5 /* ArticleOpenerModel.swift in Sources */,
 				B08962F5280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift in Sources */,
 				B02B300A28649DA40075CE4F /* SESSION_AUTHENTICATION_INVALID_CREDENTIAL.swift in Sources */,
 				B0E5491E2815B73C00934E7B /* ErrorMapper.swift in Sources */,
@@ -563,6 +570,7 @@
 				B0C7CC0F265BA3B1003832EE /* UserServiceDefault.swift in Sources */,
 				B00028DE26FB7D56005D68D2 /* ScrollViewRepresentable.swift in Sources */,
 				B0AED68F26C3ACB0000CE785 /* CustomWebUIViewController.swift in Sources */,
+				B08AB6DE2929C17000968BA5 /* ArticleOpener.swift in Sources */,
 				B0C7CC0926568E1D003832EE /* ApiUrl.swift in Sources */,
 				B02B300628649D300075CE4F /* EMAIL_REGISTRATION_INVALID_CONFIRMATION_CODE.swift in Sources */,
 				B0CF55012870542C00C4FD92 /* UIErrorMapper.swift in Sources */,

@@ -16,19 +16,8 @@ struct CTXWLDataTaskPublisher: Publisher {
     
     var dataTaskPublisher: AnyPublisher<Data, CLIENT_ERROR>
         
-    init(dataTaskPublisher: URLSession.DataTaskPublisher, mappers: [ErrorMapper], publisherModifier: (URLSession.DataTaskPublisher) -> AnyPublisher<Data, Error>) {
-        self.dataTaskPublisher = publisherModifier(dataTaskPublisher)
-            .mapError { error in
-                var mappedError: CLIENT_ERROR?
-                for errorMapper in mappers {
-                    mappedError = errorMapper.mapToClientError(from: error)
-                }
-                guard let mappedError = mappedError else {
-                    return CLIENT_ERROR()
-                }
-                return mappedError
-            }
-            .eraseToAnyPublisher()
+    init(dataTaskPublisher: AnyPublisher<Data, CLIENT_ERROR>) {
+        self.dataTaskPublisher = dataTaskPublisher
     }
     
     func receive<S>(subscriber: S) where S : Subscriber, Self.Failure == S.Failure, Self.Output == S.Input {

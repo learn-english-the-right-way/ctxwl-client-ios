@@ -29,6 +29,9 @@ struct ContentView: View {
                 .navigationDestination(for: EmailVerificationModel.self) {model in
                     EmailVerification(model: model)
                 }
+                .navigationDestination(for: ArticleOpenerModel.self) { model in
+                    ArticleOpener()
+                }
         }
         .noticeBanner(self.generalUIEffetManager)
     }

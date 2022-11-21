@@ -26,6 +26,10 @@ class RegistrationServiceDefault: RegistrationService {
     
     private var requestConfirmationCancellable: AnyCancellable?
     
+    private var registerSaveApplicationKeyCancellable: AnyCancellable?
+    
+    private var saveKeyCancellable: AnyCancellable?
+    
     private var ctxwlUrlSession: CTXWLURLSession
     
     private var userService: UserService
@@ -38,17 +42,7 @@ class RegistrationServiceDefault: RegistrationService {
         self.errorsSubject = PassthroughSubject()
     }
         
-    private var applicationKey: String {
-        get {
-            guard let applicationKey = UserDefaults.standard.string(forKey: "applicationKey") else {
-                return ""
-            }
-            return applicationKey
-        }
-        set {
-            UserDefaults.standard.setValue(newValue, forKey: "applicationKey")
-        }
-    }
+    private var applicationKey: String?
     
     var errorsPublisher: AnyPublisher<CLIENT_ERROR, Never> {
         get {
@@ -106,7 +100,7 @@ class RegistrationServiceDefault: RegistrationService {
             .share()
         
 //         make the request happen and store the application key
-        _ = publisher
+        self.saveKeyCancellable = publisher
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { confirmationResponse in
@@ -120,7 +114,6 @@ class RegistrationServiceDefault: RegistrationService {
     }
     
     func register(confirmationCode: String) -> AnyPublisher<Result<Void, CLIENT_ERROR>, Never> {
-        
         // make sure we have up to date email
         guard let email = self.userService.credential?.username else {
             return Just(Result<Void, CLIENT_ERROR>.failure(CREDENTIALS_EMPTY())).eraseToAnyPublisher()
@@ -152,7 +145,7 @@ class RegistrationServiceDefault: RegistrationService {
             .eraseToAnyPublisher()
         
         // subscribe to the publisher and save the application key to user service
-        _ = publisher.sink(
+        self.registerSaveApplicationKeyCancellable = publisher.sink(
             receiveCompletion: {_ in},
             receiveValue: {value in
                 do {

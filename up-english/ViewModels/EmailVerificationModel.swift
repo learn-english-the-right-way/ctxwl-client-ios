@@ -13,11 +13,21 @@ class EmailVerificationModel: ObservableObject {
 
     private var handler: EmailVerificationModelHandler?
     
-    @Published var confirmationCode = ""
+    @Published var confirmationCode = "" {
+        didSet(value) {
+            if value != "" {
+                verifyButtonDisabled = false
+            } else {
+                verifyButtonDisabled = true
+            }
+        }
+    }
         
     @Published var displayConfirmationCodeErrMsg = false
     
     @Published var registering = false
+    
+    @Published var verifyButtonDisabled = true
     
     func register() {
         guard let handler = self.handler else {
@@ -98,15 +108,21 @@ class EmailVerificationModelHandlerDefault: EmailVerificationModelHandler {
             return
         }
         self.requestingRegistration = true
-        self.model?.registering = true
+        DispatchQueue.main.async {
+            self.model?.registering = true
+        }
         self.registrationRequestCancellable = self.registrationService.register(confirmationCode: code)
             .sink { result in
                 self.requestingRegistration = false
-                self.model?.registering = false
+                DispatchQueue.main.async {
+                    self.model?.registering = false
+                }
                 switch result {
                 case .success():
-                    //TODO: add logic to route to homepage
-                    print("need to add logic to navigate to login page")
+                    let pageInfo = PageInfo(page: .Home)
+                    DispatchQueue.main.async {
+                        self.router.clearStackAndGoTo(page: pageInfo)
+                    }
                 case .failure(let clientError):
                     let effect = self.errorMapper.mapError(clientError)
                     DispatchQueue.main.async {

@@ -53,8 +53,7 @@ class Router: ObservableObject {
             model.setHandler(handler)
             return model
         case .Home:
-            // TODO: add homepage model
-            return AnyHashable(1)
+            return ArticleOpenerModel()
         }
     }
     

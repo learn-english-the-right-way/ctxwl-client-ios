@@ -15,27 +15,41 @@ class CTXWLURLSessionDefault: CTXWLURLSession {
     var configuration: URLSessionConfiguration = URLSessionConfiguration.default
 
     func dataTaskPublisher(for: URLRequest) -> CTXWLDataTaskPublisher {
-        let basicPublisher = URLSession(configuration: self.configuration).dataTaskPublisher(for: `for`)
-        let publisherModifier = { (publisher: URLSession.DataTaskPublisher) -> AnyPublisher in
-            return publisher
-                .tryMap { data, response -> Data in
-                    guard let httpResponse = response as? HTTPURLResponse else {
-                        throw RESPONSE_NOT_HTTP()
-                    }
-                    if !(400...599).contains(httpResponse.statusCode) {
-                        return data
-                    }
-                    if !["application/vnd.ctxwl.error.email_registration+json", "application/vnd.ctxwl.error+json", "application/json"].contains(httpResponse.value(forHTTPHeaderField: "Content-Type")) {
-                        throw UNKNOWN_SERVER_ERROR()
-                    }
-                    do {
-                        throw try JSONDecoder().decode(CTXWL_SERVER_ERROR.self, from: data)
-                    } catch {
-                        throw CANNOT_DECODE_RESPONSE()
-                    }
+        let publisher = URLSession(configuration: self.configuration).dataTaskPublisher(for: `for`)
+            .tryMap { data, response -> Data in
+                print("data:", data, "response", response)
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    throw RESPONSE_NOT_HTTP()
                 }
-                .eraseToAnyPublisher()
-        }
-        return CTXWLDataTaskPublisher(dataTaskPublisher: basicPublisher, mappers: self.mappers, publisherModifier: publisherModifier)
+                if !(400...599).contains(httpResponse.statusCode) {
+                    return data
+                }
+                if !["application/vnd.ctxwl.error.email_registration+json", "application/vnd.ctxwl.error+json", "application/json"].contains(httpResponse.value(forHTTPHeaderField: "Content-Type")) {
+                    throw UNKNOWN_SERVER_ERROR()
+                }
+                if let serverError = try? JSONDecoder().decode(CTXWL_SERVER_ERROR.self, from: data) {
+                    var errorToThrow = CLIENT_ERROR()
+                    for errorMapper in self.mappers {
+                        if let mappedError = errorMapper.mapToClientError(from: serverError) {
+                            errorToThrow = mappedError
+                        }
+                    }
+                    throw errorToThrow
+                }
+                return data
+            }
+            .mapError { error in
+                var mappedError: CLIENT_ERROR?
+                for errorMapper in self.mappers {
+                    mappedError = errorMapper.mapToClientError(from: error)
+                }
+                guard let mappedError = mappedError else {
+                    return CLIENT_ERROR()
+                }
+                return mappedError
+            }
+            .eraseToAnyPublisher()
+
+        return CTXWLDataTaskPublisher(dataTaskPublisher: publisher)
     }
 }

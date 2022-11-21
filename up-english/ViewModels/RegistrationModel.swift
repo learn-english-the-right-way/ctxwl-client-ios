@@ -229,7 +229,9 @@ class RegistrationModelHandlerDefault: RegistrationModelHandler {
             return
         }
         self.requestingConfirmationCode = true
-        self.model?.requestingConfirmationCode = true
+        DispatchQueue.main.async {
+            self.model?.requestingConfirmationCode = true
+        }
         
         self.confirmationCodeRequestCancellable = self.registrationService.requestEmailConfirmation()
             .sink { result in
@@ -240,7 +242,9 @@ class RegistrationModelHandlerDefault: RegistrationModelHandler {
                 switch result {
                 case .success():
                     let emailVerificationPage = PageInfo(page: .EmailVerification)
-                    self.router.append(page: emailVerificationPage)
+                    DispatchQueue.main.async {
+                        self.router.append(page: emailVerificationPage)
+                    }
                 case .failure(let error):
                     let effect = self.errorMapper.mapError(error)
                     DispatchQueue.main.async {

@@ -10,7 +10,11 @@ import Foundation
 struct ServerErrorMapper: ErrorMapper {
     func mapToClientError(from error: Error) -> CLIENT_ERROR? {
         guard let serverError = error as? CTXWL_SERVER_ERROR else {
-            return CONNECTION_FAILED()
+            if let error = error as? CLIENT_ERROR {
+                return error
+            } else {
+                return CONNECTION_FAILED()
+            }
         }
         for cause in serverError.causes {
             if cause.component == "email_registration" {

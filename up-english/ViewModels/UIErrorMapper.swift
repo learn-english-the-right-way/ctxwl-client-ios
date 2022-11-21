@@ -32,6 +32,9 @@ class UIErrorMapper: ObservableObject {
         } else if clientError is CONNECTION_FAILED {
             exception.message = "connection failed"
             exception.action = .notice
+        } else if clientError is CANNOT_DECODE_RESPONSE {
+            exception.message = "cannot decode response from backend"
+            exception.action = .notice
         } else {
             exception.message = "unknown error"
             exception.action = .notice
