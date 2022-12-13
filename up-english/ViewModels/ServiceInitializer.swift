@@ -15,6 +15,8 @@ class ServiceInitializer: ObservableObject {
     var userService: UserService
     
     var registrationService: RegistrationService
+    
+    var articleReadingService: ArticleReadingService?
         
     init() {
         self.ctxwlUserSession = CTXWLURLSessionDefault()
@@ -22,4 +24,7 @@ class ServiceInitializer: ObservableObject {
         self.registrationService = RegistrationServiceDefault(ctxwlUrlSession: ctxwlUserSession, userService: userService)
     }
     
+    func initializeArticleReadingService() {
+        self.articleReadingService = ArticleReadingServiceDefault(sessionConnectionService: self.userService)
+    }
 }

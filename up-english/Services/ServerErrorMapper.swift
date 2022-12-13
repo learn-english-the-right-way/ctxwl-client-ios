@@ -34,7 +34,7 @@ struct ServerErrorMapper: ErrorMapper {
                 if cause.code == "invalid_request" {
                     return SESSION_AUTHENTICATION_INVALID_REQUEST(serverError.message)
                 }
-                else if cause.code == "invalid_credentials" {
+                else if cause.code == "invalid_credential" {
                     return SESSION_AUTHENTICATION_INVALID_CREDENTIAL(serverError.message)
                 }
                 else if cause.code == "unsupported_authentication_method" {

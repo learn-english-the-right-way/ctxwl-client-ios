@@ -8,5 +8,6 @@
 import Foundation
 
 class CLIENT_ERROR: Error {
+    var serverMessages: String = ""
 }
 

@@ -7,38 +7,42 @@
 
 import SwiftUI
 
-protocol CustomWeb {
-    var urlString: String { get set }
-}
-
-struct CustomWebView: CustomWeb, UIViewControllerRepresentable {
+struct CustomWebView: UIViewControllerRepresentable {
+    
+    class Coordinator: CustomWebViewControllerDelegate {
+        var fullTextBinding: Binding<String?>
+        
+        init(fullTextBinding: Binding<String?>) {
+            self.fullTextBinding = fullTextBinding
+        }
+        
+        func passRawtext(_ text: String) {
+            self.fullTextBinding.wrappedValue = text
+        }
+    }
     
     var urlString: String
     
-    @State var previousUrl: String?
+    var fullTextBinding: Binding<String?>
     
-    func makeUIViewController(context: Context) -> CustomWebUIViewController {
-        let uiViewController = CustomWebUIViewController()
+    func makeCoordinator() -> Coordinator {
+        Coordinator(fullTextBinding: self.fullTextBinding)
+    }
+        
+    func makeUIViewController(context: Context) -> CustomWebViewController {
+        let uiViewController = CustomWebViewController()
+        uiViewController.delegate = context.coordinator
         uiViewController.urlString = urlString
+        
         return uiViewController
     }
     
-    func updateUIViewController(_ uiViewController: CustomWebUIViewController, context: Context) {
-//        if (urlString != previousUrl) {
-//            if let url = URL(string: urlString) {
-//                let request = URLRequest(url: url)
-//                uiViewController.webView?.load(request)
-//            }
-//            DispatchQueue.main.async {
-//                previousUrl = urlString
-//            }
-//        }
-
+    func updateUIViewController(_ uiViewController: CustomWebViewController, context: Context) {
     }
 }
 
 struct CustomWebView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomWebView(urlString: "https://apnews.com")
+        EmptyView()
     }
 }

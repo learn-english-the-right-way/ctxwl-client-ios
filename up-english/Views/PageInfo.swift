@@ -11,6 +11,7 @@ enum Page: Codable, Hashable, Equatable {
     case Registration
     case EmailVerification
     case Login
+    case ArticleOpener
     case Home
 }
 
@@ -32,10 +33,15 @@ struct HomePageContent: Codable, Hashable {
     
 }
 
+struct ArticleOpenerPageContent: Codable, Hashable {
+    var url: String
+}
+
 struct PageInfo: Codable, Hashable {
     var page: Page
     var registrationPageContent: RegistrationPageContent?
     var emailVerificationPageContent: EmailVerificationPageContent?
     var loginPageContent: LoginPageContent?
+    var articleOpenerPageContent: ArticleOpenerPageContent?
     var homePageContent: HomePageContent?
 }

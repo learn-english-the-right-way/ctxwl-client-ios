@@ -17,6 +17,7 @@ protocol UserService {
     
     var credential: Credential? {get}
     var applicationKey: String? {get}
+    var authenticationKeyAccquired: AnyPublisher<String, Never> {get}
     var errorsPublisher: AnyPublisher<CLIENT_ERROR, Never> {get}
     func saveCredential(username: String, password: String) throws -> Void
     func saveAuthenticationApplicationKey(key: String) throws -> Void

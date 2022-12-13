@@ -29,8 +29,12 @@ struct ContentView: View {
                 .navigationDestination(for: EmailVerificationModel.self) {model in
                     EmailVerification(model: model)
                 }
+                .navigationDestination(for: HomeModel.self) {model in
+                    HomeView(model: model)
+                        .navigationBarBackButtonHidden()
+                }
                 .navigationDestination(for: ArticleOpenerModel.self) { model in
-                    ArticleOpener()
+                    ArticleOpener(model: model)
                 }
         }
         .noticeBanner(self.generalUIEffetManager)

@@ -141,29 +141,24 @@ class LoginModelHandlerDefault: LoginModelHandler {
             var effect = GeneralUIEffect()
             effect.action = .alert
             effect.message = "saving credentials failed"
-            DispatchQueue.main.async {
-                self.generalUIEffectManager.newEffect(effect)
-            }
+            self.generalUIEffectManager.newEffect(effect)
         }
         guard self.requestingLogin != true else {
             var effect = GeneralUIEffect()
             effect.action = .notice
             effect.message = "There is a login request under way"
-            DispatchQueue.main.async {
-                self.generalUIEffectManager.newEffect(effect)
-            }
+            self.generalUIEffectManager.newEffect(effect)
             return
         }
         self.loginRequestCancellable = self.userService.login()
+            .receive(on: DispatchQueue.main)
             .sink { result in
                 switch result {
                 case .success():
                     //TODO: add logic to navigate to homepage
-                    print("add logic to navigate to homepage")
+                    self.router.append(page: PageInfo(page: .Home))
                 case .failure(let clientError):
-                    DispatchQueue.main.async {
-                        self.generalUIEffectManager.newEffect(self.errorMapper.mapError(clientError))
-                    }
+                    self.generalUIEffectManager.newEffect(self.errorMapper.mapError(clientError))
                 }
             }
     }

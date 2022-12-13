@@ -29,7 +29,7 @@ struct LoginResponse: Codable {
     let applicationKey: String
 }
 
-class UserServiceDefault: UserService {
+class UserServiceDefault: UserService, SessionConnectionService {
     
     private var ctxwlURLSession: CTXWLURLSession
     
@@ -40,6 +40,12 @@ class UserServiceDefault: UserService {
     private var _applicationKey: String?
     
     private var _credential: Credential?
+    
+    private var _authenticationKeyAccquired = CurrentValueSubject<String?, Never>(nil)
+    
+    var authenticationKeyAccquired: AnyPublisher<String, Never> {
+        return _authenticationKeyAccquired.compactMap({$0}).eraseToAnyPublisher()
+    }
     
     var errorsPublisher: AnyPublisher<CLIENT_ERROR, Never> {
         get {
@@ -155,11 +161,17 @@ class UserServiceDefault: UserService {
     
     func saveAuthenticationApplicationKey(key: String) throws -> Void {
         self._applicationKey = key
+        self._authenticationKeyAccquired.send(key)
         try self.saveApplicationKeyToKeychain(key: key)
     }
     
     func sessionProtectedDataTaskPublisher(request: URLRequest) -> AnyPublisher<Data, CLIENT_ERROR> {
-        self.ctxwlURLSession.dataTaskPublisher(for: request)
+        var newRequest = request
+        newRequest.setValue(applicationKey, forHTTPHeaderField: "X-Ctxwl-Key")
+        print("sending request to:" + newRequest.url!.debugDescription)
+        print("request headers:" + newRequest.allHTTPHeaderFields!.debugDescription)
+        print("request body" + (newRequest.httpBody?.debugDescription ?? ""))
+        return self.ctxwlURLSession.dataTaskPublisher(for: newRequest)
             .catch { (error) -> AnyPublisher<Data, CLIENT_ERROR> in
                 let errorType = type(of: error)
                 if errorType == API_UNAUTHENTICATED.self {
@@ -220,9 +232,12 @@ class UserServiceDefault: UserService {
     
     func login() -> AnyPublisher<Result<Void, CLIENT_ERROR>, Never> {
         let publisher = self.requestLogin()
-        _ = publisher.sink(
-            receiveCompletion: {print("user service login method completion with \($0)")},
+        self.loginCancellable = publisher.sink(
+            receiveCompletion: {
+                print("user service login method completion with \($0)")
+            },
             receiveValue: {
+                print("received application key:" + $0)
                 do {
                     try self.saveAuthenticationApplicationKey(key: $0)
                 } catch {

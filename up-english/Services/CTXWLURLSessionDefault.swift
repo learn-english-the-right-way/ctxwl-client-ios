@@ -16,8 +16,10 @@ class CTXWLURLSessionDefault: CTXWLURLSession {
 
     func dataTaskPublisher(for: URLRequest) -> CTXWLDataTaskPublisher {
         let publisher = URLSession(configuration: self.configuration).dataTaskPublisher(for: `for`)
+            .handleEvents(receiveOutput: { data, response in
+                  print(response)
+               })
             .tryMap { data, response -> Data in
-                print("data:", data, "response", response)
                 guard let httpResponse = response as? HTTPURLResponse else {
                     throw RESPONSE_NOT_HTTP()
                 }
@@ -28,6 +30,7 @@ class CTXWLURLSessionDefault: CTXWLURLSession {
                     throw UNKNOWN_SERVER_ERROR()
                 }
                 if let serverError = try? JSONDecoder().decode(CTXWL_SERVER_ERROR.self, from: data) {
+                    print(serverError)
                     var errorToThrow = CLIENT_ERROR()
                     for errorMapper in self.mappers {
                         if let mappedError = errorMapper.mapToClientError(from: serverError) {

@@ -102,32 +102,23 @@ class EmailVerificationModelHandlerDefault: EmailVerificationModelHandler {
             var effect = GeneralUIEffect()
             effect.action = .notice
             effect.message = "There is already a registration attempt under way"
-            DispatchQueue.main.async {
-                self.generalUIEffectManager.newEffect(effect)
-            }
+            self.generalUIEffectManager.newEffect(effect)
             return
         }
         self.requestingRegistration = true
-        DispatchQueue.main.async {
-            self.model?.registering = true
-        }
+        self.model?.registering = true
         self.registrationRequestCancellable = self.registrationService.register(confirmationCode: code)
+            .receive(on: DispatchQueue.main)
             .sink { result in
                 self.requestingRegistration = false
-                DispatchQueue.main.async {
-                    self.model?.registering = false
-                }
+                self.model?.registering = false
                 switch result {
                 case .success():
                     let pageInfo = PageInfo(page: .Home)
-                    DispatchQueue.main.async {
-                        self.router.clearStackAndGoTo(page: pageInfo)
-                    }
+                    self.router.clearStackAndGoTo(page: pageInfo)
                 case .failure(let clientError):
                     let effect = self.errorMapper.mapError(clientError)
-                    DispatchQueue.main.async {
-                        self.generalUIEffectManager.newEffect(effect)
-                    }
+                    self.generalUIEffectManager.newEffect(effect)
                 }
             }
     }

@@ -223,33 +223,24 @@ class RegistrationModelHandlerDefault: RegistrationModelHandler {
             var effect = GeneralUIEffect()
             effect.action = .notice
             effect.message = "There is a request to get verification code going on"
-            DispatchQueue.main.async {
-                self.generalUIEffectManager.newEffect(effect)
-            }
+            self.generalUIEffectManager.newEffect(effect)
             return
         }
         self.requestingConfirmationCode = true
-        DispatchQueue.main.async {
-            self.model?.requestingConfirmationCode = true
-        }
+        self.model?.requestingConfirmationCode = true
         
         self.confirmationCodeRequestCancellable = self.registrationService.requestEmailConfirmation()
+            .receive(on: DispatchQueue.main)
             .sink { result in
                 self.requestingConfirmationCode = false
-                DispatchQueue.main.async {
-                    self.model?.requestingConfirmationCode = false
-                }
+                self.model?.requestingConfirmationCode = false
                 switch result {
                 case .success():
                     let emailVerificationPage = PageInfo(page: .EmailVerification)
-                    DispatchQueue.main.async {
-                        self.router.append(page: emailVerificationPage)
-                    }
+                    self.router.append(page: emailVerificationPage)
                 case .failure(let error):
                     let effect = self.errorMapper.mapError(error)
-                    DispatchQueue.main.async {
-                        self.generalUIEffectManager.newEffect(effect)
-                    }
+                    self.generalUIEffectManager.newEffect(effect)
                 }
             }
     }

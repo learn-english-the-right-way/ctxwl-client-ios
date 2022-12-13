@@ -21,4 +21,13 @@ class ApiUrl {
     static func loadUrl() -> URL {
         return URL(string: self.baseUrl + "/load")!
     }
+    static func readingSessionUrl() -> URL {
+        return URL(string: self.baseUrl + "/reading_session")!
+    }
+    static func readingEntryUrl(applicationKey: String, session: String, serial: String) -> URL {
+        return URL(string: self.baseUrl + "/reading_history_entry/\(session)-\(serial)")!
+    }
+    static func readingLookupUrl() -> URL {
+        return URL(string: self.baseUrl + "/reading_inspired_lookup")!
+    }
 }
