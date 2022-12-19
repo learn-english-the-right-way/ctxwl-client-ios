@@ -9,7 +9,7 @@ import Foundation
 
 @available(iOS 16.0, *)
 class HomeModel: ObservableObject {
-    var url: String = ""
+    @Published var url: String = ""
     var handler: HomeModelHandler?
     func openArticle() {
         if let handler {

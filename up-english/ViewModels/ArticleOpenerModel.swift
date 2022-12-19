@@ -14,14 +14,14 @@ class ArticleOpenerModel: ObservableObject {
     @Published var fullText: String? {
         didSet {
             if let fullText {
-                showFullText = true
+//                showFullTextView = true
                 if let handler {
                     handler.readNewArticle(url: self.url, fullText: fullText)
                 }
             }
         }
     }
-    @Published var showFullText = false
+    @Published var showFullTextView = false
     
     var lastSelectedRange: NSRange? {
         didSet {
@@ -51,7 +51,7 @@ extension ArticleOpenerModel: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(url)
         hasher.combine(fullText)
-        hasher.combine(showFullText)
+        hasher.combine(showFullTextView)
     }
 }
 

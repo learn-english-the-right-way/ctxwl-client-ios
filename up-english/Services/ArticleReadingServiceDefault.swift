@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+@available(iOS 15, *)
 class ArticleReadingServiceDefault: ArticleReadingService {
     
     struct ReadingSessionDocument: Decodable {
@@ -17,12 +18,13 @@ class ArticleReadingServiceDefault: ArticleReadingService {
         var terminationTime: Int?
     }
     
+    @available(iOS 15, *)
     struct ReadingEntryRequest: Encodable {
         var session: String
         var serial: Int
         var uri: String
         var text: String
-        var creationTime =  "2022-12-12T16:52:57Z"
+        var creationTime: String = Date.now.ISO8601Format()
     }
     
     struct ReadingLookupRequest: Encodable {

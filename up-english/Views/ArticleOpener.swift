@@ -7,23 +7,36 @@
 
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct ArticleOpener: View {
     
     @ObservedObject var model: ArticleOpenerModel
     
     var body: some View {
-        CustomWebView(urlString: model.url, fullTextBinding: $model.fullText)
-            .popover(isPresented: $model.showFullText) {
+        ZStack {
+            CustomWebView(urlString: model.url, fullTextBinding: $model.fullText)
+            if model.showFullTextView == true {
                 SelectionRangeEnabledTextViewRepresentable(text: model.fullText!, range: $model.lastSelectedRange)
             }
-            .onDisappear {
-                model.finishReading()
+            if model.fullText != nil {
+                Button("Switch View") {
+                    model.showFullTextView.toggle()
+                }
+                .buttonStyle(.borderedProminent)
+                .offset(y: 350)
             }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .ignoresSafeArea()
+        .onDisappear {
+            model.finishReading()
+        }
     }
 }
 
+@available(iOS 16.0, *)
 struct ArticleOpener_Previews: PreviewProvider {
     static var previews: some View {
-        ArticleOpener(model: ArticleOpenerModel(url: "https:// www.theverge.com/2022/11/24/23445995/dish-5g-network-genesis-las-vegas-trial"))
+        ArticleOpener(model: ArticleOpenerModel(url: "https:// www.theverge.com"))
     }
 }

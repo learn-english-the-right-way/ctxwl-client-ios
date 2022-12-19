@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct SelectionRangeEnabledTextViewRepresentable: UIViewRepresentable {
     
     class Coordinator: NSObject, UITextViewDelegate {
@@ -22,6 +23,20 @@ struct SelectionRangeEnabledTextViewRepresentable: UIViewRepresentable {
                 self.rangeBinding.wrappedValue = textView.selectedRange
             }
         }
+        
+        func textView(_ textView: UITextView, editMenuForTextIn range: NSRange, suggestedActions: [UIMenuElement]) -> UIMenu? {
+            let lookupOption = UIAction(title: "Look up") { action in
+                if textView.selectedRange.length > 0 {
+                    self.rangeBinding.wrappedValue = range
+                }
+                
+                let textViewController = textView.findViewController()!
+                let dictionaryViewController = UIReferenceLibraryViewController(term: String(textView.text[Range(range, in: textView.text)!]))
+                textViewController.present(dictionaryViewController, animated: true)
+            }
+            
+            return UIMenu(children: [lookupOption])
+        }
     }
     
     var text: String
@@ -29,9 +44,12 @@ struct SelectionRangeEnabledTextViewRepresentable: UIViewRepresentable {
     @Binding var range: NSRange?
     
     func makeUIView(context: Context) -> UITextView {
-        let view = UITextView()
-        view.delegate = context.coordinator
-        return view
+        let textView = UITextView(frame: UIScreen.main.bounds)
+        let textViewController = UIViewController()
+        textViewController.view = textView
+        textView.delegate = context.coordinator
+        return textView
+        
     }
     
     func updateUIView(_ uiView: UITextView, context: Context) {
@@ -49,3 +67,14 @@ struct ArticleReaderView_Previews: PreviewProvider {
     }
 }
 
+extension UIView {
+    func findViewController() -> UIViewController? {
+        if let nextResponder = self.next as? UIViewController {
+            return nextResponder
+        } else if let nextResponder = self.next as? UIView {
+            return nextResponder.findViewController()
+        } else {
+            return nil
+        }
+    }
+}

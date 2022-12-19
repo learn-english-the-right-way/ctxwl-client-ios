@@ -55,9 +55,11 @@ struct Registration: View {
                 model.validationFailed ||
                 model.requestingConfirmationCode
             )
+            .buttonStyle(.borderedProminent)
             Button("Login Instead") {
                 model.switchToLoginPage()
             }
+            .buttonStyle(.bordered)
         }
     }
 }

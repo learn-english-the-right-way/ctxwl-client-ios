@@ -38,12 +38,16 @@ struct Login: View {
                     .padding()
             }
         }
-        Button("Login") {
-            model.login()
-        }
-        .disabled(model.loginButtonDisabled)
-        Button("Register Instead") {
-            model.switchToRegistrationPage()
+        VStack {
+            Button("Login") {
+                model.login()
+            }
+            .buttonStyle(.borderedProminent)
+            .disabled(model.loginButtonDisabled)
+            Button("Register Instead") {
+                model.switchToRegistrationPage()
+            }
+            .buttonStyle(.bordered)
         }
     }
 }

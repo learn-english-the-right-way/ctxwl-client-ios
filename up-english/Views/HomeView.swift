@@ -18,6 +18,8 @@ struct HomeView: View {
             Button("Launch") {
                 model.openArticle()
             }
+            .buttonStyle(.borderedProminent)
+            .disabled(model.url == "")
         }
     }
 }
