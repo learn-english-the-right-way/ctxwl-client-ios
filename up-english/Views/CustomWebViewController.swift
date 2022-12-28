@@ -52,6 +52,10 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        self.webView.configuration.userContentController.removeAllScriptMessageHandlers()
+    }
+    
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
 //

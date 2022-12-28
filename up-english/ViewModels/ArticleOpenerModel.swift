@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(iOS 15, *)
 class ArticleOpenerModel: ObservableObject {
     var handler: ArticleOpenerModelHandler?
     
@@ -14,7 +15,6 @@ class ArticleOpenerModel: ObservableObject {
     @Published var fullText: String? {
         didSet {
             if let fullText {
-//                showFullTextView = true
                 if let handler {
                     handler.readNewArticle(url: self.url, fullText: fullText)
                 }
@@ -37,12 +37,9 @@ class ArticleOpenerModel: ObservableObject {
     init(url: String) {
         self.url = url
     }
-    
-    func finishReading() {
-        self.handler?.finishReading()
-    }
 }
 
+@available(iOS 15, *)
 extension ArticleOpenerModel: Hashable {
     static func == (lhs: ArticleOpenerModel, rhs: ArticleOpenerModel) -> Bool {
         return true
@@ -55,18 +52,24 @@ extension ArticleOpenerModel: Hashable {
     }
 }
 
+@available(iOS 15, *)
 class ArticleOpenerModelHandler {
     private var articleReadingService: ArticleReadingService
+    private var article: Article?
     init(articleReadingService: ArticleReadingService) {
         self.articleReadingService = articleReadingService
     }
     func readNewArticle(url: String, fullText: String) {
-        self.articleReadingService.readNewArticle(url: url, fullText: fullText)
+        self.article = try? self.articleReadingService.readNewArticle(url: url, fullText: fullText)
+        if let article {
+            article.sync()
+        }
     }
     func addLookup(range: NSRange) {
-        self.articleReadingService.addLookup(range: range)
+        if let article {
+            let selection = article.addSelection(range: Range(range, in: article.fullText)!)
+            selection.sync()
+        }
     }
-    func finishReading() {
-        self.articleReadingService.finishReading()
-    }
+
 }

@@ -189,7 +189,7 @@ protocol RegistrationModelHandler: AnyObject {
 
 @available(iOS 16.0, *)
 class RegistrationModelHandlerDefault: RegistrationModelHandler {
-    var model: RegistrationModel?
+    weak var model: RegistrationModel?
     private var userService: UserService
     private var registrationService: RegistrationService
     private var router: Router

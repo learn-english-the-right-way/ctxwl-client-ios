@@ -7,8 +7,9 @@
 
 import Foundation
 
-protocol ArticleReadingService {
-    func readNewArticle(url: String, fullText: String) -> Void
-    func addLookup(range: NSRange) -> Void
-    func finishReading() -> Void
+@available(iOS 15, *)
+protocol ArticleReadingService: SessionConnectionService, AnyObject {
+    func removeArticleHolder(key: Int) -> Void
+    func switchToWeakArticle(entrySerial: Int) -> Void
+    func readNewArticle(url: String, fullText: String) throws -> Article
 }

@@ -28,9 +28,6 @@ struct ArticleOpener: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea()
-        .onDisappear {
-            model.finishReading()
-        }
     }
 }
 

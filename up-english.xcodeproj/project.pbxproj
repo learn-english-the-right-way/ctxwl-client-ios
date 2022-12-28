@@ -12,7 +12,6 @@
 		5EF9CC1928EC7A5B00C40D86 /* GeneralUIEffectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9CC1828EC7A5B00C40D86 /* GeneralUIEffectManager.swift */; };
 		5EF9CC5128EDD01E00C40D86 /* ServiceInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */; };
 		9B8AE4E92792520000489A7B /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4E82792520000489A7B /* ListItemView.swift */; };
-		9B8AE4EB2793F51100489A7B /* ArticleListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4EA2793F51100489A7B /* ArticleListService.swift */; };
 		9B8AE4ED2793F55000489A7B /* ArticleListServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4EC2793F55000489A7B /* ArticleListServiceDefault.swift */; };
 		9B8AE4EF2793F56E00489A7B /* ArticleListModelDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4EE2793F56E00489A7B /* ArticleListModelDefault.swift */; };
 		9B8AE4F12797BBA500489A7B /* ArticleListServiceMockup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4F02797BBA500489A7B /* ArticleListServiceMockup.swift */; };
@@ -43,6 +42,9 @@
 		B04B64D926A52A8600D0B954 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04B64D826A52A8600D0B954 /* LoginModel.swift */; };
 		B0578B41265EA3F400A1B21F /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0578B3F265EA3F400A1B21F /* User.xcdatamodeld */; };
 		B05AEDD328A791C9005BC3BB /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05AEDD228A791C9005BC3BB /* PageInfo.swift */; };
+		B069DD332958A9C100639BE8 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B069DD322958A9C100639BE8 /* Selection.swift */; };
+		B069DD352958A9CC00639BE8 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = B069DD342958A9CC00639BE8 /* Article.swift */; };
+		B069DD372959385600639BE8 /* READING_SESSION_MISSING.swift in Sources */ = {isa = PBXBuildFile; fileRef = B069DD362959385600639BE8 /* READING_SESSION_MISSING.swift */; };
 		B06F3F9728A78919007CF774 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06F3F9628A78919007CF774 /* Router.swift */; };
 		B07EA2CF2871A7BD008CA3C9 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B07EA2CD2871A7BD008CA3C9 /* Model.xcdatamodeld */; };
 		B084B8F32811B343005B20B0 /* CLIENT_ERROR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B084B8F22811B343005B20B0 /* CLIENT_ERROR.swift */; };
@@ -115,7 +117,6 @@
 		5EF9CC1828EC7A5B00C40D86 /* GeneralUIEffectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralUIEffectManager.swift; sourceTree = "<group>"; };
 		5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInitializer.swift; sourceTree = "<group>"; };
 		9B8AE4E82792520000489A7B /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
-		9B8AE4EA2793F51100489A7B /* ArticleListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListService.swift; sourceTree = "<group>"; };
 		9B8AE4EC2793F55000489A7B /* ArticleListServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListServiceDefault.swift; sourceTree = "<group>"; };
 		9B8AE4EE2793F56E00489A7B /* ArticleListModelDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListModelDefault.swift; sourceTree = "<group>"; };
 		9B8AE4F02797BBA500489A7B /* ArticleListServiceMockup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListServiceMockup.swift; sourceTree = "<group>"; };
@@ -146,6 +147,9 @@
 		B04B64D826A52A8600D0B954 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		B0578B40265EA3F400A1B21F /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
 		B05AEDD228A791C9005BC3BB /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
+		B069DD322958A9C100639BE8 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
+		B069DD342958A9CC00639BE8 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		B069DD362959385600639BE8 /* READING_SESSION_MISSING.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = READING_SESSION_MISSING.swift; sourceTree = "<group>"; };
 		B06F3F9628A78919007CF774 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		B07EA2CE2871A7BD008CA3C9 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		B084B8F22811B343005B20B0 /* CLIENT_ERROR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLIENT_ERROR.swift; sourceTree = "<group>"; };
@@ -357,6 +361,8 @@
 				B008A1A02830BDA7000EEF09 /* CTXWLURLSessionDefault.swift */,
 				B0C75D8B293C779800A2F405 /* ArticleReadingServiceDefault.swift */,
 				B0C75D8D293D059600A2F405 /* SessionConnectionService.swift */,
+				B069DD322958A9C100639BE8 /* Selection.swift */,
+				B069DD342958A9CC00639BE8 /* Article.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 				B007246628D6C5080018252C /* KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY.swift */,
 				B007246828E04AEA0018252C /* CREDENTIALS_EMPTY.swift */,
 				5EF847F12923E7FD00E53FFE /* CONNECTION_FAILED.swift */,
+				B069DD362959385600639BE8 /* READING_SESSION_MISSING.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -402,7 +409,6 @@
 			children = (
 				B0C7CC0A265798E3003832EE /* UserService.swift */,
 				B0A89A5E264A6CAD00862E26 /* RegistrationService.swift */,
-				9B8AE4EA2793F51100489A7B /* ArticleListService.swift */,
 				B0C75D89293C518C00A2F405 /* ArticleReadingService.swift */,
 			);
 			path = ServiceInterfaces;
@@ -570,6 +576,7 @@
 				B08D9A3728BF9111006B15FE /* KEYCHAIN_CANNOT_SAVE_CREDENTIAL.swift in Sources */,
 				B0C75D942946081800A2F405 /* HomeModel.swift in Sources */,
 				B08D9A3928BF914A006B15FE /* KEYCHAIN_CREDENTIAL_ERROR.swift in Sources */,
+				B069DD352958A9CC00639BE8 /* Article.swift in Sources */,
 				B0943AEC268EC963006051E0 /* EmailVerificationModel.swift in Sources */,
 				B0C75D8E293D059600A2F405 /* SessionConnectionService.swift in Sources */,
 				B0C4EDC3286EB05400A616EB /* ENCODING_FAILED.swift in Sources */,
@@ -582,6 +589,7 @@
 				B08962F5280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift in Sources */,
 				B02B300A28649DA40075CE4F /* SESSION_AUTHENTICATION_INVALID_CREDENTIAL.swift in Sources */,
 				B0E5491E2815B73C00934E7B /* ErrorMapper.swift in Sources */,
+				B069DD372959385600639BE8 /* READING_SESSION_MISSING.swift in Sources */,
 				B0C75D92294607E500A2F405 /* HomeView.swift in Sources */,
 				B0A89A5F264A6CAD00862E26 /* RegistrationService.swift in Sources */,
 				B0C7CC0F265BA3B1003832EE /* UserServiceDefault.swift in Sources */,
@@ -593,6 +601,7 @@
 				B09D06CE263ECB8900246D90 /* Registration.swift in Sources */,
 				B02B2FFC286213460075CE4F /* API_ERROR.swift in Sources */,
 				5EF9CC1928EC7A5B00C40D86 /* GeneralUIEffectManager.swift in Sources */,
+				B069DD332958A9C100639BE8 /* Selection.swift in Sources */,
 				B008A1A12830BDA7000EEF09 /* CTXWLURLSessionDefault.swift in Sources */,
 				B0A89A61264A713200862E26 /* RegistrationStatus.swift in Sources */,
 				B08962F12809C6D800B95D47 /* CTXWLURLSession.swift in Sources */,
@@ -605,7 +614,6 @@
 				B06F3F9728A78919007CF774 /* Router.swift in Sources */,
 				5EF847F22923E7FD00E53FFE /* CONNECTION_FAILED.swift in Sources */,
 				B02B300C28649DEA0075CE4F /* SESSION_AUTHENTICATION_UNSUPPORTED_AUTHENTICATION_METHOD.swift in Sources */,
-				9B8AE4EB2793F51100489A7B /* ArticleListService.swift in Sources */,
 				B02B301028649E3B0075CE4F /* API_DATA_ERROR.swift in Sources */,
 				B07EA2CF2871A7BD008CA3C9 /* Model.xcdatamodeld in Sources */,
 				9B8AE4E92792520000489A7B /* ListItemView.swift in Sources */,

@@ -95,12 +95,10 @@ extension LoginModel: Hashable {
     }
     
     func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(self))
         hasher.combine(email)
         hasher.combine(password)
         hasher.combine(loginUnderway)
-        if let handler {
-            hasher.combine(ObjectIdentifier(handler))
-        }
     }
 }
 
@@ -114,7 +112,7 @@ protocol LoginModelHandler: AnyObject {
 
 @available(iOS 16.0, *)
 class LoginModelHandlerDefault: LoginModelHandler {
-    var model: LoginModel?
+    weak var model: LoginModel?
     private var userService: UserService
     private var router: Router
     private var errorMapper: UIErrorMapper
@@ -124,14 +122,13 @@ class LoginModelHandlerDefault: LoginModelHandler {
     
     var loginRequestCancellable: AnyCancellable?
     
-    init(model: LoginModel, userService: UserService, router: Router, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager, requestingLogin: Bool = false, loginRequestCancellable: AnyCancellable? = nil) {
+    init(model: LoginModel, userService: UserService, router: Router, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager, requestingLogin: Bool = false) {
         self.model = model
         self.userService = userService
         self.router = router
         self.errorMapper = errorMapper
         self.generalUIEffectManager = generalUIEffectManager
         self.requestingLogin = requestingLogin
-        self.loginRequestCancellable = loginRequestCancellable
     }
     
     func requestLogin(username: String, password: String) -> Void {
@@ -152,11 +149,12 @@ class LoginModelHandlerDefault: LoginModelHandler {
         }
         self.loginRequestCancellable = self.userService.login()
             .receive(on: DispatchQueue.main)
-            .sink { result in
+            .sink(receiveCompletion: { completion in
+                self.loginRequestCancellable = nil
+            }) { result in
                 switch result {
                 case .success():
-                    //TODO: add logic to navigate to homepage
-                    self.router.append(page: PageInfo(page: .Home))
+                    self.router.clearStackAndGoTo(page: PageInfo(page: .Home))
                 case .failure(let clientError):
                     self.generalUIEffectManager.newEffect(self.errorMapper.mapError(clientError))
                 }
@@ -164,6 +162,6 @@ class LoginModelHandlerDefault: LoginModelHandler {
     }
     
     func switchToRegistration(_ registrationPageInfo: PageInfo) {
-        self.router.replaceLastPageWith(registrationPageInfo)
+        self.router.clearStackAndGoTo(page: registrationPageInfo)
     }
 }

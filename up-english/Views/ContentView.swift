@@ -20,21 +20,26 @@ struct ContentView: View {
             EmptyView()
                 .navigationDestination(for: LoginModel.self) { model in
                     Login(model: model)
+                        .id(model)
                         .navigationBarBackButtonHidden()
                 }
                 .navigationDestination(for: RegistrationModel.self) { model in
                     Registration(model: model)
+//                        .id(model)
                         .navigationBarBackButtonHidden()
                 }
                 .navigationDestination(for: EmailVerificationModel.self) {model in
                     EmailVerification(model: model)
+                        .id(model)
                 }
                 .navigationDestination(for: HomeModel.self) {model in
                     HomeView(model: model)
+                        .id(model)
                         .navigationBarBackButtonHidden()
                 }
                 .navigationDestination(for: ArticleOpenerModel.self) { model in
                     ArticleOpener(model: model)
+                        .id(model)
                 }
         }
         .noticeBanner(self.generalUIEffetManager)

@@ -74,6 +74,7 @@ class Router: ObservableObject {
         path.removeLast(path.count)
         let model = createPageModel(pageInfo)
         path.append(model)
+        print(path.count)
     }
     func append(page pageInfo: PageInfo) {
         let model = createPageModel(pageInfo)
@@ -82,6 +83,9 @@ class Router: ObservableObject {
     
     func replaceLastPageWith(_ pageInfo: PageInfo) {
         path.removeLast()
+        while !path.isEmpty {
+            path.removeLast()
+        }
         let model = createPageModel(pageInfo)
         path.append(model)
     }
@@ -89,12 +93,5 @@ class Router: ObservableObject {
     func back() {
         path.removeLast(1)
     }
-    
-//    func onHomepageAppear() {
-//        if self.services.userService.applicationKey == nil {
-//            let loginModel = self.createPageModel(page: .Login)
-//            path.append(loginModel)
-//        }
-//    }
 }
 

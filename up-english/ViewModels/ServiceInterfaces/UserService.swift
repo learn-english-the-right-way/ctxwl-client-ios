@@ -13,15 +13,11 @@ struct Credential {
     var password: String
 }
 
-protocol UserService {
-    
+protocol UserService: SessionConnectionService {
     var credential: Credential? {get}
-    var applicationKey: String? {get}
-    var authenticationKeyAccquired: AnyPublisher<String, Never> {get}
     var errorsPublisher: AnyPublisher<CLIENT_ERROR, Never> {get}
     func saveCredential(username: String, password: String) throws -> Void
     func saveAuthenticationApplicationKey(key: String) throws -> Void
-    func sessionProtectedDataTaskPublisher(request: URLRequest) -> AnyPublisher<Data, CLIENT_ERROR>
     func login() -> AnyPublisher<Result<Void, CLIENT_ERROR>, Never>
 }
 

@@ -8,6 +8,8 @@
 import Foundation
 import Combine
 
-protocol SessionConnectionService {
+protocol SessionConnectionService: AnyObject {
+    var applicationKey: String? {get}
+    var authenticationKeyAccquired: AnyPublisher<String, Never> {get}
     func sessionProtectedDataTaskPublisher(request: URLRequest) -> AnyPublisher<Data, CLIENT_ERROR>
 }
