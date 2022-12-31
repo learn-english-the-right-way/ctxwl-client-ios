@@ -92,6 +92,7 @@
 		B0E2540026EDDCBA00D6FDF4 /* ArticleListItemModelDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E253FF26EDDCBA00D6FDF4 /* ArticleListItemModelDefault.swift */; };
 		B0E5491E2815B73C00934E7B /* ErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5491D2815B73C00934E7B /* ErrorMapper.swift */; };
 		B0E549202818324C00934E7B /* ServerErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5491F2818324C00934E7B /* ServerErrorMapper.swift */; };
+		B0FE9683295FC99500F2FAEF /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FE9682295FC99500F2FAEF /* ViewModelFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +203,7 @@
 		B0E253FF26EDDCBA00D6FDF4 /* ArticleListItemModelDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListItemModelDefault.swift; sourceTree = "<group>"; };
 		B0E5491D2815B73C00934E7B /* ErrorMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMapper.swift; sourceTree = "<group>"; };
 		B0E5491F2818324C00934E7B /* ServerErrorMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorMapper.swift; sourceTree = "<group>"; };
+		B0FE9682295FC99500F2FAEF /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +344,7 @@
 				5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */,
 				B08AB6DF2929C21300968BA5 /* ArticleOpenerModel.swift */,
 				B0C75D932946081800A2F405 /* HomeModel.swift */,
+				B0FE9682295FC99500F2FAEF /* ViewModelFactory.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				5EF9CC1928EC7A5B00C40D86 /* GeneralUIEffectManager.swift in Sources */,
 				B069DD332958A9C100639BE8 /* Selection.swift in Sources */,
 				B008A1A12830BDA7000EEF09 /* CTXWLURLSessionDefault.swift in Sources */,
+				B0FE9683295FC99500F2FAEF /* ViewModelFactory.swift in Sources */,
 				B0A89A61264A713200862E26 /* RegistrationStatus.swift in Sources */,
 				B08962F12809C6D800B95D47 /* CTXWLURLSession.swift in Sources */,
 				B0C7CC0B265798E3003832EE /* UserService.swift in Sources */,

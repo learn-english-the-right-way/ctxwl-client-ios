@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class UIErrorMapper: ObservableObject {
+struct UIErrorMapper {
     func mapError(_ clientError: CLIENT_ERROR) -> GeneralUIEffect {
         var exception = GeneralUIEffect()
         if clientError is SESSION_AUTHENTICATION_INVALID_CREDENTIAL {
