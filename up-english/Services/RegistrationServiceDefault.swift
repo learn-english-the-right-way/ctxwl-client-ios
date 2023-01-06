@@ -36,6 +36,8 @@ class RegistrationServiceDefault: RegistrationService {
     
     private var errorsSubject: PassthroughSubject<CLIENT_ERROR, Never>
     
+    private var _requireVerification = CurrentValueSubject<Bool, Never>(false)
+    
     init(ctxwlUrlSession: CTXWLURLSession, userService: UserService) {
         self.ctxwlUrlSession = ctxwlUrlSession
         self.userService = userService
@@ -43,6 +45,10 @@ class RegistrationServiceDefault: RegistrationService {
     }
         
     private var applicationKey: String?
+    
+    var requireVerification: AnyPublisher<Bool, Never> {
+        return _requireVerification.receive(on: DispatchQueue.main).eraseToAnyPublisher()
+    }
     
     var errorsPublisher: AnyPublisher<CLIENT_ERROR, Never> {
         get {
@@ -102,7 +108,14 @@ class RegistrationServiceDefault: RegistrationService {
 //         make the request happen and store the application key
         self.saveKeyCancellable = publisher
             .sink(
-                receiveCompletion: { _ in },
+                receiveCompletion: { status in
+                    switch status {
+                    case .finished:
+                        self._requireVerification.send(true)
+                    case .failure(_):
+                        self._requireVerification.send(false)
+                    }
+                },
                 receiveValue: { confirmationResponse in
                     self.applicationKey = confirmationResponse
             })
@@ -146,7 +159,8 @@ class RegistrationServiceDefault: RegistrationService {
         
         // subscribe to the publisher and save the application key to user service
         self.registerSaveApplicationKeyCancellable = publisher.sink(
-            receiveCompletion: {_ in},
+            receiveCompletion: {status in
+            },
             receiveValue: {value in
                 do {
                     try self.userService.saveAuthenticationApplicationKey(key: value)

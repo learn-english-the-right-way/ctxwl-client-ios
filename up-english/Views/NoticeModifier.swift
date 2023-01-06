@@ -46,18 +46,19 @@ extension View {
 
 @available(iOS 15.0, *)
 struct NoticeBanner_Previews: PreviewProvider {
-    struct Model {
-        var realModel: GeneralUIEffectManager
-        init() {
-            self.realModel = GeneralUIEffectManager()
-            self.realModel.noticeContent = "test notice content"
-            self.realModel.showNotice = true
-        }
-    }
+//    struct Model {
+//        var realModel: GeneralUIEffectManager
+//        init() {
+//            self.realModel = GeneralUIEffectManager.shared
+//            self.realModel.noticeContent = "test notice content"
+//            self.realModel.showNotice = true
+//        }
+//    }
     static var previews: some View {
-        VStack {
-            Text("test")
-        }
-        .noticeBanner(Model().realModel)
+        EmptyView()
+//        VStack {
+//            Text("test")
+//        }
+//        .noticeBanner(Model().realModel)
     }
 }

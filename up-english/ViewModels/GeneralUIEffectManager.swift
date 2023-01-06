@@ -9,10 +9,6 @@ import Foundation
 
 class GeneralUIEffectManager: ObservableObject {
     
-    static let shared = GeneralUIEffect()
-    
-    private init() {}
-    
     @Published var showNotice: Bool = false
     
     @Published var noticeContent: String = ""

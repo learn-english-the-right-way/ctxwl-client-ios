@@ -12,6 +12,7 @@ protocol RegistrationService {
 //    var errorsPublisher: AnyPublisher<CLIENT_ERROR, Never> {get}
     func requestEmailConfirmation() -> AnyPublisher<Result<Void, CLIENT_ERROR>, Never>
     func register(confirmationCode: String) -> AnyPublisher<Result<Void, CLIENT_ERROR>, Never>
+    var requireVerification: AnyPublisher<Bool, Never> {get}
     func currentRegistrationStatus() -> RegistrationStatus
     func resetRegistrationStatus() -> Void
 }

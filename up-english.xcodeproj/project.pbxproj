@@ -93,6 +93,8 @@
 		B0E5491E2815B73C00934E7B /* ErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5491D2815B73C00934E7B /* ErrorMapper.swift */; };
 		B0E549202818324C00934E7B /* ServerErrorMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5491F2818324C00934E7B /* ServerErrorMapper.swift */; };
 		B0FE9683295FC99500F2FAEF /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FE9682295FC99500F2FAEF /* ViewModelFactory.swift */; };
+		B0FE96852960158300F2FAEF /* LoginOrSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FE96842960158300F2FAEF /* LoginOrSignupView.swift */; };
+		B0FE9689296016E200F2FAEF /* RegistrationAndVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FE9688296016E200F2FAEF /* RegistrationAndVerificationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,6 +206,8 @@
 		B0E5491D2815B73C00934E7B /* ErrorMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMapper.swift; sourceTree = "<group>"; };
 		B0E5491F2818324C00934E7B /* ServerErrorMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerErrorMapper.swift; sourceTree = "<group>"; };
 		B0FE9682295FC99500F2FAEF /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
+		B0FE96842960158300F2FAEF /* LoginOrSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOrSignupView.swift; sourceTree = "<group>"; };
+		B0FE9688296016E200F2FAEF /* RegistrationAndVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAndVerificationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +329,8 @@
 				B0C75D83293B4E4900A2F405 /* CustomWebViewController.swift */,
 				B0C75D87293B4ED700A2F405 /* SelectionRangeEnabledTextViewRepresentable.swift */,
 				B0C75D91294607E500A2F405 /* HomeView.swift */,
+				B0FE96842960158300F2FAEF /* LoginOrSignupView.swift */,
+				B0FE9688296016E200F2FAEF /* RegistrationAndVerificationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -599,6 +605,7 @@
 				B00028DE26FB7D56005D68D2 /* ScrollViewRepresentable.swift in Sources */,
 				B08AB6DE2929C17000968BA5 /* ArticleOpener.swift in Sources */,
 				B0C7CC0926568E1D003832EE /* ApiUrl.swift in Sources */,
+				B0FE9689296016E200F2FAEF /* RegistrationAndVerificationView.swift in Sources */,
 				B02B300628649D300075CE4F /* EMAIL_REGISTRATION_INVALID_CONFIRMATION_CODE.swift in Sources */,
 				B0CF55012870542C00C4FD92 /* UIErrorMapper.swift in Sources */,
 				B09D06CE263ECB8900246D90 /* Registration.swift in Sources */,
@@ -613,6 +620,7 @@
 				B02B3000286214F70075CE4F /* EMAIL_REGISTRATION_ERROR.swift in Sources */,
 				B026B8F92813EB410014666D /* CANNOT_DECODE_RESPONSE.swift in Sources */,
 				B084B8F32811B343005B20B0 /* CLIENT_ERROR.swift in Sources */,
+				B0FE96852960158300F2FAEF /* LoginOrSignupView.swift in Sources */,
 				B026F2482883B2BD00385DC2 /* KEYCHAIN_APPLICATION_KEY_NOT_FOUND.swift in Sources */,
 				B04B64D926A52A8600D0B954 /* LoginModel.swift in Sources */,
 				B06F3F9728A78919007CF774 /* Router.swift in Sources */,

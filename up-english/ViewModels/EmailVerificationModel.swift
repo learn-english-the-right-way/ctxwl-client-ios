@@ -11,7 +11,7 @@ import Combine
 @available(iOS 16.0, *)
 class EmailVerificationModel: ObservableObject {
 
-    private var handler: EmailVerificationModelHandler?
+    private var handler: EmailVerificationModelDelegate?
     
     @Published var confirmationCode = "" {
         didSet(value) {
@@ -40,7 +40,7 @@ class EmailVerificationModel: ObservableObject {
         // TODO: add go back logic
     }
     
-    func setHandler(_ handler: EmailVerificationModelHandler) {
+    func setHandler(_ handler: EmailVerificationModelDelegate) {
         self.handler = handler
     }
     
@@ -72,28 +72,25 @@ extension EmailVerificationModel: Hashable {
 }
 
 @available(iOS 16.0, *)
-protocol EmailVerificationModelHandler: AnyObject {
+protocol EmailVerificationModelDelegate: AnyObject {
     var model: EmailVerificationModel? {get set}
     var registrationRequestCancellable: AnyCancellable? {get}
     func register(code: String) -> Void
 }
 
 @available(iOS 16.0, *)
-class EmailVerificationModelHandlerDefault: EmailVerificationModelHandler {
-    var model: EmailVerificationModel?
+class EmailVerificationModelHandlerDefault: EmailVerificationModelDelegate {
+    weak var model: EmailVerificationModel?
     private var registrationService: RegistrationService
-    private var router: Router
-    private var errorMapper: UIErrorMapper
+    private var errorMapper = UIErrorMapper()
     private var generalUIEffectManager: GeneralUIEffectManager
     
     private var requestingRegistration = false
     var registrationRequestCancellable: AnyCancellable?
     
-    init(model: EmailVerificationModel, registrationService: RegistrationService, router: Router, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager) {
+    init(model: EmailVerificationModel, registrationService: RegistrationService, generalUIEffectManager: GeneralUIEffectManager) {
         self.model = model
         self.registrationService = registrationService
-        self.router = router
-        self.errorMapper = errorMapper
         self.generalUIEffectManager = generalUIEffectManager
     }
     
@@ -115,7 +112,6 @@ class EmailVerificationModelHandlerDefault: EmailVerificationModelHandler {
                 switch result {
                 case .success():
                     let pageInfo = PageInfo(page: .Home)
-                    self.router.clearStackAndGoTo(page: pageInfo)
                 case .failure(let clientError):
                     let effect = self.errorMapper.mapError(clientError)
                     self.generalUIEffectManager.newEffect(effect)

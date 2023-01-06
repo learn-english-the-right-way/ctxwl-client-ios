@@ -36,6 +36,10 @@ class ArticleReadingServiceDefault: ArticleReadingService, SessionConnectionServ
     
     private var getSessionRequestCancellable: AnyCancellable?
     
+    var loggedIn: AnyPublisher<Bool, Never> {
+        return self.sessionConnectionService.loggedIn
+    }
+    
     init(sessionConnectionService: SessionConnectionService) {
         self.sessionConnectionService = sessionConnectionService
         var request = URLRequest(url: ApiUrl.readingSessionUrl())

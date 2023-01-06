@@ -12,7 +12,7 @@ import Combine
 @available(iOS 16.0, *)
 class RegistrationModel: ObservableObject {
 
-    private var handler: RegistrationModelHandler?
+    private var handler: RegistrationModelDelegate?
         
     var confirmationCode = ""
     
@@ -138,7 +138,7 @@ class RegistrationModel: ObservableObject {
         handler.getRegistrationEmailVerification()
     }
     
-    func setHandler(handler: RegistrationModelHandler) {
+    func setHandler(handler: RegistrationModelDelegate) {
         self.handler = handler
     }
     
@@ -179,7 +179,7 @@ extension RegistrationModel: Hashable {
 }
 
 @available(iOS 16.0, *)
-protocol RegistrationModelHandler: AnyObject {
+protocol RegistrationModelDelegate: AnyObject {
     var model: RegistrationModel? {get set}
     var confirmationCodeRequestCancellable: AnyCancellable? {get}
     func saveCredential(username: String, password: String) throws -> Void
@@ -188,23 +188,20 @@ protocol RegistrationModelHandler: AnyObject {
 }
 
 @available(iOS 16.0, *)
-class RegistrationModelHandlerDefault: RegistrationModelHandler {
+class RegistrationModelHandlerDefault: RegistrationModelDelegate {
     weak var model: RegistrationModel?
     private var userService: UserService
     private var registrationService: RegistrationService
-    private var router: Router
-    private var errorMapper: UIErrorMapper
+    private var errorMapper = UIErrorMapper()
     private var generalUIEffectManager: GeneralUIEffectManager
     
     private var requestingConfirmationCode = false
     var confirmationCodeRequestCancellable: AnyCancellable?
     
-    init(model: RegistrationModel, userService: UserService, registrationService: RegistrationService, router: Router, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager) {
+    init(model: RegistrationModel, userService: UserService, registrationService: RegistrationService, generalUIEffectManager: GeneralUIEffectManager) {
         self.model = model
         self.userService = userService
         self.registrationService = registrationService
-        self.router = router
-        self.errorMapper = errorMapper
         self.generalUIEffectManager = generalUIEffectManager
     }
     
@@ -215,7 +212,6 @@ class RegistrationModelHandlerDefault: RegistrationModelHandler {
     func switchToLoginPage(username: String, password: String) {
         var pageInfo = PageInfo(page: .Login)
         pageInfo.loginPageContent = LoginPageContent(email: username, password: password)
-        self.router.clearStackAndGoTo(page: pageInfo)
     }
     
     func getRegistrationEmailVerification() -> Void {
@@ -236,8 +232,7 @@ class RegistrationModelHandlerDefault: RegistrationModelHandler {
                 self.model?.requestingConfirmationCode = false
                 switch result {
                 case .success():
-                    let emailVerificationPage = PageInfo(page: .EmailVerification)
-                    self.router.append(page: emailVerificationPage)
+                    print("success")
                 case .failure(let error):
                     let effect = self.errorMapper.mapError(error)
                     self.generalUIEffectManager.newEffect(effect)

@@ -8,34 +8,41 @@
 import Foundation
 
 @available(iOS 16.0, *)
-struct ViewModelFactory {
-    private var router: Router
+class ViewModelFactory: ObservableObject {
     private var serviceRepository: ServiceInitializer
-    private var generalUIEffectManager: GeneralUIEffectManager
-    private var uiErrorMapper: UIErrorMapper
-    init(services: ServiceInitializer, generalUIEffectManager: GeneralUIEffectManager, uiErrorMapper: UIErrorMapper, router: Router) {
-        self.serviceRepository = services
-        self.generalUIEffectManager = generalUIEffectManager
-        self.uiErrorMapper = uiErrorMapper
-        self.router = router
+    private var generalUIEffectManager = GeneralUIEffectManager()
+    private var uiErrorMapper = UIErrorMapper()
+    init(serviceRepository: ServiceInitializer) {
+        self.serviceRepository = serviceRepository
     }
-    func createRegistrationViewModel(_ info: RegistrationPageContent) -> RegistrationModel {
+    func createRegistrationViewModel() -> RegistrationModel {
         let model = RegistrationModel()
-        model.email = info.email
-        model.password1 = info.password
-        let handler = RegistrationModelHandlerDefault(model: model, userService: serviceRepository.userService, registrationService: serviceRepository.registrationService, router: router, errorMapper: uiErrorMapper, generalUIEffectManager: self.generalUIEffectManager)
+        let handler = RegistrationModelHandlerDefault(model: model, userService: serviceRepository.userService, registrationService: serviceRepository.registrationService, generalUIEffectManager: generalUIEffectManager)
         model.setHandler(handler: handler)
         return model
     }
     func createLoginViewModel() -> LoginModel {
         let model = LoginModel()
-        model.email = pageInfo.loginPageContent?.email ?? ""
-        model.password = pageInfo.loginPageContent?.password ?? ""
-        let handler = LoginModelHandlerDefault(model: model, userService: services.userService, router: self, errorMapper: uiErrorMapper, generalUIEffectManager: generalUIEffectManager)
+        let handler = LoginModelHandlerDefault(userService: serviceRepository.userService, generalUIEffectManager: generalUIEffectManager)
         model.setHandler(handler)
         return model
     }
-    func createEmailVerificationModel() -> EmailVerificationModel
-    func createHomeModel() -> HomeModel
-    func createArticleOpenerModel() -> ArticleOpenerModel
+    func createEmailVerificationModel() -> EmailVerificationModel {
+        let model = EmailVerificationModel()
+        let handler = EmailVerificationModelHandlerDefault(model: model, registrationService: serviceRepository.registrationService, generalUIEffectManager: generalUIEffectManager)
+        model.setHandler(handler)
+        return model
+    }
+    func createHomeModel() -> HomeModel {
+        return HomeModel()
+    }
+    func createArticleOpenerModel(url: String) -> ArticleOpenerModel {
+        let model = ArticleOpenerModel(url: url)
+        if serviceRepository.articleReadingService == nil {
+            serviceRepository.initializeArticleReadingService()
+        }
+        let handler = ArticleOpenerModelHandler(articleReadingService: serviceRepository.articleReadingService!)
+        model.handler = handler
+        return model
+    }
 }

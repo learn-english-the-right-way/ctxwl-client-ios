@@ -12,7 +12,7 @@ import Peppermint
 @available(iOS 16.0, *)
 class LoginModel: ObservableObject {
     
-    private var handler: LoginModelHandler?
+    private var handler: LoginModelDelegate?
     
     @Published var email: String = "" {
         didSet {
@@ -57,14 +57,13 @@ class LoginModel: ObservableObject {
         }
     }
         
-    func switchToRegistrationPage() {
-        var pageInfo = PageInfo(page: .Registration)
-        pageInfo.registrationPageContent = RegistrationPageContent(email: self.email, password: self.password)
-        guard let handler = self.handler else {
-            return
-        }
-        handler.switchToRegistration(pageInfo)
-    }
+//    func switchToRegistrationPage() {
+//        var pageInfo = PageInfo(page: .Registration)
+//        pageInfo.registrationPageContent = RegistrationPageContent(email: self.email, password: self.password)
+//        guard let handler = self.handler else {
+//            return
+//        }
+//    }
     
     func login() -> Void {
         guard let handler = self.handler else {
@@ -73,12 +72,11 @@ class LoginModel: ObservableObject {
         handler.requestLogin(username: self.email, password: self.password)
     }
     
-    func setHandler(_ handler: LoginModelHandler) {
+    func setHandler(_ handler: LoginModelDelegate) {
         self.handler = handler
     }
     
     func cleanUp() {
-        self.handler?.model = nil
         self.handler?.loginRequestCancellable?.cancel()
         self.handler = nil
     }
@@ -103,32 +101,24 @@ extension LoginModel: Hashable {
 }
 
 @available(iOS 16.0, *)
-protocol LoginModelHandler: AnyObject {
-    var model: LoginModel? {get set}
+protocol LoginModelDelegate: AnyObject {
     var loginRequestCancellable: AnyCancellable? {get}
     func requestLogin(username: String, password: String) -> Void
-    func switchToRegistration(_ registrationPageInfo: PageInfo) -> Void
 }
 
 @available(iOS 16.0, *)
-class LoginModelHandlerDefault: LoginModelHandler {
-    weak var model: LoginModel?
+class LoginModelHandlerDefault: LoginModelDelegate {
     private var userService: UserService
-    private var router: Router
-    private var errorMapper: UIErrorMapper
+    private var errorMapper = UIErrorMapper()
     private var generalUIEffectManager: GeneralUIEffectManager
     
     private var requestingLogin = false
     
     var loginRequestCancellable: AnyCancellable?
     
-    init(model: LoginModel, userService: UserService, router: Router, errorMapper: UIErrorMapper, generalUIEffectManager: GeneralUIEffectManager, requestingLogin: Bool = false) {
-        self.model = model
+    init(userService: UserService, generalUIEffectManager: GeneralUIEffectManager) {
         self.userService = userService
-        self.router = router
-        self.errorMapper = errorMapper
         self.generalUIEffectManager = generalUIEffectManager
-        self.requestingLogin = requestingLogin
     }
     
     func requestLogin(username: String, password: String) -> Void {
@@ -154,14 +144,11 @@ class LoginModelHandlerDefault: LoginModelHandler {
             }) { result in
                 switch result {
                 case .success():
-                    self.router.clearStackAndGoTo(page: PageInfo(page: .Home))
+                    print("success")
+//                    self.router.clearStackAndGoTo(page: PageInfo(page: .Home))
                 case .failure(let clientError):
                     self.generalUIEffectManager.newEffect(self.errorMapper.mapError(clientError))
                 }
             }
-    }
-    
-    func switchToRegistration(_ registrationPageInfo: PageInfo) {
-        self.router.clearStackAndGoTo(page: registrationPageInfo)
     }
 }

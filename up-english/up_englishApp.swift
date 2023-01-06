@@ -7,34 +7,29 @@
 
 import SwiftUI
 
-let server = "ctxwl"
-
 @available(iOS 16.0, *)
 @main
 struct up_englishApp: App {
     
-    var initializer: ServiceInitializer
+    var services = ServiceInitializer()
     
-    var router: Router
+//    var router: Router
+            
+    var uiErrorMapper = UIErrorMapper()
     
-    var generalUIEffectManager: GeneralUIEffectManager
-        
-    var uiErrorMapper: UIErrorMapper
+    var viewModelFactory: ViewModelFactory
     
     init() {
-        self.uiErrorMapper = UIErrorMapper()
-        self.initializer = ServiceInitializer()
-        self.generalUIEffectManager = GeneralUIEffectManager()
-        self.router = Router(services: self.initializer, generalUIEffectManager: self.generalUIEffectManager, uiErrorMapper: self.uiErrorMapper)
+        self.viewModelFactory = ViewModelFactory(serviceRepository: services)
+//        self.router = Router(services: self.initializer, generalUIEffectManager: self.generalUIEffectManager, uiErrorMapper: self.uiErrorMapper)
     }
     
     var body: some Scene {
         WindowGroup("CTXWL", id: "CTXWL") {
             ContentView()
-                .environmentObject(self.initializer)
-                .environmentObject(self.router)
-                .environmentObject(self.generalUIEffectManager)
-                .environmentObject(self.uiErrorMapper)
+                .environmentObject(services)
+                .environmentObject(viewModelFactory)
+//                .environmentObject(self.router)
         }
     }
 }

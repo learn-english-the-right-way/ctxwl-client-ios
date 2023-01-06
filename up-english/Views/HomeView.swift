@@ -11,22 +11,33 @@ import SwiftUI
 struct HomeView: View {
     
     @ObservedObject var model: HomeModel
+    @EnvironmentObject var viewModelFactory: ViewModelFactory
     
     var body: some View {
-        VStack {
-            TextField("URL", text: $model.url)
-            Button("Launch") {
-                model.openArticle()
+        NavigationStack {
+            List(model.articleItems) { item in
+                NavigationLink(item.title, value: item)
             }
-            .buttonStyle(.borderedProminent)
-            .disabled(model.url == "")
+            .navigationDestination(for: ArticleListItem.self) { item in
+                ArticleOpener(model: viewModelFactory.createArticleOpenerModel(url: item.url))
+            }
         }
+//        VStack {
+//            Text("home view")
+//            TextField("URL", text: $model.url)
+//            Button("Launch") {
+//                model.openArticle()
+//            }
+//            .buttonStyle(.borderedProminent)
+//            .disabled(model.url == "")
+//        }
     }
 }
 
 @available(iOS 16.0, *)
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(model: HomeModel())
+        EmptyView()
+//        HomeView(model: HomeModel())
     }
 }

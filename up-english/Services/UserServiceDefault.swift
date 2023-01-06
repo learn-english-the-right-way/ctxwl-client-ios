@@ -43,6 +43,12 @@ class UserServiceDefault: UserService, SessionConnectionService {
     
     private var _authenticationKeyAccquired = CurrentValueSubject<String?, Never>(nil)
     
+    private var _loggedIn = CurrentValueSubject<Bool, Never>(false)
+    
+    var loggedIn: AnyPublisher<Bool, Never> {
+        return _loggedIn.receive(on: DispatchQueue.main).eraseToAnyPublisher()
+    }
+    
     var authenticationKeyAccquired: AnyPublisher<String, Never> {
         return _authenticationKeyAccquired.compactMap({$0}).eraseToAnyPublisher()
     }
@@ -80,7 +86,6 @@ class UserServiceDefault: UserService, SessionConnectionService {
     
     private func readCredentialsFromKeychain() throws -> Credential {
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                    kSecAttrServer as String: server,
                                     kSecAttrLabel as String: "password",
                                     kSecMatchLimit as String: kSecMatchLimitOne,
                                     kSecReturnAttributes as String: true,
@@ -105,7 +110,6 @@ class UserServiceDefault: UserService, SessionConnectionService {
         let password = credential.password.data(using: String.Encoding.utf8)!
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrAccount as String: account,
-                                    kSecAttrServer as String: server,
                                     kSecAttrLabel as String: "password",
                                     kSecValueData as String: password]
         let status = SecItemAdd(query as CFDictionary, nil)
@@ -119,7 +123,6 @@ class UserServiceDefault: UserService, SessionConnectionService {
             throw KEYCHAIN_CREDENTIALS_NOT_FOUND()
         }
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                    kSecAttrServer as String: server,
                                     kSecAttrAccount as String: account,
                                     kSecAttrLabel as String: "applicationKey",
                                     kSecMatchLimit as String: kSecMatchLimitOne,
@@ -145,7 +148,6 @@ class UserServiceDefault: UserService, SessionConnectionService {
         let applicationKey = key.data(using: String.Encoding.utf8)!
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrAccount as String: account,
-                                    kSecAttrServer as String: server,
                                     kSecAttrLabel as String: "applicationKey",
                                     kSecValueData as String: applicationKey]
         let status = SecItemAdd(query as CFDictionary, nil)
@@ -162,6 +164,7 @@ class UserServiceDefault: UserService, SessionConnectionService {
     func saveAuthenticationApplicationKey(key: String) throws -> Void {
         self._applicationKey = key
         self._authenticationKeyAccquired.send(key)
+        self._loggedIn.send(true)
         try self.saveApplicationKeyToKeychain(key: key)
     }
     
@@ -233,8 +236,13 @@ class UserServiceDefault: UserService, SessionConnectionService {
     func login() -> AnyPublisher<Result<Void, CLIENT_ERROR>, Never> {
         let publisher = self.requestLogin()
         self.loginCancellable = publisher.sink(
-            receiveCompletion: {
-                print("user service login method completion with \($0)")
+            receiveCompletion: { status in
+                switch status {
+                case .failure(_):
+                    self._loggedIn.send(false)
+                case .finished:
+                    self._loggedIn.send(true)
+                }
             },
             receiveValue: {
                 print("received application key:" + $0)

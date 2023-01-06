@@ -44,10 +44,6 @@ struct Login: View {
             }
             .buttonStyle(.borderedProminent)
             .disabled(model.loginButtonDisabled)
-            Button("Register Instead") {
-                model.switchToRegistrationPage()
-            }
-            .buttonStyle(.bordered)
         }
     }
 }
