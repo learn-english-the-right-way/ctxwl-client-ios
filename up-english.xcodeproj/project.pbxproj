@@ -50,6 +50,7 @@
 		B08962F5280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08962F4280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift */; };
 		B08981F32967BEB000709EF6 /* ArticleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981F22967BEB000709EF6 /* ArticleRow.swift */; };
 		B08981F529682E7500709EF6 /* HomeModelHandlerFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981F429682E7500709EF6 /* HomeModelHandlerFake.swift */; };
+		B08981F7296D64EB00709EF6 /* mercury.web.js in Resources */ = {isa = PBXBuildFile; fileRef = B08981F6296D64EB00709EF6 /* mercury.web.js */; };
 		B08AB6DE2929C17000968BA5 /* ArticleOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AB6DD2929C17000968BA5 /* ArticleOpener.swift */; };
 		B08AB6E02929C21300968BA5 /* ArticleOpenerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AB6DF2929C21300968BA5 /* ArticleOpenerModel.swift */; };
 		B08D9A3528B3DF33006B15FE /* UNKNOWN_ERROR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D9A3428B3DF33006B15FE /* UNKNOWN_ERROR.swift */; };
@@ -154,6 +155,7 @@
 		B08962F4280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXWL_SERVER_ERROR.swift; sourceTree = "<group>"; };
 		B08981F22967BEB000709EF6 /* ArticleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRow.swift; sourceTree = "<group>"; };
 		B08981F429682E7500709EF6 /* HomeModelHandlerFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModelHandlerFake.swift; sourceTree = "<group>"; };
+		B08981F6296D64EB00709EF6 /* mercury.web.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = mercury.web.js; sourceTree = "<group>"; };
 		B08AB6DD2929C17000968BA5 /* ArticleOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleOpener.swift; sourceTree = "<group>"; };
 		B08AB6DF2929C21300968BA5 /* ArticleOpenerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleOpenerModel.swift; sourceTree = "<group>"; };
 		B08D9A3428B3DF33006B15FE /* UNKNOWN_ERROR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNKNOWN_ERROR.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 		B09D06A1263ECB4300246D90 /* up-english */ = {
 			isa = PBXGroup;
 			children = (
+				B08981F6296D64EB00709EF6 /* mercury.web.js */,
 				B0C7CBFC2651267D003832EE /* Services */,
 				B0C7CBFB26512632003832EE /* ViewModels */,
 				B0C7CBFA265125FE003832EE /* Views */,
@@ -520,6 +523,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B08981F7296D64EB00709EF6 /* mercury.web.js in Resources */,
 				B09D06AA263ECB4400246D90 /* Preview Assets.xcassets in Resources */,
 				B0C75D902940F3A900A2F405 /* mercury.web.js in Resources */,
 				B09D06A7263ECB4400246D90 /* Assets.xcassets in Resources */,
