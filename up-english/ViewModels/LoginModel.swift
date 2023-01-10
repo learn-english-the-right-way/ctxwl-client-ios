@@ -125,10 +125,11 @@ class LoginModelHandlerDefault: LoginModelDelegate {
         do {
             try self.userService.saveCredential(username: username, password: password)
         } catch {
-            var effect = GeneralUIEffect()
-            effect.action = .alert
-            effect.message = "saving credentials failed"
-            self.generalUIEffectManager.newEffect(effect)
+            print("saving credentials failed")
+//            var effect = GeneralUIEffect()
+//            effect.action = .alert
+//            effect.message = "saving credentials failed"
+//            self.generalUIEffectManager.newEffect(effect)
         }
         guard self.requestingLogin != true else {
             var effect = GeneralUIEffect()

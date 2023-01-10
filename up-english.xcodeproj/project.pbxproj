@@ -79,7 +79,6 @@
 		B0C75D8A293C518C00A2F405 /* ArticleReadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75D89293C518C00A2F405 /* ArticleReadingService.swift */; };
 		B0C75D8C293C779800A2F405 /* ArticleReadingServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75D8B293C779800A2F405 /* ArticleReadingServiceDefault.swift */; };
 		B0C75D8E293D059600A2F405 /* SessionConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75D8D293D059600A2F405 /* SessionConnectionService.swift */; };
-		B0C75D902940F3A900A2F405 /* mercury.web.js in Resources */ = {isa = PBXBuildFile; fileRef = B0C75D8F2940F3A900A2F405 /* mercury.web.js */; };
 		B0C75D92294607E500A2F405 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75D91294607E500A2F405 /* HomeView.swift */; };
 		B0C75D942946081800A2F405 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75D932946081800A2F405 /* HomeModel.swift */; };
 		B0C7CC0926568E1D003832EE /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC0826568E1D003832EE /* ApiUrl.swift */; };
@@ -189,7 +188,6 @@
 		B0C75D89293C518C00A2F405 /* ArticleReadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReadingService.swift; sourceTree = "<group>"; };
 		B0C75D8B293C779800A2F405 /* ArticleReadingServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReadingServiceDefault.swift; sourceTree = "<group>"; };
 		B0C75D8D293D059600A2F405 /* SessionConnectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionConnectionService.swift; sourceTree = "<group>"; };
-		B0C75D8F2940F3A900A2F405 /* mercury.web.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = mercury.web.js; path = ../../Downloads/mercury.web.js; sourceTree = "<group>"; };
 		B0C75D91294607E500A2F405 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B0C75D932946081800A2F405 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		B0C7CC0826568E1D003832EE /* ApiUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
@@ -233,7 +231,6 @@
 		B09D0696263ECB4200246D90 = {
 			isa = PBXGroup;
 			children = (
-				B0C75D8F2940F3A900A2F405 /* mercury.web.js */,
 				B07EA2CD2871A7BD008CA3C9 /* Model.xcdatamodeld */,
 				B0578B3F265EA3F400A1B21F /* User.xcdatamodeld */,
 				B09D06A1263ECB4300246D90 /* up-english */,
@@ -525,7 +522,6 @@
 			files = (
 				B08981F7296D64EB00709EF6 /* mercury.web.js in Resources */,
 				B09D06AA263ECB4400246D90 /* Preview Assets.xcassets in Resources */,
-				B0C75D902940F3A900A2F405 /* mercury.web.js in Resources */,
 				B09D06A7263ECB4400246D90 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
