@@ -132,7 +132,7 @@ class LoginModelHandlerDefault: LoginModelDelegate {
         }
         guard self.requestingLogin != true else {
             var effect = GeneralUIEffect()
-            effect.action = .notice
+            effect.action = .alert
             effect.message = "There is a login request under way"
             self.generalUIEffectManager.newEffect(effect)
             return

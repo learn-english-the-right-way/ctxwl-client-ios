@@ -112,7 +112,7 @@ class RegistrationModel: ObservableObject {
             try handler.saveCredential(username: self.email, password: self.password1)
         } catch {
             var effect = GeneralUIEffect()
-            effect.action = .notice
+            effect.action = .alert
             effect.message = "saving credential to persistence failed"
         }
     }
@@ -217,7 +217,7 @@ class RegistrationModelHandlerDefault: RegistrationModelDelegate {
     func getRegistrationEmailVerification() -> Void {
         guard self.requestingConfirmationCode == false else {
             var effect = GeneralUIEffect()
-            effect.action = .notice
+            effect.action = .alert
             effect.message = "There is a request to get verification code going on"
             self.generalUIEffectManager.newEffect(effect)
             return

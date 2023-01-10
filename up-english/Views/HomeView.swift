@@ -9,28 +9,33 @@ import SwiftUI
 
 @available(iOS 16.0, *)
 struct HomeView: View {
-    
+    @State var presentAlert = true
     @ObservedObject var model: HomeModel
     @EnvironmentObject var viewModelFactory: ViewModelFactory
     
     var body: some View {
         NavigationStack {
-            List(model.articleItems) { item in
-                NavigationLink(item.title, value: item)
+            List() {
+                ForEach(model.articleItems) { item in
+                    NavigationLink(value: item) {
+                        ArticleRow(article: item)
+     
+                    }
+                }
+                Text("loading...")
+                    .foregroundColor(.secondary)
+                    .onAppear {
+                        model.loadMore()
+                    }
             }
             .navigationDestination(for: ArticleListItem.self) { item in
                 ArticleOpener(model: viewModelFactory.createArticleOpenerModel(url: item.url))
             }
+            .navigationTitle("Recommendations")
         }
-//        VStack {
-//            Text("home view")
-//            TextField("URL", text: $model.url)
-//            Button("Launch") {
-//                model.openArticle()
-//            }
-//            .buttonStyle(.borderedProminent)
-//            .disabled(model.url == "")
-//        }
+        .onAppear {
+            model.refresh()
+        }
     }
 }
 

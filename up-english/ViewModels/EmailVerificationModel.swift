@@ -97,7 +97,7 @@ class EmailVerificationModelHandlerDefault: EmailVerificationModelDelegate {
     func register(code: String) -> Void {
         guard self.requestingRegistration == false else {
             var effect = GeneralUIEffect()
-            effect.action = .notice
+            effect.action = .alert
             effect.message = "There is already a registration attempt under way"
             self.generalUIEffectManager.newEffect(effect)
             return
@@ -111,7 +111,7 @@ class EmailVerificationModelHandlerDefault: EmailVerificationModelDelegate {
                 self.model?.registering = false
                 switch result {
                 case .success():
-                    let pageInfo = PageInfo(page: .Home)
+                    print("email verified")
                 case .failure(let clientError):
                     let effect = self.errorMapper.mapError(clientError)
                     self.generalUIEffectManager.newEffect(effect)

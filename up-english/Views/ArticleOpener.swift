@@ -26,7 +26,6 @@ struct ArticleOpener: View {
                 .offset(y: 350)
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea()
     }
 }

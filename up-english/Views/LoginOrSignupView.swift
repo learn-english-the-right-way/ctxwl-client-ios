@@ -13,11 +13,13 @@ struct LoginOrSignupView: View {
     @EnvironmentObject var viewModelFactory: ViewModelFactory
     var body: some View {
         VStack {
+            Spacer()
             if isLogin {
                 Login(model: viewModelFactory.createLoginViewModel())
             } else {
                 RegistrationAndVerificationView()
             }
+            Spacer()
             Button("Switch") {
                 isLogin.toggle()
             }

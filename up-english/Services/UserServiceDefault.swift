@@ -46,7 +46,7 @@ class UserServiceDefault: UserService, SessionConnectionService {
     private var _loggedIn = CurrentValueSubject<Bool, Never>(false)
     
     var loggedIn: AnyPublisher<Bool, Never> {
-        return _loggedIn.receive(on: DispatchQueue.main).eraseToAnyPublisher()
+        return _loggedIn.eraseToAnyPublisher()
     }
     
     var authenticationKeyAccquired: AnyPublisher<String, Never> {

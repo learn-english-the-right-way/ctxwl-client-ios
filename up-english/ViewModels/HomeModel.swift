@@ -11,20 +11,40 @@ struct ArticleListItem: Hashable, Identifiable {
     var id = UUID()
     var url: String
     var title: String
+    var summary: String
+}
+
+protocol HomeModelHandler: AnyObject {
+    func loadMore() -> Void
+    func refresh() -> Void
 }
 
 @available(iOS 16.0, *)
 class HomeModel: ObservableObject {
-    @Published var articleItems: [ArticleListItem]
+    @Published var articleItems: [ArticleListItem] = []
+    var loading = false
+    var handler: HomeModelHandler?
     
-    init() {
-        self.articleItems = [
-            ArticleListItem(url: "https://www.theverge.com/23521184/kaleidoscope-review-netflix-series-giancarlo-esposito", title: "Kaleidoscope is a generic heist story but a fascinating experiment"),
-            ArticleListItem(url: "https://www.theverge.com/23527936/sony-alpha-a7rv-mirrorless-fullframe-camera-hands-on-ergonomics-pain", title: "Sony’s A7R V camera is a technical triumph, so why is using it such a pain?"),
-            ArticleListItem(url: "https://www.theverge.com/23513418/bring-back-personal-blogging", title: "Bring back personal blogging")
-        ]
+    func shouldLoadAfter(item: ArticleListItem) -> Bool {
+        if let lastItemID = self.articleItems.last?.id {
+            if item.id == lastItemID {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+    
+    func loadMore() {
+        self.handler?.loadMore()
+    }
+    func refresh() {
+        self.handler?.refresh()
     }
 }
+
 
 //@available(iOS 16.0, *)
 //extension HomeModel: Hashable {

@@ -87,7 +87,7 @@ class Article {
     }
     
     func switchToWeakSelection(key: Int) {
-        if var selectionHolder = self.selectedWords[key] {
+        if let selectionHolder = self.selectedWords[key] {
             selectionHolder.weakSelection = selectionHolder.strongSelection
             selectionHolder.strongSelection = nil
         }

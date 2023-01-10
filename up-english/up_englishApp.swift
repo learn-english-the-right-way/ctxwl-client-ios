@@ -12,16 +12,15 @@ import SwiftUI
 struct up_englishApp: App {
     
     var services = ServiceInitializer()
-    
-//    var router: Router
-            
+                
     var uiErrorMapper = UIErrorMapper()
     
     var viewModelFactory: ViewModelFactory
     
+    var generalUIEffectManager = GeneralUIEffectManager()
+    
     init() {
-        self.viewModelFactory = ViewModelFactory(serviceRepository: services)
-//        self.router = Router(services: self.initializer, generalUIEffectManager: self.generalUIEffectManager, uiErrorMapper: self.uiErrorMapper)
+        self.viewModelFactory = ViewModelFactory(serviceRepository: services, generalUIEffectManager: self.generalUIEffectManager)
     }
     
     var body: some Scene {
@@ -29,7 +28,7 @@ struct up_englishApp: App {
             ContentView()
                 .environmentObject(services)
                 .environmentObject(viewModelFactory)
-//                .environmentObject(self.router)
+                .environmentObject(generalUIEffectManager)
         }
     }
 }

@@ -14,44 +14,18 @@ struct ContentView: View {
     
     @EnvironmentObject var services: ServiceInitializer
     @EnvironmentObject var viewModelFactory: ViewModelFactory
+    @EnvironmentObject var generalUIEffectManager: GeneralUIEffectManager
         
     var body: some View {
         HomeView(model: viewModelFactory.createHomeModel())
             .fullScreenCover(isPresented: $notLoggedIn) {
                 LoginOrSignupView()
+                    .noticeBanner()
             }
-            .onReceive(services.userService.loggedIn) {
+            .onReceive(services.userService.loggedIn.receive(on: DispatchQueue.main)) {
                 self.notLoggedIn = !$0
             }
-        
-//        NavigationStack(path: self.$router.path) {
-//            // TODO: change empty view to home view
-//            EmptyView()
-//                .navigationDestination(for: LoginModel.self) { model in
-//                    Login(model: model)
-//                        .id(model)
-//                        .navigationBarBackButtonHidden()
-//                }
-//                .navigationDestination(for: RegistrationModel.self) { model in
-//                    Registration(model: model)
-////                        .id(model)
-//                        .navigationBarBackButtonHidden()
-//                }
-//                .navigationDestination(for: EmailVerificationModel.self) {model in
-//                    EmailVerification(model: model)
-//                        .id(model)
-//                }
-//                .navigationDestination(for: HomeModel.self) {model in
-//                    HomeView(model: model)
-//                        .id(model)
-//                        .navigationBarBackButtonHidden()
-//                }
-//                .navigationDestination(for: ArticleOpenerModel.self) { model in
-//                    ArticleOpener(model: model)
-//                        .id(model)
-//                }
-//        }
-//        .noticeBanner(self.generalUIEffetManager)
+            .noticeBanner()
     }
 }
 

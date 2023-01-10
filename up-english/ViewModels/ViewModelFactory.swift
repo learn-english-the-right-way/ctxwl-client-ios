@@ -10,10 +10,11 @@ import Foundation
 @available(iOS 16.0, *)
 class ViewModelFactory: ObservableObject {
     private var serviceRepository: ServiceInitializer
-    private var generalUIEffectManager = GeneralUIEffectManager()
+    private var generalUIEffectManager: GeneralUIEffectManager
     private var uiErrorMapper = UIErrorMapper()
-    init(serviceRepository: ServiceInitializer) {
+    init(serviceRepository: ServiceInitializer, generalUIEffectManager: GeneralUIEffectManager) {
         self.serviceRepository = serviceRepository
+        self.generalUIEffectManager = generalUIEffectManager
     }
     func createRegistrationViewModel() -> RegistrationModel {
         let model = RegistrationModel()
@@ -34,7 +35,10 @@ class ViewModelFactory: ObservableObject {
         return model
     }
     func createHomeModel() -> HomeModel {
-        return HomeModel()
+        let model = HomeModel()
+        let handler = HomeModelHandlerFake(model: model)
+        model.handler = handler
+        return model
     }
     func createArticleOpenerModel(url: String) -> ArticleOpenerModel {
         let model = ArticleOpenerModel(url: url)

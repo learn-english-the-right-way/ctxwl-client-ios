@@ -78,7 +78,7 @@ class ArticleReadingServiceDefault: ArticleReadingService, SessionConnectionServ
     }
     
     func switchToWeakArticle(entrySerial: Int) {
-        if var articleHolder = self.articleList[entrySerial] {
+        if let articleHolder = self.articleList[entrySerial] {
             articleHolder.weakArticle = articleHolder.strongArticle
             articleHolder.strongArticle = nil
         }

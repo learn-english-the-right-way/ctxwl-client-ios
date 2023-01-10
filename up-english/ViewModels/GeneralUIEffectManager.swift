@@ -6,25 +6,28 @@
 //
 
 import Foundation
+import Combine
 
 class GeneralUIEffectManager: ObservableObject {
     
-    @Published var showNotice: Bool = false
+    private var _showAlert = CurrentValueSubject<Bool, Never>(false)
     
-    @Published var noticeContent: String = ""
+    var showAlert: AnyPublisher<Bool, Never> {
+        get {
+            return self._showAlert.receive(on: DispatchQueue.main).eraseToAnyPublisher()
+        }
+    }
+        
+    var alertContent: String = ""
     
-    @Published var showAlert: Bool = false
-    
-    @Published var alertContent: String = ""
+    func removeEffect() {
+        self._showAlert.send(false)
+    }
     
     func newEffect(_ effect: GeneralUIEffect) {
-        if effect.action == .notice {
-            self.noticeContent = effect.message ?? ""
-            self.showNotice = true
-        }
         if effect.action == .alert {
             self.alertContent = effect.message ?? ""
-            self.showAlert = true
+            self._showAlert.send(true)
         }
     }
 }

@@ -9,7 +9,6 @@ import Foundation
 
 enum Action {
     case alert
-    case notice
 }
 
 enum Destination {

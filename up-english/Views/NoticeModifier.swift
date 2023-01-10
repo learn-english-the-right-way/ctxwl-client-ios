@@ -11,54 +11,36 @@ import SwiftUI
 @available(iOS 15.0, *)
 struct NoticeModifier: ViewModifier {
     
-    @ObservedObject var model: GeneralUIEffectManager
+    @EnvironmentObject var model: GeneralUIEffectManager
+    @State var isPresented: Bool = false
     
     func body(content: Content) -> some View {
-        ZStack {
-            content
-            if model.showNotice {
-                VStack {
-                    HStack {
-                        Spacer()
-                        Text(model.noticeContent)
-                        Spacer()
-                    }
-                    .foregroundColor(.white)
-                    .background(.gray)
-                    .padding(12)
-                    .cornerRadius(8)
-                    Spacer()
+        content
+            .alert("Error", isPresented: $isPresented) {
+                Button("OK") {
+                    model.removeEffect()
                 }
-                .onTapGesture {
-                    model.showNotice = false
+            } message: {
+                Text(model.alertContent)
+            }
+            .onReceive(model.showAlert) { toShow in
+                if toShow != isPresented {
+                    isPresented = toShow
                 }
             }
-        }
     }
 }
 
 @available(iOS 15.0, *)
 extension View {
-    func noticeBanner(_ model: GeneralUIEffectManager) -> some View {
-        self.modifier(NoticeModifier(model: model))
+    func noticeBanner() -> some View {
+        self.modifier(NoticeModifier())
     }
 }
 
 @available(iOS 15.0, *)
 struct NoticeBanner_Previews: PreviewProvider {
-//    struct Model {
-//        var realModel: GeneralUIEffectManager
-//        init() {
-//            self.realModel = GeneralUIEffectManager.shared
-//            self.realModel.noticeContent = "test notice content"
-//            self.realModel.showNotice = true
-//        }
-//    }
     static var previews: some View {
         EmptyView()
-//        VStack {
-//            Text("test")
-//        }
-//        .noticeBanner(Model().realModel)
     }
 }
