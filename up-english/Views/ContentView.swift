@@ -19,7 +19,7 @@ struct ContentView: View {
         
     var body: some View {
         TabView(selection: $selectedTab) {
-            BrowserView()
+            ArticleOpener(model: viewModelFactory.createArticleOpenerModel(url: "https://google.com"))
                 .tabItem {
                     Label("Browse", systemImage: "globe")
                 }

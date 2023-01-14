@@ -13,13 +13,16 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler, WKNavig
     
     var url: Binding<String?>
     
-    var webView: WKWebView = WKWebView(frame: UIScreen.main.bounds)
+    var webView: WKWebView = CustomEditMenuWKWebView(frame: UIScreen.main.bounds)
         
     var fullText: Binding<String?>
     
-    init(url: Binding<String?>, fullText: Binding<String?>) {
+    var wordSelection: Binding<String?>
+    
+    init(url: Binding<String?>, fullText: Binding<String?>, wordSelection: Binding<String?>) {
         self.url = url
         self.fullText = fullText
+        self.wordSelection = wordSelection
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -57,6 +60,8 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler, WKNavig
                 webView.load(request)
             }
         }
+        
+        addCustomEditMenu()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -68,8 +73,31 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler, WKNavig
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        
         self.fullText.wrappedValue = message.body as? String
     }
     
+    func addCustomEditMenu() {
+        let lookup = UIMenuItem(title: "Look up", action: #selector(lookup))
+        let copyAndMark = UIMenuItem(title: "Copy & mark", action: #selector(copyAndMark))
+        UIMenuController.shared.menuItems = [lookup, copyAndMark]
+        UIMenuController.shared.update()
+    }
+    
+    @objc func lookup() {
+        webView.evaluateJavaScript("window.getSelection().toString()") { (text, error) in
+            guard let text = text as? String, error == nil else {return}
+            let dictionaryViewController = UIReferenceLibraryViewController(term: text)
+            self.wordSelection.wrappedValue = text
+            self.present(dictionaryViewController, animated: true)
+        }
+    }
+    
+    @objc func copyAndMark() {
+        webView.evaluateJavaScript("window.getSelection().toString()") { (text, error) in
+            guard let text = text as? String, error == nil else {return}
+            self.wordSelection.wrappedValue = text
+            UIPasteboard.general.string = text
+        }
+    }
 }
+

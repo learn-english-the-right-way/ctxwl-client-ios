@@ -14,6 +14,14 @@ class ArticleOpenerModel: ObservableObject {
     
     var url: String?
     
+    var selectedWord: String? {
+        didSet {
+            if selectedWord != nil && selectedWord != oldValue {
+                addLookupWithoutRange(word: selectedWord!)
+            }
+        }
+    }
+    
     @Published var fullText: String? {
         didSet {
             if fullText != oldValue {

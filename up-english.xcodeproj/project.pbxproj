@@ -51,8 +51,8 @@
 		B08981F32967BEB000709EF6 /* ArticleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981F22967BEB000709EF6 /* ArticleRow.swift */; };
 		B08981F529682E7500709EF6 /* RecommendationViewModelFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981F429682E7500709EF6 /* RecommendationViewModelFake.swift */; };
 		B08981F7296D64EB00709EF6 /* mercury.web.js in Resources */ = {isa = PBXBuildFile; fileRef = B08981F6296D64EB00709EF6 /* mercury.web.js */; };
-		B08981F9297194FB00709EF6 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981F8297194FB00709EF6 /* BrowserView.swift */; };
 		B08981FB2971950900709EF6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981FA2971950900709EF6 /* SettingsView.swift */; };
+		B08981FD2972ED3400709EF6 /* CustomEditMenuWKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981FC2972ED3400709EF6 /* CustomEditMenuWKWebView.swift */; };
 		B08AB6DE2929C17000968BA5 /* ArticleOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AB6DD2929C17000968BA5 /* ArticleOpener.swift */; };
 		B08AB6E02929C21300968BA5 /* ArticleOpenerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AB6DF2929C21300968BA5 /* ArticleOpenerModel.swift */; };
 		B08D9A3528B3DF33006B15FE /* UNKNOWN_ERROR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D9A3428B3DF33006B15FE /* UNKNOWN_ERROR.swift */; };
@@ -157,8 +157,8 @@
 		B08981F22967BEB000709EF6 /* ArticleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRow.swift; sourceTree = "<group>"; };
 		B08981F429682E7500709EF6 /* RecommendationViewModelFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationViewModelFake.swift; sourceTree = "<group>"; };
 		B08981F6296D64EB00709EF6 /* mercury.web.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = mercury.web.js; sourceTree = "<group>"; };
-		B08981F8297194FB00709EF6 /* BrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserView.swift; sourceTree = "<group>"; };
 		B08981FA2971950900709EF6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B08981FC2972ED3400709EF6 /* CustomEditMenuWKWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEditMenuWKWebView.swift; sourceTree = "<group>"; };
 		B08AB6DD2929C17000968BA5 /* ArticleOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleOpener.swift; sourceTree = "<group>"; };
 		B08AB6DF2929C21300968BA5 /* ArticleOpenerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleOpenerModel.swift; sourceTree = "<group>"; };
 		B08D9A3428B3DF33006B15FE /* UNKNOWN_ERROR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNKNOWN_ERROR.swift; sourceTree = "<group>"; };
@@ -322,8 +322,8 @@
 				B0FE96842960158300F2FAEF /* LoginOrSignupView.swift */,
 				B0FE9688296016E200F2FAEF /* RegistrationAndVerificationView.swift */,
 				B08981F22967BEB000709EF6 /* ArticleRow.swift */,
-				B08981F8297194FB00709EF6 /* BrowserView.swift */,
 				B08981FA2971950900709EF6 /* SettingsView.swift */,
+				B08981FC2972ED3400709EF6 /* CustomEditMenuWKWebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -623,9 +623,9 @@
 				B09D06A3263ECB4300246D90 /* up_englishApp.swift in Sources */,
 				B08981F529682E7500709EF6 /* RecommendationViewModelFake.swift in Sources */,
 				B0C4EDC12867521D00A616EB /* SERVER_MAPPED_CLIENT_ERROR.swift in Sources */,
-				B08981F9297194FB00709EF6 /* BrowserView.swift in Sources */,
 				9B8AE4ED2793F55000489A7B /* ArticleListServiceDefault.swift in Sources */,
 				B007246928E04AEA0018252C /* CREDENTIALS_EMPTY.swift in Sources */,
+				B08981FD2972ED3400709EF6 /* CustomEditMenuWKWebView.swift in Sources */,
 				B026B8FB2813EB810014666D /* RESPONSE_NOT_HTTP.swift in Sources */,
 				B0578B41265EA3F400A1B21F /* User.xcdatamodeld in Sources */,
 				B007246728D6C5080018252C /* KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY.swift in Sources */,

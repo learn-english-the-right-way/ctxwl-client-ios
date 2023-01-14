@@ -12,9 +12,11 @@ struct CustomWebView: UIViewControllerRepresentable {
     var url: Binding<String?>
     
     var fullText: Binding<String?>
+    
+    var wordSelection: Binding<String?>
 
     func makeUIViewController(context: Context) -> CustomWebViewController {
-        let uiViewController = CustomWebViewController(url: url, fullText: fullText)        
+        let uiViewController = CustomWebViewController(url: url, fullText: fullText, wordSelection: wordSelection)        
         return uiViewController
     }
     
