@@ -14,7 +14,7 @@ struct ArticleOpener: View {
     
     var body: some View {
         ZStack {
-            CustomWebView(urlString: model.url, fullTextBinding: $model.fullText)
+            CustomWebView(url: $model.url, fullText: $model.fullText)
             if model.showFullTextView == true {
                 SelectionRangeEnabledTextViewRepresentable(text: model.fullText!, range: $model.lastSelectedRange)
             }

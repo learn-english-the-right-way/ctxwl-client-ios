@@ -49,8 +49,10 @@
 		B08962F3280ADE3500B95D47 /* CTXWLDataTaskPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08962F2280ADE3500B95D47 /* CTXWLDataTaskPublisher.swift */; };
 		B08962F5280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08962F4280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift */; };
 		B08981F32967BEB000709EF6 /* ArticleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981F22967BEB000709EF6 /* ArticleRow.swift */; };
-		B08981F529682E7500709EF6 /* HomeModelHandlerFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981F429682E7500709EF6 /* HomeModelHandlerFake.swift */; };
+		B08981F529682E7500709EF6 /* RecommendationViewModelFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981F429682E7500709EF6 /* RecommendationViewModelFake.swift */; };
 		B08981F7296D64EB00709EF6 /* mercury.web.js in Resources */ = {isa = PBXBuildFile; fileRef = B08981F6296D64EB00709EF6 /* mercury.web.js */; };
+		B08981F9297194FB00709EF6 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981F8297194FB00709EF6 /* BrowserView.swift */; };
+		B08981FB2971950900709EF6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981FA2971950900709EF6 /* SettingsView.swift */; };
 		B08AB6DE2929C17000968BA5 /* ArticleOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AB6DD2929C17000968BA5 /* ArticleOpener.swift */; };
 		B08AB6E02929C21300968BA5 /* ArticleOpenerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AB6DF2929C21300968BA5 /* ArticleOpenerModel.swift */; };
 		B08D9A3528B3DF33006B15FE /* UNKNOWN_ERROR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08D9A3428B3DF33006B15FE /* UNKNOWN_ERROR.swift */; };
@@ -79,8 +81,8 @@
 		B0C75D8A293C518C00A2F405 /* ArticleReadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75D89293C518C00A2F405 /* ArticleReadingService.swift */; };
 		B0C75D8C293C779800A2F405 /* ArticleReadingServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75D8B293C779800A2F405 /* ArticleReadingServiceDefault.swift */; };
 		B0C75D8E293D059600A2F405 /* SessionConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75D8D293D059600A2F405 /* SessionConnectionService.swift */; };
-		B0C75D92294607E500A2F405 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75D91294607E500A2F405 /* HomeView.swift */; };
-		B0C75D942946081800A2F405 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75D932946081800A2F405 /* HomeModel.swift */; };
+		B0C75D92294607E500A2F405 /* RecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75D91294607E500A2F405 /* RecommendationView.swift */; };
+		B0C75D942946081800A2F405 /* RecommendationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C75D932946081800A2F405 /* RecommendationViewModel.swift */; };
 		B0C7CC0926568E1D003832EE /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC0826568E1D003832EE /* ApiUrl.swift */; };
 		B0C7CC0B265798E3003832EE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC0A265798E3003832EE /* UserService.swift */; };
 		B0C7CC0F265BA3B1003832EE /* UserServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7CC0E265BA3B1003832EE /* UserServiceDefault.swift */; };
@@ -153,8 +155,10 @@
 		B08962F2280ADE3500B95D47 /* CTXWLDataTaskPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXWLDataTaskPublisher.swift; sourceTree = "<group>"; };
 		B08962F4280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXWL_SERVER_ERROR.swift; sourceTree = "<group>"; };
 		B08981F22967BEB000709EF6 /* ArticleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRow.swift; sourceTree = "<group>"; };
-		B08981F429682E7500709EF6 /* HomeModelHandlerFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModelHandlerFake.swift; sourceTree = "<group>"; };
+		B08981F429682E7500709EF6 /* RecommendationViewModelFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationViewModelFake.swift; sourceTree = "<group>"; };
 		B08981F6296D64EB00709EF6 /* mercury.web.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = mercury.web.js; sourceTree = "<group>"; };
+		B08981F8297194FB00709EF6 /* BrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserView.swift; sourceTree = "<group>"; };
+		B08981FA2971950900709EF6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B08AB6DD2929C17000968BA5 /* ArticleOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleOpener.swift; sourceTree = "<group>"; };
 		B08AB6DF2929C21300968BA5 /* ArticleOpenerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleOpenerModel.swift; sourceTree = "<group>"; };
 		B08D9A3428B3DF33006B15FE /* UNKNOWN_ERROR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNKNOWN_ERROR.swift; sourceTree = "<group>"; };
@@ -188,8 +192,8 @@
 		B0C75D89293C518C00A2F405 /* ArticleReadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReadingService.swift; sourceTree = "<group>"; };
 		B0C75D8B293C779800A2F405 /* ArticleReadingServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleReadingServiceDefault.swift; sourceTree = "<group>"; };
 		B0C75D8D293D059600A2F405 /* SessionConnectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionConnectionService.swift; sourceTree = "<group>"; };
-		B0C75D91294607E500A2F405 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		B0C75D932946081800A2F405 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		B0C75D91294607E500A2F405 /* RecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationView.swift; sourceTree = "<group>"; };
+		B0C75D932946081800A2F405 /* RecommendationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationViewModel.swift; sourceTree = "<group>"; };
 		B0C7CC0826568E1D003832EE /* ApiUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
 		B0C7CC0A265798E3003832EE /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		B0C7CC0E265BA3B1003832EE /* UserServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceDefault.swift; sourceTree = "<group>"; };
@@ -314,10 +318,12 @@
 				B08AB6DD2929C17000968BA5 /* ArticleOpener.swift */,
 				B0C75D83293B4E4900A2F405 /* CustomWebViewController.swift */,
 				B0C75D87293B4ED700A2F405 /* SelectionRangeEnabledTextViewRepresentable.swift */,
-				B0C75D91294607E500A2F405 /* HomeView.swift */,
+				B0C75D91294607E500A2F405 /* RecommendationView.swift */,
 				B0FE96842960158300F2FAEF /* LoginOrSignupView.swift */,
 				B0FE9688296016E200F2FAEF /* RegistrationAndVerificationView.swift */,
 				B08981F22967BEB000709EF6 /* ArticleRow.swift */,
+				B08981F8297194FB00709EF6 /* BrowserView.swift */,
+				B08981FA2971950900709EF6 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -336,9 +342,9 @@
 				5EF9CC1828EC7A5B00C40D86 /* GeneralUIEffectManager.swift */,
 				5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */,
 				B08AB6DF2929C21300968BA5 /* ArticleOpenerModel.swift */,
-				B0C75D932946081800A2F405 /* HomeModel.swift */,
+				B0C75D932946081800A2F405 /* RecommendationViewModel.swift */,
 				B0FE9682295FC99500F2FAEF /* ViewModelFactory.swift */,
-				B08981F429682E7500709EF6 /* HomeModelHandlerFake.swift */,
+				B08981F429682E7500709EF6 /* RecommendationViewModelFake.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -571,7 +577,8 @@
 				9B8AE4F12797BBA500489A7B /* ArticleListServiceMockup.swift in Sources */,
 				B02B300428649D000075CE4F /* EMAIL_REGISTRATION_UNAUTHORIZED_ADDRESS.swift in Sources */,
 				B08D9A3728BF9111006B15FE /* KEYCHAIN_CANNOT_SAVE_CREDENTIAL.swift in Sources */,
-				B0C75D942946081800A2F405 /* HomeModel.swift in Sources */,
+				B0C75D942946081800A2F405 /* RecommendationViewModel.swift in Sources */,
+				B08981FB2971950900709EF6 /* SettingsView.swift in Sources */,
 				B08D9A3928BF914A006B15FE /* KEYCHAIN_CREDENTIAL_ERROR.swift in Sources */,
 				B069DD352958A9CC00639BE8 /* Article.swift in Sources */,
 				B0943AEC268EC963006051E0 /* EmailVerificationModel.swift in Sources */,
@@ -586,7 +593,7 @@
 				B02B300A28649DA40075CE4F /* SESSION_AUTHENTICATION_INVALID_CREDENTIAL.swift in Sources */,
 				B0E5491E2815B73C00934E7B /* ErrorMapper.swift in Sources */,
 				B069DD372959385600639BE8 /* READING_SESSION_MISSING.swift in Sources */,
-				B0C75D92294607E500A2F405 /* HomeView.swift in Sources */,
+				B0C75D92294607E500A2F405 /* RecommendationView.swift in Sources */,
 				B0A89A5F264A6CAD00862E26 /* RegistrationService.swift in Sources */,
 				B0C7CC0F265BA3B1003832EE /* UserServiceDefault.swift in Sources */,
 				B08AB6DE2929C17000968BA5 /* ArticleOpener.swift in Sources */,
@@ -614,8 +621,9 @@
 				B02B301028649E3B0075CE4F /* API_DATA_ERROR.swift in Sources */,
 				B07EA2CF2871A7BD008CA3C9 /* Model.xcdatamodeld in Sources */,
 				B09D06A3263ECB4300246D90 /* up_englishApp.swift in Sources */,
-				B08981F529682E7500709EF6 /* HomeModelHandlerFake.swift in Sources */,
+				B08981F529682E7500709EF6 /* RecommendationViewModelFake.swift in Sources */,
 				B0C4EDC12867521D00A616EB /* SERVER_MAPPED_CLIENT_ERROR.swift in Sources */,
+				B08981F9297194FB00709EF6 /* BrowserView.swift in Sources */,
 				9B8AE4ED2793F55000489A7B /* ArticleListServiceDefault.swift in Sources */,
 				B007246928E04AEA0018252C /* CREDENTIALS_EMPTY.swift in Sources */,
 				B026B8FB2813EB810014666D /* RESPONSE_NOT_HTTP.swift in Sources */,

@@ -9,18 +9,21 @@ import Foundation
 
 @available(iOS 15, *)
 class ArticleOpenerModel: ObservableObject {
+    
     var handler: ArticleOpenerModelHandler?
     
-    @Published var url: String
+    var url: String?
+    
     @Published var fullText: String? {
         didSet {
-            if let fullText {
-                if let handler {
-                    handler.readNewArticle(url: self.url, fullText: fullText)
+            if fullText != oldValue {
+                if let fullText = fullText, let handler = handler, let url = url {
+                    handler.readNewArticle(url: url, fullText: fullText)
                 }
             }
         }
     }
+    
     @Published var showFullTextView = false
     
     var lastSelectedRange: NSRange? {
@@ -36,6 +39,10 @@ class ArticleOpenerModel: ObservableObject {
     
     init(url: String) {
         self.url = url
+    }
+    
+    func addLookupWithoutRange(word: String) {
+        self.handler?.addLookup(word: word)
     }
 }
 
@@ -71,5 +78,10 @@ class ArticleOpenerModelHandler {
             selection.sync()
         }
     }
-
+    func addLookup(word: String) {
+        if let article {
+            let selection = article.addSelection(text: word)
+            selection.sync()
+        }
+    }
 }

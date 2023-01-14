@@ -9,31 +9,12 @@ import SwiftUI
 
 struct CustomWebView: UIViewControllerRepresentable {
     
-    class Coordinator: CustomWebViewControllerDelegate {
-        var fullTextBinding: Binding<String?>
-        
-        init(fullTextBinding: Binding<String?>) {
-            self.fullTextBinding = fullTextBinding
-        }
-        
-        func passRawtext(_ text: String) {
-            self.fullTextBinding.wrappedValue = text
-        }
-    }
+    var url: Binding<String?>
     
-    var urlString: String
-    
-    var fullTextBinding: Binding<String?>
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(fullTextBinding: self.fullTextBinding)
-    }
-        
+    var fullText: Binding<String?>
+
     func makeUIViewController(context: Context) -> CustomWebViewController {
-        let uiViewController = CustomWebViewController()
-        uiViewController.delegate = context.coordinator
-        uiViewController.urlString = urlString
-        
+        let uiViewController = CustomWebViewController(url: url, fullText: fullText)        
         return uiViewController
     }
     

@@ -11,21 +11,38 @@ import SwiftUI
 struct ContentView: View {
     
     @State var notLoggedIn: Bool = true
+    @State var selectedTab = 0
     
     @EnvironmentObject var services: ServiceInitializer
     @EnvironmentObject var viewModelFactory: ViewModelFactory
     @EnvironmentObject var generalUIEffectManager: GeneralUIEffectManager
         
     var body: some View {
-        HomeView(model: viewModelFactory.createHomeModel())
-            .fullScreenCover(isPresented: $notLoggedIn) {
-                LoginOrSignupView()
-                    .noticeBanner()
-            }
-            .onReceive(services.userService.loggedIn.receive(on: DispatchQueue.main)) {
-                self.notLoggedIn = !$0
-            }
-            .noticeBanner()
+        TabView(selection: $selectedTab) {
+            BrowserView()
+                .tabItem {
+                    Label("Browse", systemImage: "globe")
+                }
+                .tag(1)
+            RecommendationView(model: viewModelFactory.createHomeModel())
+                .tabItem {
+                    Label("For You", systemImage: "books.vertical")
+                }
+                .tag(0)
+            SettingsView()
+                .tabItem {
+                    Label("Me", systemImage: "person")
+                }
+                .tag(2)
+        }
+        .fullScreenCover(isPresented: $notLoggedIn) {
+            LoginOrSignupView()
+                .noticeBanner()
+        }
+        .onReceive(services.userService.loggedIn.receive(on: DispatchQueue.main)) {
+            self.notLoggedIn = !$0
+        }
+        .noticeBanner()
     }
 }
 

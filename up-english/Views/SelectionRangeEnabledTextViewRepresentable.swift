@@ -17,12 +17,6 @@ struct SelectionRangeEnabledTextViewRepresentable: UIViewRepresentable {
         init(_ rangeBinding: Binding<NSRange?>) {
             self.rangeBinding = rangeBinding
         }
-//        
-//        func textViewDidChangeSelection(_ textView: UITextView) {
-//            if textView.selectedRange.length > 0 {
-//                self.rangeBinding.wrappedValue = textView.selectedRange
-//            }
-//        }
         
         func textView(_ textView: UITextView, editMenuForTextIn range: NSRange, suggestedActions: [UIMenuElement]) -> UIMenu? {
             let lookupOption = UIAction(title: "Look up") { action in

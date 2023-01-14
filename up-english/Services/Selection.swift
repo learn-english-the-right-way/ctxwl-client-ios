@@ -16,7 +16,7 @@ class Selection {
         var entrySerial: Int
         var serial: Int
         var criterion: String
-        var offset: Int
+        var offset: Int?
         var creationTime: String = Date.now.ISO8601Format()
     }
     
@@ -25,7 +25,7 @@ class Selection {
     var lookupSerial: Int
     var fullText: String
     var criterion: String
-    var offset: Int
+    var offset: Int?
     var syncCancellable: AnyCancellable?
     weak var sessionConnectionService: SessionConnectionService?
     weak var article: Article?
@@ -38,6 +38,16 @@ class Selection {
         self.session = session
         self.criterion = String(fullText[range])
         self.offset = range.lowerBound.utf16Offset(in: fullText)
+        self.sessionConnectionService = article.articleReadingService
+    }
+    
+    init(article: Article, session: String, lookupSerial: Int, text: String) {
+        self.article = article
+        self.fullText = article.fullText
+        self.entrySerial = article.entrySerial
+        self.lookupSerial = lookupSerial
+        self.session = session
+        self.criterion = text
         self.sessionConnectionService = article.articleReadingService
     }
     

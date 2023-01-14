@@ -8,9 +8,9 @@
 import SwiftUI
 
 @available(iOS 16.0, *)
-struct HomeView: View {
+struct RecommendationView: View {
     @State var presentAlert = true
-    @ObservedObject var model: HomeModel
+    @ObservedObject var model: RecommendationViewModel
     @EnvironmentObject var viewModelFactory: ViewModelFactory
     
     var body: some View {
@@ -31,10 +31,13 @@ struct HomeView: View {
             .navigationDestination(for: ArticleListItem.self) { item in
                 ArticleOpener(model: viewModelFactory.createArticleOpenerModel(url: item.url))
             }
-            .navigationTitle("Recommendations")
-        }
-        .onAppear {
-            model.refresh()
+            .navigationTitle("For You")
+            .refreshable {
+                model.refresh()
+            }
+            .onAppear {
+                model.refresh()
+            }
         }
     }
 }

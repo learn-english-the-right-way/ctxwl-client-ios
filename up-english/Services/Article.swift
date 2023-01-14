@@ -58,6 +58,15 @@ class Article {
         self.currentLookupSerial += 1
         return newSelection
     }
+    
+    func addSelection(text: String) -> Selection {
+        let newSelectionSerial = currentLookupSerial + 1
+        let newSelection = Selection(article: self, session: self.session, lookupSerial: newSelectionSerial, text: text)
+        let newSelectionHolder = SelectionHolder(selection: newSelection)
+        self.selectedWords.updateValue(newSelectionHolder, forKey: newSelectionSerial)
+        self.currentLookupSerial += 1
+        return newSelection
+    }
 
     func sync() {
         let url = ApiUrl.readingEntryUrl(applicationKey: self.articleReadingService!.applicationKey!, session: self.session, serial: String(self.entrySerial))
@@ -92,5 +101,4 @@ class Article {
             selectionHolder.strongSelection = nil
         }
     }
-    
 }

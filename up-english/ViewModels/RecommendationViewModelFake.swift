@@ -8,13 +8,14 @@
 import Foundation
 
 @available(iOS 16.0, *)
-class HomeModelHandlerFake: HomeModelHandler {
+class RecommendationViewModelFake: HomeModelHandler {
     var count = 0
-    weak var model: HomeModel?
-    init(model: HomeModel) {
+    weak var model: RecommendationViewModel?
+    init(model: RecommendationViewModel) {
         self.model = model
     }
     func refresh() {
+        self.model?.articleItems = []
         self.model?.articleItems.append(contentsOf: [
             ArticleListItem(url: "https://www.theverge.com/23521184/kaleidoscope-review-netflix-series-giancarlo-esposito", title: "0", summary: "this is summary"),
             ArticleListItem(url: "https://www.theverge.com/23527936/sony-alpha-a7rv-mirrorless-fullframe-camera-hands-on-ergonomics-pain", title: "0", summary: "this is summary"),

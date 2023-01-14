@@ -20,7 +20,7 @@ protocol HomeModelHandler: AnyObject {
 }
 
 @available(iOS 16.0, *)
-class HomeModel: ObservableObject {
+class RecommendationViewModel: ObservableObject {
     @Published var articleItems: [ArticleListItem] = []
     var loading = false
     var handler: HomeModelHandler?
@@ -44,34 +44,3 @@ class HomeModel: ObservableObject {
         self.handler?.refresh()
     }
 }
-
-
-//@available(iOS 16.0, *)
-//extension HomeModel: Hashable {
-//    static func == (lhs: HomeModel, rhs: HomeModel) -> Bool {
-//        if let lhsHandler = lhs.handler, let rhsHandler = rhs.handler {
-//            if lhs.url == rhs.url && ObjectIdentifier(lhsHandler) == ObjectIdentifier(rhsHandler) {
-//                return true
-//            } else {
-//                return false
-//            }
-//        } else {
-//            return false
-//        }
-//
-//    }
-//
-//    func hash(into hasher: inout Hasher) {
-//        hasher.combine(url)
-//    }
-//}
-//
-//@available(iOS 16.0, *)
-//class HomeModelHandler {
-//
-//    func openArticle(url: String) {
-//        var pageInfo = PageInfo(page: .ArticleOpener)
-//        pageInfo.articleOpenerPageContent = ArticleOpenerPageContent(url: url)
-//        self.router.append(page: pageInfo)
-//    }
-//}

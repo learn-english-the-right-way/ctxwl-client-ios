@@ -34,9 +34,9 @@ class ViewModelFactory: ObservableObject {
         model.setHandler(handler)
         return model
     }
-    func createHomeModel() -> HomeModel {
-        let model = HomeModel()
-        let handler = HomeModelHandlerFake(model: model)
+    func createHomeModel() -> RecommendationViewModel {
+        let model = RecommendationViewModel()
+        let handler = RecommendationViewModelFake(model: model)
         model.handler = handler
         return model
     }
