@@ -25,7 +25,10 @@ struct CustomWebView: UIViewControllerRepresentable {
 }
 
 struct CustomWebView_Previews: PreviewProvider {
+    @State static var url: String? = "https://google.com"
+    @State static var fullText: String? = nil
+    @State static var wordSelection: String? = nil
     static var previews: some View {
-        EmptyView()
+        CustomWebView(url: $url, fullText: $fullText, wordSelection: $wordSelection)
     }
 }

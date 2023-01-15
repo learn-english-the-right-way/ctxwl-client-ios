@@ -13,7 +13,7 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler, WKNavig
     
     var url: Binding<String?>
     
-    var webView: WKWebView = CustomEditMenuWKWebView(frame: UIScreen.main.bounds)
+    var webView = CustomEditMenuWKWebView(frame: UIScreen.main.bounds)
         
     var fullText: Binding<String?>
     
@@ -64,13 +64,14 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler, WKNavig
         }
         
         addCustomEditMenu()
-        
+                
         let refresh = UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise"), style: .plain, target: webView, action: #selector(webView.reload))
         let back = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: webView, action: #selector(webView.goBack))
-        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
+        let home = UIBarButtonItem(image: UIImage(systemName: "house"), style: .plain, target: webView, action: #selector(webView.goHome))
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 60))
         toolBar.isTranslucent = false
         toolBar.translatesAutoresizingMaskIntoConstraints = false
-        toolBar.items = [back, refresh]
+        toolBar.items = [back, home, refresh]
         webView.addSubview(toolBar)
         toolBar.bottomAnchor.constraint(equalTo: webView.bottomAnchor, constant: 0).isActive = true
         toolBar.leadingAnchor.constraint(equalTo: webView.leadingAnchor, constant: 0).isActive = true

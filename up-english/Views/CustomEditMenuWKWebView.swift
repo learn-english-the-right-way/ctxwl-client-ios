@@ -21,4 +21,7 @@ class CustomEditMenuWKWebView: WKWebView {
         super.copy(sender)
         print("on copy")
     }
+    @objc func goHome() {
+        load(URLRequest(url: URL(string: "https://google.com")!))
+    }
 }
