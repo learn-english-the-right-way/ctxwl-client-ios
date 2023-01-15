@@ -14,6 +14,10 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler, WKNavig
     var url: Binding<String?>
     
     var webView = CustomEditMenuWKWebView(frame: UIScreen.main.bounds)
+    
+    var backButton: UIBarButtonItem?
+    
+    var forwardButton: UIBarButtonItem?
         
     var fullText: Binding<String?>
     
@@ -67,15 +71,20 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler, WKNavig
                 
         let refresh = UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise"), style: .plain, target: webView, action: #selector(webView.reload))
         let back = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: webView, action: #selector(webView.goBack))
+        let forward = UIBarButtonItem(image: UIImage(systemName: "chevron.forward"), style: .plain, target: webView, action: #selector(webView.goForward))
         let home = UIBarButtonItem(image: UIImage(systemName: "house"), style: .plain, target: webView, action: #selector(webView.goHome))
+        back.isEnabled = false
+        forward.isEnabled = false
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 60))
         toolBar.isTranslucent = false
         toolBar.translatesAutoresizingMaskIntoConstraints = false
-        toolBar.items = [back, home, refresh]
+        toolBar.items = [back, forward, home, refresh]
         webView.addSubview(toolBar)
         toolBar.bottomAnchor.constraint(equalTo: webView.bottomAnchor, constant: 0).isActive = true
         toolBar.leadingAnchor.constraint(equalTo: webView.leadingAnchor, constant: 0).isActive = true
         toolBar.trailingAnchor.constraint(equalTo: webView.trailingAnchor, constant: 0).isActive = true
+        self.backButton = back
+        self.forwardButton = forward
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -84,6 +93,18 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler, WKNavig
     
     func webView(_ webView: WKWebView, didCommit: WKNavigation!) {
         self.url.wrappedValue = webView.url?.absoluteString
+        
+        // determine forward and back button availability
+        if !webView.canGoBack {
+            self.backButton?.isEnabled = false
+        } else {
+            self.backButton?.isEnabled = true
+        }
+        if !webView.canGoForward {
+            self.forwardButton?.isEnabled = false
+        } else {
+            self.forwardButton?.isEnabled = true
+        }
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
