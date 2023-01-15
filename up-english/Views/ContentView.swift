@@ -35,6 +35,11 @@ struct ContentView: View {
                 }
                 .tag(2)
         }
+        .onAppear {
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithOpaqueBackground()
+            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        }
         .fullScreenCover(isPresented: $notLoggedIn) {
             LoginOrSignupView()
                 .noticeBanner()

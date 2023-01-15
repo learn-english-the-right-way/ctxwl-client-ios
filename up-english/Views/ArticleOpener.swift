@@ -18,13 +18,13 @@ struct ArticleOpener: View {
             if model.showFullTextView == true {
                 SelectionRangeEnabledTextViewRepresentable(text: model.fullText!, range: $model.lastSelectedRange)
             }
-            if model.fullText != nil {
-                Button("Switch View") {
-                    model.showFullTextView.toggle()
-                }
-                .buttonStyle(.borderedProminent)
-                .offset(y: 350)
-            }
+//            if model.fullText != nil {
+//                Button("Switch View") {
+//                    model.showFullTextView.toggle()
+//                }
+//                .buttonStyle(.borderedProminent)
+//                .offset(y: 350)
+//            }
         }
         .ignoresSafeArea()
     }

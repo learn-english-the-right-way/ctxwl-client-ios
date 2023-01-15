@@ -31,6 +31,13 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler, WKNavig
     }
     
     override func loadView() {
+        self.view = webView
+        webView.navigationDelegate = self
+        webView.allowsBackForwardNavigationGestures = true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         let mercuryPackage = try? String.init(contentsOf: Bundle.main.url(forResource: "mercury.web", withExtension: "js")!)
         
         let scriptToExtractRawText = """
@@ -45,11 +52,6 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler, WKNavig
                 }
                 window.onload = parseText
             """
-        
-        self.view = webView
-        webView.navigationDelegate = self
-        webView.allowsBackForwardNavigationGestures = true
-
         let script = WKUserScript(source: scriptToExtractRawText, injectionTime: .atDocumentStart, forMainFrameOnly: true)
         webView.configuration.userContentController.addUserScript(script)
         webView.configuration.userContentController.add(self, name: "htmlHandler")
@@ -62,6 +64,17 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler, WKNavig
         }
         
         addCustomEditMenu()
+        
+        let refresh = UIBarButtonItem(image: UIImage(systemName: "arrow.clockwise"), style: .plain, target: webView, action: #selector(webView.reload))
+        let back = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: webView, action: #selector(webView.goBack))
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
+        toolBar.isTranslucent = false
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        toolBar.items = [back, refresh]
+        webView.addSubview(toolBar)
+        toolBar.bottomAnchor.constraint(equalTo: webView.bottomAnchor, constant: 0).isActive = true
+        toolBar.leadingAnchor.constraint(equalTo: webView.leadingAnchor, constant: 0).isActive = true
+        toolBar.trailingAnchor.constraint(equalTo: webView.trailingAnchor, constant: 0).isActive = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {
