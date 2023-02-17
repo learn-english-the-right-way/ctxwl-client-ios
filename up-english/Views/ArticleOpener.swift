@@ -14,17 +14,17 @@ struct ArticleOpener: View {
     
     var body: some View {
         ZStack {
-            CustomWebView(url: $model.url, fullText: $model.fullText, wordSelection: $model.selectedWord)
-            if model.showFullTextView == true {
-                SelectionRangeEnabledTextViewRepresentable(text: model.fullText!, range: $model.lastSelectedRange)
+            CustomWebView(url: $model.url, fullText: $model.fullText, readerModeHTMLString: $model.readerModeHTMLString, wordSelection: $model.selectedWord)
+            ReaderModeBrowser(readerModeHTMLString: $model.readerModeHTMLString, url: $model.url, selectionRange: $model.lastSelectedRange)
+                .ignoresSafeArea(.all, edges: .top)
+                .opacity(model.showFullTextView ? 1 : 0)
+            if model.fullText != nil {
+                Button("Switch View") {
+                    model.showFullTextView.toggle()
+                }
+                .buttonStyle(.borderedProminent)
+                .offset(y: 280)
             }
-//            if model.fullText != nil {
-//                Button("Switch View") {
-//                    model.showFullTextView.toggle()
-//                }
-//                .buttonStyle(.borderedProminent)
-//                .offset(y: 350)
-//            }
         }
     }
 }

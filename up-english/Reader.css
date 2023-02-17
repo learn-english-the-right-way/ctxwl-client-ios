@@ -1,0 +1,15 @@
+body {
+    margin-left: 5%;
+    margin-right: 5%;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #f7f1e4;
+    color: #4b3320;
+}
+
+h1 {
+    font-size: 70px;
+}
+
+p {
+    font-size: 50px;
+}

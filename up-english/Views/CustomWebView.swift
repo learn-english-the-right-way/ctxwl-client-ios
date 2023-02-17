@@ -13,10 +13,12 @@ struct CustomWebView: UIViewControllerRepresentable {
     
     var fullText: Binding<String?>
     
+    var readerModeHTMLString: Binding<String?>
+    
     var wordSelection: Binding<String?>
 
     func makeUIViewController(context: Context) -> CustomWebViewController {
-        let uiViewController = CustomWebViewController(url: url, fullText: fullText, wordSelection: wordSelection)        
+        let uiViewController = CustomWebViewController(url: url, fullText: fullText, readerModeHTMLString: readerModeHTMLString, wordSelection: wordSelection)
         return uiViewController
     }
     
@@ -27,8 +29,9 @@ struct CustomWebView: UIViewControllerRepresentable {
 struct CustomWebView_Previews: PreviewProvider {
     @State static var url: String? = "https://google.com"
     @State static var fullText: String? = nil
+    @State static var readerModeHTMLString: String? = nil
     @State static var wordSelection: String? = nil
     static var previews: some View {
-        CustomWebView(url: $url, fullText: $fullText, wordSelection: $wordSelection)
+        CustomWebView(url: $url, fullText: $fullText, readerModeHTMLString: $readerModeHTMLString, wordSelection: $wordSelection)
     }
 }

@@ -21,11 +21,14 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler, WKNavig
         
     var fullText: Binding<String?>
     
+    var readerModeHTMLString: Binding<String?>
+    
     var wordSelection: Binding<String?>
     
-    init(url: Binding<String?>, fullText: Binding<String?>, wordSelection: Binding<String?>) {
+    init(url: Binding<String?>, fullText: Binding<String?>, readerModeHTMLString: Binding<String?>, wordSelection: Binding<String?>) {
         self.url = url
         self.fullText = fullText
+        self.readerModeHTMLString = readerModeHTMLString
         self.wordSelection = wordSelection
         super.init(nibName: nil, bundle: nil)
     }
@@ -42,22 +45,12 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler, WKNavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let mercuryPackage = try? String.init(contentsOf: Bundle.main.url(forResource: "mercury.web", withExtension: "js")!)
-        
-        let scriptToExtractRawText = """
-                function parseText()
-                {
-                    var html = document.documentElement.outerHTML
-                    var promisedText = (function() {
-"""
-        + mercuryPackage! + """
-            ; return Mercury.parse(document.location.toString(), {html: html, contentType: "text"})})()
-                    promisedText.then(result=>window.webkit.messageHandlers.htmlHandler.postMessage(result.content))
-                }
-                window.onload = parseText
-            """
-        let script = WKUserScript(source: scriptToExtractRawText, injectionTime: .atDocumentStart, forMainFrameOnly: true)
-        webView.configuration.userContentController.addUserScript(script)
+        let readability = try! String.init(contentsOf: Bundle.main.url(forResource: "Readability", withExtension: "js")!)
+        let processArticle = try! String.init(contentsOf: Bundle.main.url(forResource: "processArticle", withExtension: "js")!)
+        let readabilityScript = WKUserScript(source: readability, injectionTime: .atDocumentStart, forMainFrameOnly: true)
+        let processArticleScript = WKUserScript(source: processArticle, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        webView.configuration.userContentController.addUserScript(readabilityScript)
+        webView.configuration.userContentController.addUserScript(processArticleScript)
         webView.configuration.userContentController.add(self, name: "htmlHandler")
         
         if let urlToLoad = url.wrappedValue {
@@ -108,7 +101,12 @@ class CustomWebViewController: UIViewController, WKScriptMessageHandler, WKNavig
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        self.fullText.wrappedValue = message.body as? String
+        guard let dictionary = message.body as? [String: String] else {return}
+        guard let newHTMLString = dictionary["newHTMLString"] else {return}
+        guard let fullText = dictionary["fullText"] else {return}
+        
+        self.readerModeHTMLString.wrappedValue = newHTMLString
+        self.fullText.wrappedValue = fullText
     }
     
     func addCustomEditMenu() {

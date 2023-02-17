@@ -14,6 +14,13 @@
 		9B8AE4ED2793F55000489A7B /* ArticleListServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4EC2793F55000489A7B /* ArticleListServiceDefault.swift */; };
 		9B8AE4EF2793F56E00489A7B /* ArticleListModelDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4EE2793F56E00489A7B /* ArticleListModelDefault.swift */; };
 		9B8AE4F12797BBA500489A7B /* ArticleListServiceMockup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8AE4F02797BBA500489A7B /* ArticleListServiceMockup.swift */; };
+		9F4ADDB5299E70A3005C5CE1 /* Readability.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F4ADDB4299E70A3005C5CE1 /* Readability.js */; };
+		9F4ADDB7299E7B52005C5CE1 /* processArticle.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F4ADDB6299E7B52005C5CE1 /* processArticle.js */; };
+		9F4ADDB9299E8550005C5CE1 /* ReaderModeBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4ADDB8299E8550005C5CE1 /* ReaderModeBrowser.swift */; };
+		9F4ADDBD299E85D9005C5CE1 /* ReaderModeBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4ADDBC299E85D9005C5CE1 /* ReaderModeBrowserViewController.swift */; };
+		9F4ADDBF299F1E7D005C5CE1 /* Reader.css in Resources */ = {isa = PBXBuildFile; fileRef = 9F4ADDBE299F1E7D005C5CE1 /* Reader.css */; };
+		9F4ADDC1299FF7E9005C5CE1 /* getRange.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F4ADDC0299FF7E9005C5CE1 /* getRange.js */; };
+		9F4ADDC329A00BCD005C5CE1 /* getLength.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F4ADDC229A00BCD005C5CE1 /* getLength.js */; };
 		B007246528D6C4DF0018252C /* KEYCHAIN_APPLICATION_KEY_ERROR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B007246428D6C4DF0018252C /* KEYCHAIN_APPLICATION_KEY_ERROR.swift */; };
 		B007246728D6C5080018252C /* KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY.swift in Sources */ = {isa = PBXBuildFile; fileRef = B007246628D6C5080018252C /* KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY.swift */; };
 		B007246928E04AEA0018252C /* CREDENTIALS_EMPTY.swift in Sources */ = {isa = PBXBuildFile; fileRef = B007246828E04AEA0018252C /* CREDENTIALS_EMPTY.swift */; };
@@ -120,6 +127,13 @@
 		9B8AE4EC2793F55000489A7B /* ArticleListServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListServiceDefault.swift; sourceTree = "<group>"; };
 		9B8AE4EE2793F56E00489A7B /* ArticleListModelDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListModelDefault.swift; sourceTree = "<group>"; };
 		9B8AE4F02797BBA500489A7B /* ArticleListServiceMockup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListServiceMockup.swift; sourceTree = "<group>"; };
+		9F4ADDB4299E70A3005C5CE1 /* Readability.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Readability.js; sourceTree = "<group>"; };
+		9F4ADDB6299E7B52005C5CE1 /* processArticle.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = processArticle.js; sourceTree = "<group>"; };
+		9F4ADDB8299E8550005C5CE1 /* ReaderModeBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderModeBrowser.swift; sourceTree = "<group>"; };
+		9F4ADDBC299E85D9005C5CE1 /* ReaderModeBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderModeBrowserViewController.swift; sourceTree = "<group>"; };
+		9F4ADDBE299F1E7D005C5CE1 /* Reader.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Reader.css; sourceTree = "<group>"; };
+		9F4ADDC0299FF7E9005C5CE1 /* getRange.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = getRange.js; sourceTree = "<group>"; };
+		9F4ADDC229A00BCD005C5CE1 /* getLength.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = getLength.js; sourceTree = "<group>"; };
 		B007246428D6C4DF0018252C /* KEYCHAIN_APPLICATION_KEY_ERROR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEYCHAIN_APPLICATION_KEY_ERROR.swift; sourceTree = "<group>"; };
 		B007246628D6C5080018252C /* KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY.swift; sourceTree = "<group>"; };
 		B007246828E04AEA0018252C /* CREDENTIALS_EMPTY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CREDENTIALS_EMPTY.swift; sourceTree = "<group>"; };
@@ -267,6 +281,11 @@
 				B09D06A8263ECB4400246D90 /* Preview Content */,
 				B0A89A60264A713200862E26 /* RegistrationStatus.swift */,
 				B0C7CC0826568E1D003832EE /* ApiUrl.swift */,
+				9F4ADDB4299E70A3005C5CE1 /* Readability.js */,
+				9F4ADDB6299E7B52005C5CE1 /* processArticle.js */,
+				9F4ADDBE299F1E7D005C5CE1 /* Reader.css */,
+				9F4ADDC0299FF7E9005C5CE1 /* getRange.js */,
+				9F4ADDC229A00BCD005C5CE1 /* getLength.js */,
 			);
 			path = "up-english";
 			sourceTree = "<group>";
@@ -324,6 +343,8 @@
 				B08981F22967BEB000709EF6 /* ArticleRow.swift */,
 				B08981FA2971950900709EF6 /* SettingsView.swift */,
 				B08981FC2972ED3400709EF6 /* CustomEditMenuWKWebView.swift */,
+				9F4ADDB8299E8550005C5CE1 /* ReaderModeBrowser.swift */,
+				9F4ADDBC299E85D9005C5CE1 /* ReaderModeBrowserViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -527,8 +548,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B08981F7296D64EB00709EF6 /* mercury.web.js in Resources */,
+				9F4ADDC329A00BCD005C5CE1 /* getLength.js in Resources */,
+				9F4ADDB7299E7B52005C5CE1 /* processArticle.js in Resources */,
 				B09D06AA263ECB4400246D90 /* Preview Assets.xcassets in Resources */,
 				B09D06A7263ECB4400246D90 /* Assets.xcassets in Resources */,
+				9F4ADDBF299F1E7D005C5CE1 /* Reader.css in Resources */,
+				9F4ADDB5299E70A3005C5CE1 /* Readability.js in Resources */,
+				9F4ADDC1299FF7E9005C5CE1 /* getRange.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +611,7 @@
 				B0C75D8E293D059600A2F405 /* SessionConnectionService.swift in Sources */,
 				B0C4EDC3286EB05400A616EB /* ENCODING_FAILED.swift in Sources */,
 				B02B2FFE286214C30075CE4F /* SESSION_AUTHENTICATION_ERROR.swift in Sources */,
+				9F4ADDB9299E8550005C5CE1 /* ReaderModeBrowser.swift in Sources */,
 				B00D51A126C40A590069AA55 /* CustomWebView.swift in Sources */,
 				B007246528D6C4DF0018252C /* KEYCHAIN_APPLICATION_KEY_ERROR.swift in Sources */,
 				B0C75D8A293C518C00A2F405 /* ArticleReadingService.swift in Sources */,
@@ -599,6 +626,7 @@
 				B08AB6DE2929C17000968BA5 /* ArticleOpener.swift in Sources */,
 				B0C7CC0926568E1D003832EE /* ApiUrl.swift in Sources */,
 				B0FE9689296016E200F2FAEF /* RegistrationAndVerificationView.swift in Sources */,
+				9F4ADDBD299E85D9005C5CE1 /* ReaderModeBrowserViewController.swift in Sources */,
 				B02B300628649D300075CE4F /* EMAIL_REGISTRATION_INVALID_CONFIRMATION_CODE.swift in Sources */,
 				B0CF55012870542C00C4FD92 /* UIErrorMapper.swift in Sources */,
 				B09D06CE263ECB8900246D90 /* Registration.swift in Sources */,

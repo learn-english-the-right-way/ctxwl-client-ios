@@ -12,7 +12,16 @@ class ArticleOpenerModel: ObservableObject {
     
     var handler: ArticleOpenerModelHandler?
     
-    var url: String?
+    var url: String? {
+        didSet {
+            if url != oldValue {
+                fullText = nil
+                selectedWord = nil
+                readerModeHTMLString = nil
+                lastSelectedRange = nil
+            }
+        }
+    }
     
     var selectedWord: String? {
         didSet {
@@ -21,6 +30,8 @@ class ArticleOpenerModel: ObservableObject {
             }
         }
     }
+    
+    var readerModeHTMLString: String?
     
     @Published var fullText: String? {
         didSet {
@@ -36,7 +47,6 @@ class ArticleOpenerModel: ObservableObject {
     
     var lastSelectedRange: NSRange? {
         didSet {
-            print(lastSelectedRange!.location, lastSelectedRange!.location + lastSelectedRange!.length)
             if let lastSelectedRange {
                 if let handler {
                     handler.addLookup(range: lastSelectedRange)
