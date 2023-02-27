@@ -14,11 +14,17 @@ struct LoginOrSignupView: View {
     var body: some View {
         VStack {
             Spacer()
+            Image("Logo")
+              .resizable()
+              .frame(width: 100, height: 100)
+              .padding(.bottom, 50)
+            Spacer()
             if isLogin {
                 Login(model: viewModelFactory.createLoginViewModel())
             } else {
                 RegistrationAndVerificationView()
             }
+            Spacer()
             Spacer()
             Button("Switch") {
                 isLogin.toggle()

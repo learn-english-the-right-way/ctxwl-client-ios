@@ -14,31 +14,23 @@ struct Login: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                Text("Please wait while we log you in...")
-                    .opacity(model.loginUnderway ? 1 : 0)
-            }
-
-            HStack {
-                Text("Email:")
-                TextField("Email address", text: $model.email)
+            VStack(alignment: .leading, spacing: 15) {
+                TextField("Email", text: $model.email)
+                    .padding()
+                    .cornerRadius(10)
                     .disableAutocorrection(true)
                     .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                     .keyboardType(.emailAddress)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                SecureField("Password", text: $model.password)
                     .padding()
-            }
-            Text(model.emailErrorMsg)
-            HStack {
-                Text("Password:")
-                TextField("Password", text: $model.password)
+                    .cornerRadius(10)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .disableAutocorrection(true)
                     .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
-                    .padding()
             }
-        }
-        VStack {
+            .padding([.leading, .trailing], 27.5)
+
             Button("Login") {
                 model.login()
             }

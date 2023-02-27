@@ -133,12 +133,11 @@ class UserServiceDefault: UserService, SessionConnectionService {
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrAccount as String: account,
                                     kSecAttrServer as String: server,
-                                    kSecAttrLabel as String: "applicationKey",
-                                    kSecMatchLimit as String: kSecMatchLimitOne,
-                                    kSecReturnAttributes as String: true,
-                                    kSecReturnData as String: true]
+                                    kSecAttrLabel as String: "applicationKey"
+        ]
         let deletionStatus = SecItemDelete(query as CFDictionary)
         guard deletionStatus == errSecSuccess else {
+            print(SecCopyErrorMessageString(deletionStatus, nil))
             throw KEYCHAIN_APPLICATION_KEY_ERROR()
         }
     }
