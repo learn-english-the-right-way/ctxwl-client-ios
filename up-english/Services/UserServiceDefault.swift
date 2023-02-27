@@ -82,6 +82,13 @@ class UserServiceDefault: UserService, SessionConnectionService {
     init(ctxwlUrlSession: CTXWLURLSession) {
         self.ctxwlURLSession = ctxwlUrlSession
         self.errorsSubject = PassthroughSubject()
+        do {
+            self._applicationKey =  try self.readApplicationKeyFromKeychain()
+            self._authenticationKeyAccquired.send(self._applicationKey)
+            self._loggedIn.send(true)
+        }
+        catch {
+        }
     }
     
     private func readCredentialsFromKeychain() throws -> Credential {
@@ -118,12 +125,32 @@ class UserServiceDefault: UserService, SessionConnectionService {
         }
     }
     
+    private func removeApplicationKey() throws {
+        guard let account = try? self.readCredentialsFromKeychain().username else {
+            throw KEYCHAIN_CREDENTIALS_NOT_FOUND()
+        }
+        let server = "www.wordex.com"
+        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
+                                    kSecAttrAccount as String: account,
+                                    kSecAttrServer as String: server,
+                                    kSecAttrLabel as String: "applicationKey",
+                                    kSecMatchLimit as String: kSecMatchLimitOne,
+                                    kSecReturnAttributes as String: true,
+                                    kSecReturnData as String: true]
+        let deletionStatus = SecItemDelete(query as CFDictionary)
+        guard deletionStatus == errSecSuccess else {
+            throw KEYCHAIN_APPLICATION_KEY_ERROR()
+        }
+    }
+    
     private func readApplicationKeyFromKeychain() throws -> String {
         guard let account = try? self.readCredentialsFromKeychain().username else {
             throw KEYCHAIN_CREDENTIALS_NOT_FOUND()
         }
+        let server = "www.wordex.com"
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrAccount as String: account,
+                                    kSecAttrServer as String: server,
                                     kSecAttrLabel as String: "applicationKey",
                                     kSecMatchLimit as String: kSecMatchLimitOne,
                                     kSecReturnAttributes as String: true,
@@ -145,14 +172,35 @@ class UserServiceDefault: UserService, SessionConnectionService {
         guard let account = try? self.readCredentialsFromKeychain().username else {
             throw KEYCHAIN_CREDENTIALS_NOT_FOUND()
         }
-        let applicationKey = key.data(using: String.Encoding.utf8)!
-        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                    kSecAttrAccount as String: account,
-                                    kSecAttrLabel as String: "applicationKey",
-                                    kSecValueData as String: applicationKey]
-        let status = SecItemAdd(query as CFDictionary, nil)
-        guard status == errSecSuccess else {
-            throw KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY()
+        let applicationKey = key.data(using: .utf8)!
+        let server = "www.wordex.com"
+        // try to update the keychain item
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassInternetPassword,
+            kSecAttrAccount as String: account,
+            kSecAttrServer as String: server,
+            kSecAttrLabel as String: "applicationKey",
+        ]
+        let update: [String: Any] = [
+            kSecValueData as String: applicationKey
+        ]
+        let updateStatus = SecItemUpdate(query as CFDictionary, update as CFDictionary)
+        guard updateStatus == errSecSuccess else {
+            print(SecCopyErrorMessageString(updateStatus, nil)!)
+            // try to create the keychain item
+            let attribute: [String: Any] = [
+                kSecClass as String: kSecClassInternetPassword,
+                kSecAttrAccount as String: account,
+                kSecAttrServer as String: server,
+                kSecAttrLabel as String: "applicationKey",
+                kSecValueData as String: applicationKey
+            ]
+            let creationStatus = SecItemAdd(attribute as CFDictionary, nil)
+            guard creationStatus == errSecSuccess else {
+                print(SecCopyErrorMessageString(creationStatus, nil)!)
+                throw KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY()
+            }
+            return
         }
     }
     
@@ -256,6 +304,13 @@ class UserServiceDefault: UserService, SessionConnectionService {
             .map { _ in Result<Void, CLIENT_ERROR>.success(())}
             .catch { clientError in Just(Result<Void, CLIENT_ERROR>.failure(clientError))}
             .eraseToAnyPublisher()
+    }
+    
+    func logout() {
+        self._applicationKey = nil
+        self._loggedIn.send(false)
+        self._authenticationKeyAccquired.send(nil)
+        try? self.removeApplicationKey()
     }
     
 }

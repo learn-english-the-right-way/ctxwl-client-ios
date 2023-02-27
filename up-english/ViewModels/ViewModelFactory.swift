@@ -49,4 +49,10 @@ class ViewModelFactory: ObservableObject {
         model.handler = handler
         return model
     }
+    func createSettingsModel() -> SettingsViewModel {
+        let model = SettingsViewModel()
+        let handler = SettingsViewModelHandler(serviceRepository.userService)
+        model.handler = handler
+        return model
+    }
 }

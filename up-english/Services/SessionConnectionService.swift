@@ -13,4 +13,5 @@ protocol SessionConnectionService: AnyObject {
     var authenticationKeyAccquired: AnyPublisher<String, Never> {get}
     var loggedIn: AnyPublisher<Bool, Never> {get}
     func sessionProtectedDataTaskPublisher(request: URLRequest) -> AnyPublisher<Data, CLIENT_ERROR>
+    func logout() -> Void
 }

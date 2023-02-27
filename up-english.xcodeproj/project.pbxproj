@@ -21,6 +21,7 @@
 		9F4ADDBF299F1E7D005C5CE1 /* Reader.css in Resources */ = {isa = PBXBuildFile; fileRef = 9F4ADDBE299F1E7D005C5CE1 /* Reader.css */; };
 		9F4ADDC1299FF7E9005C5CE1 /* getRange.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F4ADDC0299FF7E9005C5CE1 /* getRange.js */; };
 		9F4ADDC329A00BCD005C5CE1 /* getLength.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F4ADDC229A00BCD005C5CE1 /* getLength.js */; };
+		9F4ADDC529AB6E7A005C5CE1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4ADDC429AB6E7A005C5CE1 /* SettingsViewModel.swift */; };
 		B007246528D6C4DF0018252C /* KEYCHAIN_APPLICATION_KEY_ERROR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B007246428D6C4DF0018252C /* KEYCHAIN_APPLICATION_KEY_ERROR.swift */; };
 		B007246728D6C5080018252C /* KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY.swift in Sources */ = {isa = PBXBuildFile; fileRef = B007246628D6C5080018252C /* KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY.swift */; };
 		B007246928E04AEA0018252C /* CREDENTIALS_EMPTY.swift in Sources */ = {isa = PBXBuildFile; fileRef = B007246828E04AEA0018252C /* CREDENTIALS_EMPTY.swift */; };
@@ -57,7 +58,6 @@
 		B08962F5280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08962F4280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift */; };
 		B08981F32967BEB000709EF6 /* ArticleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981F22967BEB000709EF6 /* ArticleRow.swift */; };
 		B08981F529682E7500709EF6 /* RecommendationViewModelFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981F429682E7500709EF6 /* RecommendationViewModelFake.swift */; };
-		B08981F7296D64EB00709EF6 /* mercury.web.js in Resources */ = {isa = PBXBuildFile; fileRef = B08981F6296D64EB00709EF6 /* mercury.web.js */; };
 		B08981FB2971950900709EF6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981FA2971950900709EF6 /* SettingsView.swift */; };
 		B08981FD2972ED3400709EF6 /* CustomEditMenuWKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981FC2972ED3400709EF6 /* CustomEditMenuWKWebView.swift */; };
 		B08AB6DE2929C17000968BA5 /* ArticleOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08AB6DD2929C17000968BA5 /* ArticleOpener.swift */; };
@@ -134,6 +134,7 @@
 		9F4ADDBE299F1E7D005C5CE1 /* Reader.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Reader.css; sourceTree = "<group>"; };
 		9F4ADDC0299FF7E9005C5CE1 /* getRange.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = getRange.js; sourceTree = "<group>"; };
 		9F4ADDC229A00BCD005C5CE1 /* getLength.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = getLength.js; sourceTree = "<group>"; };
+		9F4ADDC429AB6E7A005C5CE1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		B007246428D6C4DF0018252C /* KEYCHAIN_APPLICATION_KEY_ERROR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEYCHAIN_APPLICATION_KEY_ERROR.swift; sourceTree = "<group>"; };
 		B007246628D6C5080018252C /* KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY.swift; sourceTree = "<group>"; };
 		B007246828E04AEA0018252C /* CREDENTIALS_EMPTY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CREDENTIALS_EMPTY.swift; sourceTree = "<group>"; };
@@ -170,7 +171,6 @@
 		B08962F4280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTXWL_SERVER_ERROR.swift; sourceTree = "<group>"; };
 		B08981F22967BEB000709EF6 /* ArticleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRow.swift; sourceTree = "<group>"; };
 		B08981F429682E7500709EF6 /* RecommendationViewModelFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationViewModelFake.swift; sourceTree = "<group>"; };
-		B08981F6296D64EB00709EF6 /* mercury.web.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = mercury.web.js; sourceTree = "<group>"; };
 		B08981FA2971950900709EF6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B08981FC2972ED3400709EF6 /* CustomEditMenuWKWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEditMenuWKWebView.swift; sourceTree = "<group>"; };
 		B08AB6DD2929C17000968BA5 /* ArticleOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleOpener.swift; sourceTree = "<group>"; };
@@ -271,7 +271,6 @@
 		B09D06A1263ECB4300246D90 /* up-english */ = {
 			isa = PBXGroup;
 			children = (
-				B08981F6296D64EB00709EF6 /* mercury.web.js */,
 				B0C7CBFC2651267D003832EE /* Services */,
 				B0C7CBFB26512632003832EE /* ViewModels */,
 				B0C7CBFA265125FE003832EE /* Views */,
@@ -366,6 +365,7 @@
 				B0C75D932946081800A2F405 /* RecommendationViewModel.swift */,
 				B0FE9682295FC99500F2FAEF /* ViewModelFactory.swift */,
 				B08981F429682E7500709EF6 /* RecommendationViewModelFake.swift */,
+				9F4ADDC429AB6E7A005C5CE1 /* SettingsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -547,7 +547,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B08981F7296D64EB00709EF6 /* mercury.web.js in Resources */,
 				9F4ADDC329A00BCD005C5CE1 /* getLength.js in Resources */,
 				9F4ADDB7299E7B52005C5CE1 /* processArticle.js in Resources */,
 				B09D06AA263ECB4400246D90 /* Preview Assets.xcassets in Resources */,
@@ -618,6 +617,7 @@
 				B08AB6E02929C21300968BA5 /* ArticleOpenerModel.swift in Sources */,
 				B08962F5280D23F400B95D47 /* CTXWL_SERVER_ERROR.swift in Sources */,
 				B02B300A28649DA40075CE4F /* SESSION_AUTHENTICATION_INVALID_CREDENTIAL.swift in Sources */,
+				9F4ADDC529AB6E7A005C5CE1 /* SettingsViewModel.swift in Sources */,
 				B0E5491E2815B73C00934E7B /* ErrorMapper.swift in Sources */,
 				B069DD372959385600639BE8 /* READING_SESSION_MISSING.swift in Sources */,
 				B0C75D92294607E500A2F405 /* RecommendationView.swift in Sources */,

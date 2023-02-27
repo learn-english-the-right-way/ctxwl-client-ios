@@ -13,17 +13,18 @@ struct ArticleOpener: View {
     @ObservedObject var model: ArticleOpenerModel
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottomTrailing) {
             CustomWebView(url: $model.url, fullText: $model.fullText, readerModeHTMLString: $model.readerModeHTMLString, wordSelection: $model.selectedWord)
             ReaderModeBrowser(readerModeHTMLString: $model.readerModeHTMLString, url: $model.url, selectionRange: $model.lastSelectedRange)
                 .ignoresSafeArea(.all, edges: .top)
                 .opacity(model.showFullTextView ? 1 : 0)
             if model.fullText != nil {
-                Button("Switch View") {
-                    model.showFullTextView.toggle()
+                Toggle(isOn: $model.showFullTextView) {
+                    Label("Reader", systemImage: "book")
                 }
+                .toggleStyle(.button)
                 .buttonStyle(.borderedProminent)
-                .offset(y: 280)
+                .frame(height: 45)
             }
         }
     }

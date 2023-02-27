@@ -99,5 +99,8 @@ class ArticleReadingServiceDefault: ArticleReadingService, SessionConnectionServ
     func sessionProtectedDataTaskPublisher(request: URLRequest) -> AnyPublisher<Data, CLIENT_ERROR> {
         return self.sessionConnectionService.sessionProtectedDataTaskPublisher(request: request)
     }
-
+    
+    func logout() {
+        self.sessionConnectionService.logout()
+    }
 }

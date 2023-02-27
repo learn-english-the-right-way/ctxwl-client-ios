@@ -29,7 +29,7 @@ struct ContentView: View {
                     Label("For You", systemImage: "books.vertical")
                 }
                 .tag(0)
-            SettingsView()
+            SettingsView(model: viewModelFactory.createSettingsModel())
                 .tabItem {
                     Label("Me", systemImage: "person")
                 }
