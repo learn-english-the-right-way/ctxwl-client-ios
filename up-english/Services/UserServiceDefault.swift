@@ -137,7 +137,7 @@ class UserServiceDefault: UserService, SessionConnectionService {
         ]
         let deletionStatus = SecItemDelete(query as CFDictionary)
         guard deletionStatus == errSecSuccess else {
-            print(SecCopyErrorMessageString(deletionStatus, nil))
+            print(SecCopyErrorMessageString(deletionStatus, nil)!)
             throw KEYCHAIN_APPLICATION_KEY_ERROR()
         }
     }

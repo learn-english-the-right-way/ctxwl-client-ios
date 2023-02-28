@@ -13,21 +13,21 @@ class EmailVerificationModel: ObservableObject {
 
     private var handler: EmailVerificationModelDelegate?
     
-    @Published var confirmationCode = "" {
-        didSet(value) {
-            if value != "" {
-                verifyButtonDisabled = false
-            } else {
-                verifyButtonDisabled = true
-            }
-        }
-    }
+    @Published var confirmationCode = ""
         
     @Published var displayConfirmationCodeErrMsg = false
     
     @Published var registering = false
     
-    @Published var verifyButtonDisabled = true
+    @Published var isButtonDisabled = true
+    
+    func checkButtonStatus() {
+        if confirmationCode != "" {
+            isButtonDisabled = false
+        } else {
+            isButtonDisabled = true
+        }
+    }
     
     func register() {
         guard let handler = self.handler else {
@@ -38,6 +38,10 @@ class EmailVerificationModel: ObservableObject {
     
     func reset() {
         // TODO: add go back logic
+        guard let handler = self.handler else {
+            return
+        }
+        handler.resetRegistrationStatus()
     }
     
     func setHandler(_ handler: EmailVerificationModelDelegate) {
@@ -76,6 +80,7 @@ protocol EmailVerificationModelDelegate: AnyObject {
     var model: EmailVerificationModel? {get set}
     var registrationRequestCancellable: AnyCancellable? {get}
     func register(code: String) -> Void
+    func resetRegistrationStatus() -> Void
 }
 
 @available(iOS 16.0, *)
@@ -117,5 +122,9 @@ class EmailVerificationModelHandlerDefault: EmailVerificationModelDelegate {
                     self.generalUIEffectManager.newEffect(effect)
                 }
             }
+    }
+    
+    func resetRegistrationStatus() {
+        self.registrationService.resetRegistrationStatus()
     }
 }

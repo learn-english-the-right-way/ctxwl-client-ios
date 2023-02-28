@@ -14,27 +14,39 @@ struct Login: View {
     
     var body: some View {
         VStack {
-            VStack(alignment: .leading, spacing: 15) {
-                TextField("Email", text: $model.email)
-                    .padding()
-                    .cornerRadius(10)
-                    .disableAutocorrection(true)
-                    .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
-                    .keyboardType(.emailAddress)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            VStack() {
+                VStack(alignment: .leading) {
+                    TextField("Email", text: $model.email)
+                        .disableAutocorrection(true)
+                        .autocapitalization(.none)
+                        .keyboardType(.emailAddress)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    Text(model.emailErrorMsg)
+                        .font(.caption)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .onChange(of: model.email) { newState in
+                    model.checkEmail()
+                    model.checkLoginButtonStatus()
+                }
                 SecureField("Password", text: $model.password)
-                    .padding()
-                    .cornerRadius(10)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .disableAutocorrection(true)
                     .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                    .onChange(of: model.password) { newState in
+                        model.checkLoginButtonStatus()
+                    }
             }
             .padding([.leading, .trailing], 27.5)
 
-            Button("Login") {
+            Button() {
                 model.login()
+            } label: {
+                Text("Login")
+                    .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
+            .padding([.leading, .trailing, .top], 27.5)
             .disabled(model.loginButtonDisabled)
         }
     }

@@ -14,48 +14,61 @@ struct Registration: View {
 
     var body: some View {
         VStack {
-            Text("Sending verification email...")
-                .opacity(model.requestingConfirmationCode ? 1 : 0)
-            HStack {
-                Text("Email:")
+            VStack(alignment: .leading) {
                 TextField("Email address", text: $model.email)
                     .disableAutocorrection(true)
                     .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
                     .keyboardType(.emailAddress)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
                     .disabled(model.requestingConfirmationCode)
+                    .onChange(of: model.email) {newEmail in
+                        model.checkEmail()
+                        model.checkRegistrationButtonStatus()
+                    }
+                Text(model.emailErrorMsg)
+                    .font(.caption)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            Text(model.emailErrorMsg)
-            HStack {
-                Text("Password:")
-                TextField("Password", text: $model.password1)
+            .padding([.leading, .trailing], 27.5)
+            VStack(alignment: .leading) {
+                SecureField("Password", text: $model.password1)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .disableAutocorrection(true)
                     .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
-                    .padding()
                     .disabled(model.requestingConfirmationCode)
+                    .onChange(of: model.password1) {newPassword1 in
+                        model.checkPassword1()
+                        model.checkRegistrationButtonStatus()
+                    }
+                Text(model.password1ErrorMsg)
+                    .font(.caption)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            Text(model.password1ErrorMsg)
-            HStack {
-                Text("Password:")
-                TextField("Confirm password", text: $model.password2)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .disableAutocorrection(true)
-                .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
-                .padding()
-                .disabled(model.requestingConfirmationCode)
-
+            .padding([.leading, .trailing], 27.5)
+            VStack(alignment: .leading) {
+                SecureField("Confirm password", text: $model.password2)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .disableAutocorrection(true)
+                    .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                    .disabled(model.requestingConfirmationCode)
+                    .onChange(of: model.password2) {newPassword2 in
+                        model.checkPassword2()
+                        model.checkRegistrationButtonStatus()
+                    }
+                Text(model.password2ErrorMsg)
+                    .font(.caption)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            Text(model.password2ErrorMsg)
-            Button("Register") {
+            .padding([.leading, .trailing], 27.5)
+            Button() {
                 model.requestConfirmationCode()
+            } label: {
+                Text("Register")
+                    .frame(maxWidth: .infinity)
             }
-            .disabled(
-                model.validationFailed ||
-                model.requestingConfirmationCode
-            )
             .buttonStyle(.borderedProminent)
+            .padding([.leading, .trailing, .top], 27.5)
+            .disabled(model.validationFailed || model.requestingConfirmationCode)
         }
     }
 }

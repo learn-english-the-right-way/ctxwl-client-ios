@@ -14,19 +14,28 @@ struct EmailVerification: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                Text("Please wait while we finish registering...")
-                    .opacity(model.registering ? 1 : 0)
-            }
-            HStack {
-                Text("Confirmation Code")
-                TextField("Confirmation code", text: $model.confirmationCode)
-            }
-            Button("Verify") {
-                model.register()
-            }
-            .disabled(model.verifyButtonDisabled)
+            TextField("Confirmation code", text: $model.confirmationCode)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .disableAutocorrection(true)
+                .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                .padding([.leading, .trailing], 27.5)
+                .onChange(of: model.confirmationCode) {newCode in
+                    model.checkButtonStatus()
+                }
         }
+        Button() {
+            model.register()
+        } label: {
+            Text("Verify")
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.borderedProminent)
+        .padding([.leading, .trailing, .top], 27.5)
+        .disabled(model.isButtonDisabled)
+        Button("Cancel") {
+            model.reset()
+        }
+        .padding([.leading, .trailing, .top], 27.5)
     }
 }
 

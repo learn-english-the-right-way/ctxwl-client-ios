@@ -10,7 +10,7 @@ import SwiftUI
 @available(iOS 16.0, *)
 struct ContentView: View {
     
-    @State var notLoggedIn: Bool = true
+    @State var notLoggedIn: Bool = false
     @State var selectedTab = 0
     
     @EnvironmentObject var services: ServiceInitializer

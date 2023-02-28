@@ -16,36 +16,19 @@ class RegistrationModel: ObservableObject {
         
     var confirmationCode = ""
     
-    @Published var email = "" {
-        didSet {
-            checkEmail()
-            checkRegistrationButtonStatus()
-        }
-    }
+    @Published var email = ""
     
     @Published var emailValid = false
     
     @Published var emailErrorMsg = ""
     
-    @Published var password1 = "" {
-        didSet {
-            checkPassword1()
-            checkPassword2()
-            checkRegistrationButtonStatus()
-        }
-    }
+    @Published var password1 = ""
     
     @Published var password1ErrorMsg =  ""
     
     @Published var password1Valid = false
     
-    @Published var password2 = "" {
-        didSet {
-            checkPassword1()
-            checkPassword2()
-            checkRegistrationButtonStatus()
-        }
-    }
+    @Published var password2 = ""
     
     @Published var password2Valid = false
     
@@ -55,7 +38,7 @@ class RegistrationModel: ObservableObject {
     
     @Published var requestingConfirmationCode = false
                         
-    private func checkEmail() -> Void {
+    func checkEmail() -> Void {
         let predicate = EmailPredicate()
         if email.isEmpty {
             emailValid = false
@@ -69,7 +52,7 @@ class RegistrationModel: ObservableObject {
         }
     }
     
-    private func checkPassword1() -> Void {
+    func checkPassword1() -> Void {
         if password1.isEmpty {
             password1Valid = false
             password1ErrorMsg = ""
@@ -82,7 +65,7 @@ class RegistrationModel: ObservableObject {
         }
     }
     
-    private func checkPassword2() -> Void {
+    func checkPassword2() -> Void {
         if password2.isEmpty {
             password2Valid = false
             password2ErrorMsg = ""
@@ -95,7 +78,7 @@ class RegistrationModel: ObservableObject {
         }
     }
     
-    private func checkRegistrationButtonStatus() {
+    func checkRegistrationButtonStatus() {
         if emailValid && password1Valid && password2Valid {
             validationFailed = false
         } else {

@@ -26,8 +26,14 @@ struct LoginOrSignupView: View {
             }
             Spacer()
             Spacer()
-            Button("Switch") {
+            Button() {
                 isLogin.toggle()
+            } label: {
+                if isLogin {
+                    Text("Register instead")
+                } else {
+                    Text("Login instead")
+                }
             }
         }
     }

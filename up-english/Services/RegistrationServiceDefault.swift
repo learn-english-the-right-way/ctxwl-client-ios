@@ -68,6 +68,7 @@ class RegistrationServiceDefault: RegistrationService {
     
     func resetRegistrationStatus() -> Void {
         registrationStatus = .NotRegistered
+        _requireVerification.send(false)
     }
     
     func currentRegistrationStatus() -> RegistrationStatus {
@@ -164,6 +165,7 @@ class RegistrationServiceDefault: RegistrationService {
             receiveValue: {value in
                 do {
                     try self.userService.saveAuthenticationApplicationKey(key: value)
+                    self._requireVerification.send(false)
                 } catch {
                     self.errorsSubject.send(KEYCHAIN_CANNOT_SAVE_APPLICATION_KEY())
                 }

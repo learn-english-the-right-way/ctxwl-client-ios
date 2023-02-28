@@ -14,18 +14,9 @@ class LoginModel: ObservableObject {
     
     private var handler: LoginModelDelegate?
     
-    @Published var email: String = "" {
-        didSet {
-            checkEmail()
-            checkLoginButtonStatus()
-        }
-    }
+    @Published var email: String = ""
     
-    @Published var password: String = "" {
-        didSet {
-            checkLoginButtonStatus()
-        }
-    }
+    @Published var password: String = ""
     
     @Published var loginUnderway = false
     
@@ -35,7 +26,7 @@ class LoginModel: ObservableObject {
     
     @Published var emailErrorMsg = ""
     
-    private func checkLoginButtonStatus() {
+    func checkLoginButtonStatus() {
         if emailValid && password != "" {
             loginButtonDisabled = false
         } else {
@@ -43,7 +34,7 @@ class LoginModel: ObservableObject {
         }
     }
     
-    private func checkEmail() -> Void {
+    func checkEmail() -> Void {
         let predicate = EmailPredicate()
         if email.isEmpty {
             emailValid = false
@@ -56,14 +47,6 @@ class LoginModel: ObservableObject {
             emailErrorMsg = ""
         }
     }
-        
-//    func switchToRegistrationPage() {
-//        var pageInfo = PageInfo(page: .Registration)
-//        pageInfo.registrationPageContent = RegistrationPageContent(email: self.email, password: self.password)
-//        guard let handler = self.handler else {
-//            return
-//        }
-//    }
     
     func login() -> Void {
         guard let handler = self.handler else {
