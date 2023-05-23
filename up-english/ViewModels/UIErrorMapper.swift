@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import WordexServices
 
 struct UIErrorMapper {
     func mapError(_ clientError: CLIENT_ERROR) -> GeneralUIEffect {

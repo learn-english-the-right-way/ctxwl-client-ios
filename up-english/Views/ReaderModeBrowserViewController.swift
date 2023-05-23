@@ -11,16 +11,7 @@ import SwiftUI
 
 class ReaderModeBrowserViewController: UIViewController, WKScriptMessageHandler {
     
-    var selectionRange: Binding<NSRange?>
-    
-    init(selectionRange: Binding<NSRange?>) {
-        self.selectionRange = selectionRange
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var selectionRange: Binding<NSRange?>?
     
     var webView = CustomEditMenuWKWebView(frame: UIScreen.main.bounds)
     
@@ -29,6 +20,11 @@ class ReaderModeBrowserViewController: UIViewController, WKScriptMessageHandler 
 
     override func loadView() {
         self.view = webView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addCustomEditMenu()
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
@@ -65,7 +61,7 @@ class ReaderModeBrowserViewController: UIViewController, WKScriptMessageHandler 
             guard let offset = Int(array[0]) else {return}
             guard let length = Int(array[1]) else {return}
             let range = NSRange(location: offset, length: length)
-            self.selectionRange.wrappedValue = range
+            self.selectionRange?.wrappedValue = range
         }
     }
 }

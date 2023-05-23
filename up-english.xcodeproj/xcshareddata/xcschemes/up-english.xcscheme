@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1300"
+   LastUpgradeVersion = "1430"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -45,6 +45,39 @@
                BlueprintIdentifier = "B09D06BA263ECB4400246D90"
                BuildableName = "up-englishUITests.xctest"
                BlueprintName = "up-englishUITests"
+               ReferencedContainer = "container:up-english.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9F8864102A19CD00001CE9F0"
+               BuildableName = "core servicesTests.xctest"
+               BlueprintName = "core servicesTests"
+               ReferencedContainer = "container:up-english.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9FB4F73D2A19FFAC00A1C65C"
+               BuildableName = "CTXWL ServicesTests.xctest"
+               BlueprintName = "CTXWL ServicesTests"
+               ReferencedContainer = "container:up-english.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9FB4F75F2A19FFD900A1C65C"
+               BuildableName = "CTXWLServicesTests.xctest"
+               BlueprintName = "CTXWLServicesTests"
                ReferencedContainer = "container:up-english.xcodeproj">
             </BuildableReference>
          </TestableReference>

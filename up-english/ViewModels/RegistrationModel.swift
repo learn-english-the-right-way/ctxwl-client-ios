@@ -8,6 +8,7 @@
 import Foundation
 import Peppermint
 import Combine
+import WordexServices
 
 @available(iOS 16.0, *)
 class RegistrationModel: ObservableObject {

@@ -24,7 +24,7 @@ struct ContentView: View {
                     Label("Browse", systemImage: "globe")
                 }
                 .tag(1)
-            RecommendationView(model: viewModelFactory.createHomeModel())
+            RecommendationView()
                 .tabItem {
                     Label("For You", systemImage: "books.vertical")
                 }

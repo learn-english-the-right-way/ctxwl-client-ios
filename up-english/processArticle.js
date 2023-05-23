@@ -44,10 +44,18 @@ function processAndExtractFullTextFrom(root) {
     return fullText
 }
 
-// TODO: give the new HTML string to iOS
+// give the new HTML string to iOS
 function processArticle() {
     var fullText = processAndExtractFullTextFrom(documentClone)
-    var newHTMLString = documentClone.documentElement.innerHTML
+    var newHTMLString = `<html><head><style>body {
+    margin-left: 5%;
+    margin-right: 5%;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #f7f1e4;
+    color: #4b3320;
+}
+h1 {font-size: 70px}
+p {font-size: 50px}</style></head>${documentClone.documentElement.innerHTML}</html>`
     var message = {
         fullText: fullText,
         newHTMLString: newHTMLString

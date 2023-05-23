@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WordexServices
 
 class SettingsViewModel: ObservableObject {
     

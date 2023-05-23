@@ -17,7 +17,9 @@ struct ReaderModeBrowser: UIViewControllerRepresentable {
     var selectionRange: Binding<NSRange?>
     
     func makeUIViewController(context: Context) -> ReaderModeBrowserViewController {
-        return ReaderModeBrowserViewController(selectionRange: selectionRange)
+        let vc = ReaderModeBrowserViewController()
+        vc.selectionRange = selectionRange
+        return vc
     }
     
     func updateUIViewController(_ uiViewController: ReaderModeBrowserViewController, context: Context) {
@@ -26,17 +28,17 @@ struct ReaderModeBrowser: UIViewControllerRepresentable {
         let url = URL(string: urlString)
         uiViewController.webView.configuration.userContentController.removeAllUserScripts()
         uiViewController.webView.loadHTMLString(string, baseURL: url)
-        let cssFile = try! String(contentsOf: Bundle.main.url(forResource: "Reader", withExtension: "css")!)
-        let cssStyle = """
-            javascript:(function() {
-            var parent = document.getElementsByTagName('head').item(0);
-            var style = document.createElement('style');
-            style.type = 'text/css';
-            style.innerHTML = window.atob('\(encodeStringTo64(fromString: cssFile)!)');
-            parent.appendChild(style)})()
-        """
-        let cssScript = WKUserScript(source: cssStyle, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
-        uiViewController.webView.configuration.userContentController.addUserScript(cssScript)
+//        let cssFile = try! String(contentsOf: Bundle.main.url(forResource: "Reader", withExtension: "css")!)
+//        let cssStyle = """
+//            javascript:(function() {
+//            var parent = document.getElementsByTagName('head').item(0);
+//            var style = document.createElement('style');
+//            style.type = 'text/css';
+//            style.innerHTML = window.atob('\(encodeStringTo64(fromString: cssFile)!)');
+//            parent.appendChild(style)})()
+//        """
+//        let cssScript = WKUserScript(source: cssStyle, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+//        uiViewController.webView.configuration.userContentController.addUserScript(cssScript)
     }
     
     private func encodeStringTo64(fromString: String) -> String? {

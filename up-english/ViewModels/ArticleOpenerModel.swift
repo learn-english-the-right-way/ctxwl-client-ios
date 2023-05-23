@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WordexServices
 
 @available(iOS 15, *)
 class ArticleOpenerModel: ObservableObject {

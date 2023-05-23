@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import WordexServices
 
 @available(iOS 16.0, *)
 class EmailVerificationModel: ObservableObject {

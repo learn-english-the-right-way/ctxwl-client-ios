@@ -34,12 +34,12 @@ class ViewModelFactory: ObservableObject {
         model.setHandler(handler)
         return model
     }
-    func createHomeModel() -> RecommendationViewModel {
-        let model = RecommendationViewModel()
-        let handler = RecommendationViewModelFake(model: model)
-        model.handler = handler
-        return model
-    }
+//    func createHomeModel() -> RecommendationViewModel {
+//        let model = RecommendationViewModel()
+//        let handler = RecommendationViewModelFake(model: model)
+//        model.handler = handler
+//        return model
+//    }
     func createArticleOpenerModel(url: String) -> ArticleOpenerModel {
         let model = ArticleOpenerModel(url: url)
         if serviceRepository.articleReadingService == nil {

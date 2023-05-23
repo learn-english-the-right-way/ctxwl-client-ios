@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Peppermint
+import WordexServices
 
 @available(iOS 16.0, *)
 class LoginModel: ObservableObject {
