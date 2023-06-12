@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B09D069E263ECB4300246D90"
-               BuildableName = "up-english.app"
-               BlueprintName = "up-english"
-               ReferencedContainer = "container:up-english.xcodeproj">
+               BuildableName = "WordexApp.app"
+               BlueprintName = "WordexApp"
+               ReferencedContainer = "container:Wordex.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B09D06AF263ECB4400246D90"
-               BuildableName = "up-englishTests.xctest"
-               BlueprintName = "up-englishTests"
-               ReferencedContainer = "container:up-english.xcodeproj">
+               BuildableName = "WordexAppTests.xctest"
+               BlueprintName = "WordexAppTests"
+               ReferencedContainer = "container:Wordex.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B09D06BA263ECB4400246D90"
-               BuildableName = "up-englishUITests.xctest"
-               BlueprintName = "up-englishUITests"
-               ReferencedContainer = "container:up-english.xcodeproj">
+               BuildableName = "WordexAppUITests.xctest"
+               BlueprintName = "WordexAppUITests"
+               ReferencedContainer = "container:Wordex.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -56,7 +56,7 @@
                BlueprintIdentifier = "9F8864102A19CD00001CE9F0"
                BuildableName = "core servicesTests.xctest"
                BlueprintName = "core servicesTests"
-               ReferencedContainer = "container:up-english.xcodeproj">
+               ReferencedContainer = "container:Wordex.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -67,7 +67,7 @@
                BlueprintIdentifier = "9FB4F73D2A19FFAC00A1C65C"
                BuildableName = "CTXWL ServicesTests.xctest"
                BlueprintName = "CTXWL ServicesTests"
-               ReferencedContainer = "container:up-english.xcodeproj">
+               ReferencedContainer = "container:Wordex.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -78,7 +78,7 @@
                BlueprintIdentifier = "9FB4F75F2A19FFD900A1C65C"
                BuildableName = "CTXWLServicesTests.xctest"
                BlueprintName = "CTXWLServicesTests"
-               ReferencedContainer = "container:up-english.xcodeproj">
+               ReferencedContainer = "container:Wordex.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -98,9 +98,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B09D069E263ECB4300246D90"
-            BuildableName = "up-english.app"
-            BlueprintName = "up-english"
-            ReferencedContainer = "container:up-english.xcodeproj">
+            BuildableName = "WordexApp.app"
+            BlueprintName = "WordexApp"
+            ReferencedContainer = "container:Wordex.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -115,9 +115,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B09D069E263ECB4300246D90"
-            BuildableName = "up-english.app"
-            BlueprintName = "up-english"
-            ReferencedContainer = "container:up-english.xcodeproj">
+            BuildableName = "WordexApp.app"
+            BlueprintName = "WordexApp"
+            ReferencedContainer = "container:Wordex.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

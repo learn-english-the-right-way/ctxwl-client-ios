@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9F338AF12A1A60F600808857 /* up-english.entitlements in Sources */ = {isa = PBXBuildFile; fileRef = 9F8864012A19C014001CE9F0 /* up-english.entitlements */; };
+		9F338AF12A1A60F600808857 /* WordexApp.entitlements in Sources */ = {isa = PBXBuildFile; fileRef = 9F8864012A19C014001CE9F0 /* WordexApp.entitlements */; };
 		9F338AF22A1A60F600808857 /* GeneralUIEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A5847D286F109F00F37358 /* GeneralUIEffect.swift */; };
 		9F338AF32A1A60F600808857 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06D5264032EC00246D90 /* RegistrationModel.swift */; };
 		9F338AF42A1A60F600808857 /* EmailVerificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0943AEB268EC963006051E0 /* EmailVerificationModel.swift */; };
@@ -35,7 +35,7 @@
 		9F338B0A2A1A60F600808857 /* CustomEditMenuWKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981FC2972ED3400709EF6 /* CustomEditMenuWKWebView.swift */; };
 		9F338B0B2A1A60F600808857 /* ReaderModeBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4ADDB8299E8550005C5CE1 /* ReaderModeBrowser.swift */; };
 		9F338B0C2A1A60F600808857 /* ReaderModeBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4ADDBC299E85D9005C5CE1 /* ReaderModeBrowserViewController.swift */; };
-		9F338B0D2A1A60F600808857 /* up_englishApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06A2263ECB4300246D90 /* up_englishApp.swift */; };
+		9F338B0D2A1A60F600808857 /* WordexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06A2263ECB4300246D90 /* WordexApp.swift */; };
 		9F338B0E2A1A60F600808857 /* ServiceInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */; };
 		9F338B122A1A60F600808857 /* Readability.js in Sources */ = {isa = PBXBuildFile; fileRef = 9F4ADDB4299E70A3005C5CE1 /* Readability.js */; };
 		9F338B132A1A60F600808857 /* processArticle.js in Sources */ = {isa = PBXBuildFile; fileRef = 9F4ADDB6299E7B52005C5CE1 /* processArticle.js */; };
@@ -95,7 +95,7 @@
 		9F338C0C2A1BD96C00808857 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F338C0B2A1BD96C00808857 /* Media.xcassets */; };
 		9F338C0E2A1BD96C00808857 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F338C0D2A1BD96C00808857 /* ActionViewController.swift */; };
 		9F338C112A1BD96C00808857 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F338C0F2A1BD96C00808857 /* MainInterface.storyboard */; };
-		9F338C152A1BD96C00808857 /* wordex-extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9F338C082A1BD96B00808857 /* wordex-extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9F338C152A1BD96C00808857 /* WordexSafariExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9F338C082A1BD96B00808857 /* WordexSafariExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9F338C1A2A1BD9BB00808857 /* ActionExtensionReaderModeBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F338C192A1BD9BB00808857 /* ActionExtensionReaderModeBrowserViewController.swift */; };
 		9F338C1B2A1BDA1B00808857 /* ReaderModeBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4ADDBC299E85D9005C5CE1 /* ReaderModeBrowserViewController.swift */; };
 		9F338C1C2A1BDA4100808857 /* CustomEditMenuWKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08981FC2972ED3400709EF6 /* CustomEditMenuWKWebView.swift */; };
@@ -107,7 +107,7 @@
 		9F4ADDBF299F1E7D005C5CE1 /* Reader.css in Resources */ = {isa = PBXBuildFile; fileRef = 9F4ADDBE299F1E7D005C5CE1 /* Reader.css */; };
 		9F4ADDC1299FF7E9005C5CE1 /* getRange.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F4ADDC0299FF7E9005C5CE1 /* getRange.js */; };
 		9F4ADDC329A00BCD005C5CE1 /* getLength.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F4ADDC229A00BCD005C5CE1 /* getLength.js */; };
-		9F78742B2A1A168C00E27DF1 /* Peppermint in Frameworks */ = {isa = PBXBuildFile; productRef = 9F78742A2A1A168C00E27DF1 /* Peppermint */; };
+		9F5AEEB82A36917800B52071 /* Peppermint in Frameworks */ = {isa = PBXBuildFile; productRef = 9F5AEEB72A36917800B52071 /* Peppermint */; };
 		9FE990BD2A1A0C0A00C94760 /* WordexServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FE990BC2A1A0C0A00C94760 /* WordexServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9FE990C02A1A0C0A00C94760 /* WordexServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE990BA2A1A0C0A00C94760 /* WordexServices.framework */; };
 		9FE990C12A1A0C0A00C94760 /* WordexServices.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FE990BA2A1A0C0A00C94760 /* WordexServices.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -118,8 +118,8 @@
 		9FEEDACA2A1C41BA00B3D303 /* getLength.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F4ADDC229A00BCD005C5CE1 /* getLength.js */; };
 		B09D06A7263ECB4400246D90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B09D06A6263ECB4400246D90 /* Assets.xcassets */; };
 		B09D06AA263ECB4400246D90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B09D06A9263ECB4400246D90 /* Preview Assets.xcassets */; };
-		B09D06B5263ECB4400246D90 /* up_englishTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06B4263ECB4400246D90 /* up_englishTests.swift */; };
-		B09D06C0263ECB4400246D90 /* up_englishUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06BF263ECB4400246D90 /* up_englishUITests.swift */; };
+		B09D06B5263ECB4400246D90 /* WordexAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06B4263ECB4400246D90 /* WordexAppTests.swift */; };
+		B09D06C0263ECB4400246D90 /* WordexAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D06BF263ECB4400246D90 /* WordexAppUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,7 +167,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				9F338C152A1BD96C00808857 /* wordex-extension.appex in Embed Foundation Extensions */,
+				9F338C152A1BD96C00808857 /* WordexSafariExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,11 +189,11 @@
 		5ED313042902DF6700461467 /* NoticeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeModifier.swift; sourceTree = "<group>"; };
 		5EF9CC1828EC7A5B00C40D86 /* GeneralUIEffectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralUIEffectManager.swift; sourceTree = "<group>"; };
 		5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceInitializer.swift; sourceTree = "<group>"; };
-		9F338AED2A1A601D00808857 /* up-english.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "up-english.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F338AEE2A1A601D00808857 /* up-englishTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "up-englishTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F338AEF2A1A601D00808857 /* up-englishUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "up-englishUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F338AED2A1A601D00808857 /* WordexApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordexApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F338AEE2A1A601D00808857 /* WordexAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordexAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F338AEF2A1A601D00808857 /* WordexAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordexAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F338BA02A1BCE5100808857 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
-		9F338C082A1BD96B00808857 /* wordex-extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "wordex-extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F338C082A1BD96B00808857 /* WordexSafariExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WordexSafariExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F338C0B2A1BD96C00808857 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		9F338C0D2A1BD96C00808857 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
 		9F338C102A1BD96C00808857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -210,7 +210,8 @@
 		9F4ADDC229A00BCD005C5CE1 /* getLength.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = getLength.js; sourceTree = "<group>"; };
 		9F4ADDC429AB6E7A005C5CE1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		9F8863FF2A192B43001CE9F0 /* ParagraphGeneratorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphGeneratorService.swift; sourceTree = "<group>"; };
-		9F8864012A19C014001CE9F0 /* up-english.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "up-english.entitlements"; sourceTree = "<group>"; };
+		9F8864012A19C014001CE9F0 /* WordexApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WordexApp.entitlements; sourceTree = "<group>"; };
+		9F9FD6442A369A5900F29E8E /* WordexSafariExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WordexSafariExtension.entitlements; sourceTree = "<group>"; };
 		9FE990BA2A1A0C0A00C94760 /* WordexServices.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WordexServices.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE990BC2A1A0C0A00C94760 /* WordexServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordexServices.h; sourceTree = "<group>"; };
 		9FE990C62A1A0C2F00C94760 /* SessionConnectionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionConnectionService.swift; sourceTree = "<group>"; };
@@ -255,7 +256,6 @@
 		9FE991032A1A0D9600C94760 /* KEYCHAIN_CANNOT_SAVE_CREDENTIAL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KEYCHAIN_CANNOT_SAVE_CREDENTIAL.swift; sourceTree = "<group>"; };
 		9FE991042A1A0D9600C94760 /* SESSION_AUTHENTICATION_INVALID_CREDENTIAL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SESSION_AUTHENTICATION_INVALID_CREDENTIAL.swift; sourceTree = "<group>"; };
 		9FE991052A1A0D9600C94760 /* CONNECTION_FAILED.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CONNECTION_FAILED.swift; sourceTree = "<group>"; };
-		9FEEDACB2A1C51C700B3D303 /* wordex-extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "wordex-extension.entitlements"; sourceTree = "<group>"; };
 		B00D51A026C40A590069AA55 /* CustomWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWebView.swift; sourceTree = "<group>"; };
 		B04B64D826A52A8600D0B954 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		B05AEDD228A791C9005BC3BB /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
@@ -265,14 +265,14 @@
 		B08AB6DD2929C17000968BA5 /* ArticleOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleOpener.swift; sourceTree = "<group>"; };
 		B08AB6DF2929C21300968BA5 /* ArticleOpenerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleOpenerModel.swift; sourceTree = "<group>"; };
 		B0943AEB268EC963006051E0 /* EmailVerificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerificationModel.swift; sourceTree = "<group>"; };
-		B09D06A2263ECB4300246D90 /* up_englishApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = up_englishApp.swift; sourceTree = "<group>"; };
+		B09D06A2263ECB4300246D90 /* WordexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordexApp.swift; sourceTree = "<group>"; };
 		B09D06A4263ECB4300246D90 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B09D06A6263ECB4400246D90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B09D06A9263ECB4400246D90 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B09D06AB263ECB4400246D90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B09D06B4263ECB4400246D90 /* up_englishTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = up_englishTests.swift; sourceTree = "<group>"; };
+		B09D06B4263ECB4400246D90 /* WordexAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordexAppTests.swift; sourceTree = "<group>"; };
 		B09D06B6263ECB4400246D90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B09D06BF263ECB4400246D90 /* up_englishUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = up_englishUITests.swift; sourceTree = "<group>"; };
+		B09D06BF263ECB4400246D90 /* WordexAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordexAppUITests.swift; sourceTree = "<group>"; };
 		B09D06C1263ECB4400246D90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B09D06CD263ECB8900246D90 /* Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
 		B09D06CF263ECB9C00246D90 /* EmailVerification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerification.swift; sourceTree = "<group>"; };
@@ -314,7 +314,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F78742B2A1A168C00E27DF1 /* Peppermint in Frameworks */,
+				9F5AEEB82A36917800B52071 /* Peppermint in Frameworks */,
 				9FE990C02A1A0C0A00C94760 /* WordexServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,10 +336,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9F338C0A2A1BD96C00808857 /* wordex-extension */ = {
+		9F338C0A2A1BD96C00808857 /* WordexSafariExtension */ = {
 			isa = PBXGroup;
 			children = (
-				9FEEDACB2A1C51C700B3D303 /* wordex-extension.entitlements */,
+				9F9FD6442A369A5900F29E8E /* WordexSafariExtension.entitlements */,
 				9F338C1F2A1BDAD100808857 /* Action.js */,
 				9F338C0B2A1BD96C00808857 /* Media.xcassets */,
 				9F338C0D2A1BD96C00808857 /* ActionViewController.swift */,
@@ -348,7 +348,7 @@
 				9F338C192A1BD9BB00808857 /* ActionExtensionReaderModeBrowserViewController.swift */,
 				9F338C1D2A1BDAB100808857 /* ExtensionSerivceInitializer.swift */,
 			);
-			path = "wordex-extension";
+			path = WordexSafariExtension;
 			sourceTree = "<group>";
 		};
 		9F7874292A1A168C00E27DF1 /* Frameworks */ = {
@@ -434,27 +434,27 @@
 		B09D0696263ECB4200246D90 = {
 			isa = PBXGroup;
 			children = (
-				B09D06A1263ECB4300246D90 /* up-english */,
-				B09D06B3263ECB4400246D90 /* up-englishTests */,
-				B09D06BE263ECB4400246D90 /* up-englishUITests */,
+				B09D06A1263ECB4300246D90 /* WordexApp */,
+				B09D06B3263ECB4400246D90 /* WordexAppTests */,
+				B09D06BE263ECB4400246D90 /* WordexAppUITests */,
 				9FE990BA2A1A0C0A00C94760 /* WordexServices.framework */,
 				9FE990BB2A1A0C0A00C94760 /* WordexServices */,
-				9F338C0A2A1BD96C00808857 /* wordex-extension */,
+				9F338C0A2A1BD96C00808857 /* WordexSafariExtension */,
 				9F7874292A1A168C00E27DF1 /* Frameworks */,
-				9F338AED2A1A601D00808857 /* up-english.app */,
-				9F338AEE2A1A601D00808857 /* up-englishTests.xctest */,
-				9F338AEF2A1A601D00808857 /* up-englishUITests.xctest */,
-				9F338C082A1BD96B00808857 /* wordex-extension.appex */,
+				9F338AED2A1A601D00808857 /* WordexApp.app */,
+				9F338AEE2A1A601D00808857 /* WordexAppTests.xctest */,
+				9F338AEF2A1A601D00808857 /* WordexAppUITests.xctest */,
+				9F338C082A1BD96B00808857 /* WordexSafariExtension.appex */,
 			);
 			sourceTree = "<group>";
 		};
-		B09D06A1263ECB4300246D90 /* up-english */ = {
+		B09D06A1263ECB4300246D90 /* WordexApp */ = {
 			isa = PBXGroup;
 			children = (
-				9F8864012A19C014001CE9F0 /* up-english.entitlements */,
+				9F8864012A19C014001CE9F0 /* WordexApp.entitlements */,
 				B0C7CBFB26512632003832EE /* ViewModels */,
 				B0C7CBFA265125FE003832EE /* Views */,
-				B09D06A2263ECB4300246D90 /* up_englishApp.swift */,
+				B09D06A2263ECB4300246D90 /* WordexApp.swift */,
 				5EF9CC5028EDD01E00C40D86 /* ServiceInitializer.swift */,
 				B09D06A6263ECB4400246D90 /* Assets.xcassets */,
 				B09D06AB263ECB4400246D90 /* Info.plist */,
@@ -465,7 +465,7 @@
 				9F4ADDC0299FF7E9005C5CE1 /* getRange.js */,
 				9F4ADDC229A00BCD005C5CE1 /* getLength.js */,
 			);
-			path = "up-english";
+			path = WordexApp;
 			sourceTree = "<group>";
 		};
 		B09D06A8263ECB4400246D90 /* Preview Content */ = {
@@ -476,22 +476,22 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		B09D06B3263ECB4400246D90 /* up-englishTests */ = {
+		B09D06B3263ECB4400246D90 /* WordexAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				B09D06B4263ECB4400246D90 /* up_englishTests.swift */,
+				B09D06B4263ECB4400246D90 /* WordexAppTests.swift */,
 				B09D06B6263ECB4400246D90 /* Info.plist */,
 			);
-			path = "up-englishTests";
+			path = WordexAppTests;
 			sourceTree = "<group>";
 		};
-		B09D06BE263ECB4400246D90 /* up-englishUITests */ = {
+		B09D06BE263ECB4400246D90 /* WordexAppUITests */ = {
 			isa = PBXGroup;
 			children = (
-				B09D06BF263ECB4400246D90 /* up_englishUITests.swift */,
+				B09D06BF263ECB4400246D90 /* WordexAppUITests.swift */,
 				B09D06C1263ECB4400246D90 /* Info.plist */,
 			);
-			path = "up-englishUITests";
+			path = WordexAppUITests;
 			sourceTree = "<group>";
 		};
 		B0A5847C286F107700F37358 /* UIEffects */ = {
@@ -557,9 +557,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9F338C072A1BD96B00808857 /* wordex-extension */ = {
+		9F338C072A1BD96B00808857 /* WordexSafariExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9F338C162A1BD96C00808857 /* Build configuration list for PBXNativeTarget "wordex-extension" */;
+			buildConfigurationList = 9F338C162A1BD96C00808857 /* Build configuration list for PBXNativeTarget "WordexSafariExtension" */;
 			buildPhases = (
 				9F338C042A1BD96B00808857 /* Sources */,
 				9F338C052A1BD96B00808857 /* Frameworks */,
@@ -570,9 +570,9 @@
 			dependencies = (
 				9FEEDACD2A1C638600B3D303 /* PBXTargetDependency */,
 			);
-			name = "wordex-extension";
+			name = WordexSafariExtension;
 			productName = "wordex-extension";
-			productReference = 9F338C082A1BD96B00808857 /* wordex-extension.appex */;
+			productReference = 9F338C082A1BD96B00808857 /* WordexSafariExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		9FE990B92A1A0C0A00C94760 /* WordexServices */ = {
@@ -593,9 +593,9 @@
 			productReference = 9FE990BA2A1A0C0A00C94760 /* WordexServices.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B09D069E263ECB4300246D90 /* up-english */ = {
+		B09D069E263ECB4300246D90 /* WordexApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B09D06C4263ECB4400246D90 /* Build configuration list for PBXNativeTarget "up-english" */;
+			buildConfigurationList = B09D06C4263ECB4400246D90 /* Build configuration list for PBXNativeTarget "WordexApp" */;
 			buildPhases = (
 				B09D069C263ECB4300246D90 /* Frameworks */,
 				B09D069D263ECB4300246D90 /* Resources */,
@@ -609,17 +609,17 @@
 				9FE990BF2A1A0C0A00C94760 /* PBXTargetDependency */,
 				9F338C142A1BD96C00808857 /* PBXTargetDependency */,
 			);
-			name = "up-english";
+			name = WordexApp;
 			packageProductDependencies = (
-				9F78742A2A1A168C00E27DF1 /* Peppermint */,
+				9F5AEEB72A36917800B52071 /* Peppermint */,
 			);
 			productName = "up-english";
-			productReference = 9F338AED2A1A601D00808857 /* up-english.app */;
+			productReference = 9F338AED2A1A601D00808857 /* WordexApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B09D06AF263ECB4400246D90 /* up-englishTests */ = {
+		B09D06AF263ECB4400246D90 /* WordexAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B09D06C7263ECB4400246D90 /* Build configuration list for PBXNativeTarget "up-englishTests" */;
+			buildConfigurationList = B09D06C7263ECB4400246D90 /* Build configuration list for PBXNativeTarget "WordexAppTests" */;
 			buildPhases = (
 				B09D06AC263ECB4400246D90 /* Sources */,
 				B09D06AD263ECB4400246D90 /* Frameworks */,
@@ -630,14 +630,14 @@
 			dependencies = (
 				B09D06B2263ECB4400246D90 /* PBXTargetDependency */,
 			);
-			name = "up-englishTests";
+			name = WordexAppTests;
 			productName = "up-englishTests";
-			productReference = 9F338AEE2A1A601D00808857 /* up-englishTests.xctest */;
+			productReference = 9F338AEE2A1A601D00808857 /* WordexAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B09D06BA263ECB4400246D90 /* up-englishUITests */ = {
+		B09D06BA263ECB4400246D90 /* WordexAppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B09D06CA263ECB4400246D90 /* Build configuration list for PBXNativeTarget "up-englishUITests" */;
+			buildConfigurationList = B09D06CA263ECB4400246D90 /* Build configuration list for PBXNativeTarget "WordexAppUITests" */;
 			buildPhases = (
 				B09D06B7263ECB4400246D90 /* Sources */,
 				B09D06B8263ECB4400246D90 /* Frameworks */,
@@ -648,9 +648,9 @@
 			dependencies = (
 				B09D06BD263ECB4400246D90 /* PBXTargetDependency */,
 			);
-			name = "up-englishUITests";
+			name = WordexAppUITests;
 			productName = "up-englishUITests";
-			productReference = 9F338AEF2A1A601D00808857 /* up-englishUITests.xctest */;
+			productReference = 9F338AEF2A1A601D00808857 /* WordexAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -682,7 +682,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B09D069A263ECB4300246D90 /* Build configuration list for PBXProject "up-english" */;
+			buildConfigurationList = B09D069A263ECB4300246D90 /* Build configuration list for PBXProject "Wordex" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -698,11 +698,11 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B09D069E263ECB4300246D90 /* up-english */,
-				B09D06AF263ECB4400246D90 /* up-englishTests */,
-				B09D06BA263ECB4400246D90 /* up-englishUITests */,
+				B09D069E263ECB4300246D90 /* WordexApp */,
+				B09D06AF263ECB4400246D90 /* WordexAppTests */,
+				B09D06BA263ECB4400246D90 /* WordexAppUITests */,
 				9FE990B92A1A0C0A00C94760 /* WordexServices */,
-				9F338C072A1BD96B00808857 /* wordex-extension */,
+				9F338C072A1BD96B00808857 /* WordexSafariExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -765,7 +765,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F338AF12A1A60F600808857 /* up-english.entitlements in Sources */,
+				9F338AF12A1A60F600808857 /* WordexApp.entitlements in Sources */,
 				9F338AF22A1A60F600808857 /* GeneralUIEffect.swift in Sources */,
 				9F338AF32A1A60F600808857 /* RegistrationModel.swift in Sources */,
 				9F338AF42A1A60F600808857 /* EmailVerificationModel.swift in Sources */,
@@ -793,7 +793,7 @@
 				9F338B0A2A1A60F600808857 /* CustomEditMenuWKWebView.swift in Sources */,
 				9F338B0B2A1A60F600808857 /* ReaderModeBrowser.swift in Sources */,
 				9F338B0C2A1A60F600808857 /* ReaderModeBrowserViewController.swift in Sources */,
-				9F338B0D2A1A60F600808857 /* up_englishApp.swift in Sources */,
+				9F338B0D2A1A60F600808857 /* WordexApp.swift in Sources */,
 				9F338B0E2A1A60F600808857 /* ServiceInitializer.swift in Sources */,
 				9F338B122A1A60F600808857 /* Readability.js in Sources */,
 				9F338B132A1A60F600808857 /* processArticle.js in Sources */,
@@ -875,7 +875,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B09D06B5263ECB4400246D90 /* up_englishTests.swift in Sources */,
+				B09D06B5263ECB4400246D90 /* WordexAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -883,7 +883,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B09D06C0263ECB4400246D90 /* up_englishUITests.swift in Sources */,
+				B09D06C0263ECB4400246D90 /* WordexAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -892,7 +892,7 @@
 /* Begin PBXTargetDependency section */
 		9F338C142A1BD96C00808857 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9F338C072A1BD96B00808857 /* wordex-extension */;
+			target = 9F338C072A1BD96B00808857 /* WordexSafariExtension */;
 			targetProxy = 9F338C132A1BD96C00808857 /* PBXContainerItemProxy */;
 		};
 		9FE990BF2A1A0C0A00C94760 /* PBXTargetDependency */ = {
@@ -907,12 +907,12 @@
 		};
 		B09D06B2263ECB4400246D90 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B09D069E263ECB4300246D90 /* up-english */;
+			target = B09D069E263ECB4300246D90 /* WordexApp */;
 			targetProxy = B09D06B1263ECB4400246D90 /* PBXContainerItemProxy */;
 		};
 		B09D06BD263ECB4400246D90 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B09D069E263ECB4300246D90 /* up-english */;
+			target = B09D069E263ECB4300246D90 /* WordexApp */;
 			targetProxy = B09D06BC263ECB4400246D90 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -933,13 +933,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = "wordex-extension/wordex-extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = WordexSafariExtension/WordexSafariExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q2Q59R69BD;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "wordex-extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "wordex-extension";
+				INFOPLIST_FILE = WordexSafariExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Read with Wordex";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -947,7 +947,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jamestsai.up-english.wordex-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -961,13 +961,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = "wordex-extension/wordex-extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = WordexSafariExtension/WordexSafariExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q2Q59R69BD;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "wordex-extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "wordex-extension";
+				INFOPLIST_FILE = WordexSafariExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Read with Wordex";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -975,7 +975,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jamestsai.up-english.wordex-extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1179,13 +1179,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "up-english/up-english.entitlements";
+				CODE_SIGN_ENTITLEMENTS = WordexApp/WordexApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"up-english/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "WordexApp/Preview\\ Content";
 				DEVELOPMENT_TEAM = Q2Q59R69BD;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "up-english/Info.plist";
+				INFOPLIST_FILE = WordexApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Wordex;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
@@ -1193,7 +1193,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jamestsai.up-english";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1207,13 +1207,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "up-english/up-english.entitlements";
+				CODE_SIGN_ENTITLEMENTS = WordexApp/WordexApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"up-english/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "WordexApp/Preview\\ Content";
 				DEVELOPMENT_TEAM = Q2Q59R69BD;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "up-english/Info.plist";
+				INFOPLIST_FILE = WordexApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Wordex;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
@@ -1221,7 +1221,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jamestsai.up-english";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1316,7 +1316,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9F338C162A1BD96C00808857 /* Build configuration list for PBXNativeTarget "wordex-extension" */ = {
+		9F338C162A1BD96C00808857 /* Build configuration list for PBXNativeTarget "WordexSafariExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F338C172A1BD96C00808857 /* Debug */,
@@ -1334,7 +1334,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B09D069A263ECB4300246D90 /* Build configuration list for PBXProject "up-english" */ = {
+		B09D069A263ECB4300246D90 /* Build configuration list for PBXProject "Wordex" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B09D06C2263ECB4400246D90 /* Debug */,
@@ -1343,7 +1343,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B09D06C4263ECB4400246D90 /* Build configuration list for PBXNativeTarget "up-english" */ = {
+		B09D06C4263ECB4400246D90 /* Build configuration list for PBXNativeTarget "WordexApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B09D06C5263ECB4400246D90 /* Debug */,
@@ -1352,7 +1352,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B09D06C7263ECB4400246D90 /* Build configuration list for PBXNativeTarget "up-englishTests" */ = {
+		B09D06C7263ECB4400246D90 /* Build configuration list for PBXNativeTarget "WordexAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B09D06C8263ECB4400246D90 /* Debug */,
@@ -1361,7 +1361,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B09D06CA263ECB4400246D90 /* Build configuration list for PBXNativeTarget "up-englishUITests" */ = {
+		B09D06CA263ECB4400246D90 /* Build configuration list for PBXNativeTarget "WordexAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B09D06CB263ECB4400246D90 /* Debug */,
@@ -1384,7 +1384,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9F78742A2A1A168C00E27DF1 /* Peppermint */ = {
+		9F5AEEB72A36917800B52071 /* Peppermint */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B09D06D726429C0700246D90 /* XCRemoteSwiftPackageReference "peppermint" */;
 			productName = Peppermint;

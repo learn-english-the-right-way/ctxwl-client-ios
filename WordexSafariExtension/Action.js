@@ -50,6 +50,8 @@ run: function(parameters) {
         return fullText
     }
     
+    var fullText = processAndExtractFullTextFrom(documentClone)
+    
     var htmlWithCSS = `<html><head><style>body {
     margin-left: 5%;
     margin-right: 5%;
@@ -61,7 +63,7 @@ h1 {font-size: 70px}
 p {font-size: 50px}</style></head>${documentClone.documentElement.innerHTML}</html>`
     
     parameters.completionFunction({
-        fullText: processAndExtractFullTextFrom(documentClone),
+        fullText: fullText,
         newHTMLString: htmlWithCSS
     })
     

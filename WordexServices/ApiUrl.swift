@@ -8,7 +8,7 @@
 import Foundation
 
 class ApiUrl {
-    private static var baseUrl = "http://localhost:8888"
+    private static var baseUrl = "http://18.180.115.247:8888"
     static func emailConfirmationUrl() -> URL {
         return URL(string: self.baseUrl + "/email_registration")!
     }

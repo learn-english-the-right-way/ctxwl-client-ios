@@ -9,7 +9,7 @@ import SwiftUI
 
 @available(iOS 16.0, *)
 @main
-struct up_englishApp: App {
+struct WordexApp: App {
     
     var services = ServiceInitializer()
                 
